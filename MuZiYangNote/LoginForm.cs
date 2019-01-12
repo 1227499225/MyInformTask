@@ -19,7 +19,7 @@ namespace MuZiYangNote
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            //txtUserAccount.VerticalContentAlignment
+            
         }
 
 
