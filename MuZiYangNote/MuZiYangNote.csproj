@@ -96,7 +96,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskDetailsCnOrEn.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Class1.cs" />
     <Compile Include="UserControls\TextBoxEX.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\TextBoxExS.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserHelperForm.cs">

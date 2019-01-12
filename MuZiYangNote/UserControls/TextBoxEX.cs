@@ -12,6 +12,92 @@ namespace MuZiYangNote.UserControls
 {
     class TextBoxEX : TextBox
     {
+        
+        //获取Rect消息
+        private const int EM_GETRECT = 178;
+        //设置Rect消息
+        private const int EM_SETRECT = 179;
+        //绘制消息
+        private const int WM_PAINT = 0xF;
+        public TextBoxEX()
+        {
+            _textMargin = new Padding(1);
+            //不允许回国
+            AllowReturn = false;
+            //禁止折行
+            WordWrap = false;
+
+        }
+
+        [DllImport("user32.dll", EntryPoint = "SendMessageA")]
+        private static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, string lParam);
+        [DllImport("user32.dll", EntryPoint = "SendMessageA")]
+        private static extern int SendMessage(IntPtr hwnd, int wMsg, IntPtr wParam, ref Rectangle lParam);
+
+
+        /*
+        * ============================================================
+        * 函数名：OnSizeChanged
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期：
+        * 描述：尺寸变化时重新设置字体的显示位置居中
+        * ============================================================
+        */
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            SetTextDispLayout();
+        }
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            SetTextDispLayout();
+        }
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            SetTextDispLayout();
+        }
+
+        protected override void OnTextAlignChanged(EventArgs e)
+        {
+            base.OnTextAlignChanged(e);
+            SetTextDispLayout();
+        }
+        /*
+        * ============================================================
+        * 函数名：SetTextDispLayout
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期：
+        * 描述：设置文本显示布局位置
+        * ============================================================
+        */
+        public void SetTextDispLayout()
+        {
+            if (this.Text == "")
+                return;
+            Rectangle rect = new Rectangle();
+            SendMessage(this.Handle, 0, (IntPtr)0, ref rect);
+            SizeF size = CreateGraphics().MeasureString(Text, Font);
+            rect.Y = (int)(Height - size.Height) / 2 + TextMargin.Top;
+            rect.X = 1 + TextMargin.Left;
+            rect.Height = Height - 2;
+            rect.Width = Width - TextMargin.Right - TextMargin.Left - 2;
+            SendMessage(this.Handle, EM_SETRECT, IntPtr.Zero, ref rect);
+        }
+        protected override void OnKeyPress(KeyPressEventArgs e)
+        {
+            //如果不允许回车 屏蔽回车 换行键值
+            if (!AllowReturn
+                && ((int)e.KeyChar == (int)Keys.Return || (int)e.KeyChar == (int)Keys.LineFeed))
+            {
+                e.Handled = true;
+            }
+            base.OnKeyPress(e);
+        }
 
         /*
         * ============================================================
@@ -82,7 +168,33 @@ namespace MuZiYangNote.UserControls
                 }
             }
         }
+      
         #region 自定义属性
+
+        /*
+        * ============================================================
+        * 函数名：AllowReturn
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期：
+        * 描述：是否允许有回车
+        * ============================================================
+        */
+        public bool AllowReturn { get; set; }
+
+        private Padding _textMargin;
+
+        /*
+        * ============================================================
+        * 函数名：TextMargin
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期：
+        * 描述：Text Padding值
+        * ============================================================
+        */
+        public Padding TextMargin { get { return _textMargin; } set { _textMargin = value; SetTextDispLayout(); } }
+
         private bool textBoxAutoSize;
         /*
         * ============================================================
@@ -234,12 +346,7 @@ namespace MuZiYangNote.UserControls
 
         #endregion
 
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            this.ResumeLayout(false);
 
-        }
 
         /// <summary>
         /// 自定义控件类型

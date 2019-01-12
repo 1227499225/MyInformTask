@@ -169,35 +169,45 @@
             // 
             // txtUserPwd
             // 
+            this.txtUserPwd.AllowReturn = false;
             this.txtUserPwd.BorderColor = System.Drawing.Color.Empty;
             this.txtUserPwd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserPwd.BorderWeight = -1;
             this.txtUserPwd.ControlTypeText = MuZiYangNote.UserControls.TextBoxEX.TextBoxType.String;
             this.txtUserPwd.Location = new System.Drawing.Point(171, 99);
+            this.txtUserPwd.Multiline = true;
             this.txtUserPwd.Name = "txtUserPwd";
             this.txtUserPwd.PasswordChar = '*';
-            this.txtUserPwd.Size = new System.Drawing.Size(235, 21);
+            this.txtUserPwd.Size = new System.Drawing.Size(235, 30);
             this.txtUserPwd.TabIndex = 0;
+            this.txtUserPwd.TextBoxAutoSize = false;
             this.txtUserPwd.TextBoxHeight = 30;
+            this.txtUserPwd.TextMargin = new System.Windows.Forms.Padding(1);
             this.txtUserPwd.WaterMarkFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtUserPwd.WaterMarkText = "请输入密码";
             this.txtUserPwd.WaterMarkTextColor = System.Drawing.Color.Gray;
+            this.txtUserPwd.WordWrap = false;
             this.txtUserPwd.TextChanged += new System.EventHandler(this.txtUserPwd_TextChanged);
             // 
             // txtUserAccount
             // 
+            this.txtUserAccount.AllowReturn = false;
             this.txtUserAccount.BorderColor = System.Drawing.Color.Empty;
             this.txtUserAccount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserAccount.BorderWeight = -1;
             this.txtUserAccount.ControlTypeText = MuZiYangNote.UserControls.TextBoxEX.TextBoxType.String;
             this.txtUserAccount.Location = new System.Drawing.Point(171, 61);
+            this.txtUserAccount.Multiline = true;
             this.txtUserAccount.Name = "txtUserAccount";
-            this.txtUserAccount.Size = new System.Drawing.Size(235, 21);
+            this.txtUserAccount.Size = new System.Drawing.Size(235, 30);
             this.txtUserAccount.TabIndex = 0;
+            this.txtUserAccount.TextBoxAutoSize = false;
             this.txtUserAccount.TextBoxHeight = 30;
+            this.txtUserAccount.TextMargin = new System.Windows.Forms.Padding(1);
             this.txtUserAccount.WaterMarkFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtUserAccount.WaterMarkText = "账户\\手机号";
             this.txtUserAccount.WaterMarkTextColor = System.Drawing.Color.Gray;
+            this.txtUserAccount.WordWrap = false;
             // 
             // LoginForm
             // 
