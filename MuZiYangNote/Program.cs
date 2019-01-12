@@ -1,0 +1,64 @@
+﻿using MuZiYangNote.UserControls;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MuZiYangNote
+{
+    static class Program
+    {
+        public static string Min = "";
+        /// <summary>
+        /// 超级管理员代码
+        /// </summary>
+        public static string SuperAdminCode;
+        /// <summary>
+        /// 默认语言
+        /// </summary>
+        public static Model.LanguageEnum _LANGUAGETYPE = Model.LanguageEnum.LanguageCN;
+        /// <summary>
+        /// 应用程序的主入口点。
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            if (IsRunning())
+            {
+                MessageBoxEX.Show("木子杨便签已经打开,无法打开多个！");
+                return;
+            }
+
+            Application.Run(new LoginForm());
+        }
+        public static bool IsRunning()
+        {
+            Process current = default(Process);
+            current = System.Diagnostics.Process.GetCurrentProcess();
+            Process[] processes = null;
+            processes = System.Diagnostics.Process.GetProcessesByName(current.ProcessName);
+
+            Process process = default(Process);
+
+            foreach (Process tempLoopVar_process in processes)
+            {
+                process = tempLoopVar_process;
+
+                if (process.Id != current.Id)
+                {
+                    if (System.Reflection.Assembly.GetExecutingAssembly().Location.Replace("/", "\\") == current.MainModule.FileName)
+                    {
+                        return true;
+
+                    }
+
+                }
+            }
+            return false;
+        }
+    }
+}

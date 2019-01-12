@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+
+  <CodeSnippet Format="1.0.0">
+
+    <Header>
+
+      <Title>Note</Title>
+
+      <Shortcut>Note</Shortcut>
+
+      <Description>Note 语句的代码段</Description>
+
+      <Author>木子杨</Author>
+
+      <SnippetTypes>
+
+        <SnippetType>Expansion</SnippetType>
+
+        <SnippetType>SurroundsWith</SnippetType>
+
+      </SnippetTypes>
+
+    </Header>
+
+    <Snippet>
+
+      <Declarations>
+
+        <Literal>
+
+          <ID>Name</ID>
+
+          <ToolTip>函数名</ToolTip>
+
+          <Default>Func</Default>
+
+        </Literal>
+
+        <Literal>
+
+          <ID>Author</ID>
+
+          <ToolTip>作者</ToolTip>
+
+          <Default>木子杨</Default>
+
+        </Literal>
+
+        <Literal>
+
+          <ID>Date</ID>
+
+          <ToolTip>日期</ToolTip>
+
+          <Default>2019-01-01 00:00:00</Default>
+
+        </Literal>
+
+      </Declarations>
+
+      <Code Language="cpp">
+
+        <![CDATA[/**
+
+        * 函数名：$Name$
+
+        * 作者：$Author$
+
+        * 日期：$Date$
+
+        **/$selected$ $end$]]>
+
+      </Code>
+
+    </Snippet>
+
+  </CodeSnippet>
+
+</CodeSnippets>
