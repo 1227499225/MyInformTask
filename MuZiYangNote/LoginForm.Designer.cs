@@ -28,48 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.butLogin = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.laForgetThePassword = new System.Windows.Forms.Label();
             this.chbAutoLogon = new System.Windows.Forms.CheckBox();
             this.chbRememberThePassword = new System.Windows.Forms.CheckBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picbUserImg = new System.Windows.Forms.PictureBox();
             this.panelHead = new System.Windows.Forms.Panel();
             this.btnEXMin = new MuZiYangNote.UserControls.ButtonEX();
             this.btnEXClose = new MuZiYangNote.UserControls.ButtonEX();
+            this.butLogin = new MuZiYangNote.UserControls.ButtonEX();
             this.txtUserPwd = new MuZiYangNote.UserControls.TextBoxEX();
             this.txtUserAccount = new MuZiYangNote.UserControls.TextBoxEX();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbUserImg)).BeginInit();
             this.panelHead.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // butLogin
-            // 
-            this.butLogin.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.butLogin.BackColor = System.Drawing.Color.White;
-            this.butLogin.FlatAppearance.BorderSize = 0;
-            this.butLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.butLogin.Location = new System.Drawing.Point(171, 161);
-            this.butLogin.Name = "butLogin";
-            this.butLogin.Size = new System.Drawing.Size(235, 23);
-            this.butLogin.TabIndex = 1;
-            this.butLogin.Text = "登  录";
-            this.butLogin.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panel1.Controls.Add(this.butLogin);
             this.panel1.Controls.Add(this.laForgetThePassword);
             this.panel1.Controls.Add(this.chbAutoLogon);
             this.panel1.Controls.Add(this.chbRememberThePassword);
-            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.picbUserImg);
             this.panel1.Controls.Add(this.txtUserPwd);
-            this.panel1.Controls.Add(this.butLogin);
             this.panel1.Controls.Add(this.txtUserAccount);
             this.panel1.Location = new System.Drawing.Point(1, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(444, 205);
+            this.panel1.Size = new System.Drawing.Size(444, 208);
             this.panel1.TabIndex = 2;
             // 
             // laForgetThePassword
@@ -80,7 +67,7 @@
             this.laForgetThePassword.Location = new System.Drawing.Point(353, 140);
             this.laForgetThePassword.Name = "laForgetThePassword";
             this.laForgetThePassword.Size = new System.Drawing.Size(53, 12);
-            this.laForgetThePassword.TabIndex = 4;
+            this.laForgetThePassword.TabIndex = 5;
             this.laForgetThePassword.Text = "忘记密码";
             this.laForgetThePassword.MouseEnter += new System.EventHandler(this.laForgetThePassword_MouseEnter);
             this.laForgetThePassword.MouseLeave += new System.EventHandler(this.laForgetThePassword_MouseLeave);
@@ -101,18 +88,19 @@
             this.chbRememberThePassword.Location = new System.Drawing.Point(261, 139);
             this.chbRememberThePassword.Name = "chbRememberThePassword";
             this.chbRememberThePassword.Size = new System.Drawing.Size(72, 16);
-            this.chbRememberThePassword.TabIndex = 3;
+            this.chbRememberThePassword.TabIndex = 4;
             this.chbRememberThePassword.Text = "记住密码";
             this.chbRememberThePassword.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // picbUserImg
             // 
-            this.pictureBox1.Image = global::MuZiYangNote.Properties.Resources.main_7;
-            this.pictureBox1.Location = new System.Drawing.Point(28, 57);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(120, 110);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.picbUserImg.Image = global::MuZiYangNote.Properties.Resources.main_7;
+            this.picbUserImg.Location = new System.Drawing.Point(28, 62);
+            this.picbUserImg.Name = "picbUserImg";
+            this.picbUserImg.Size = new System.Drawing.Size(120, 110);
+            this.picbUserImg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picbUserImg.TabIndex = 2;
+            this.picbUserImg.TabStop = false;
             // 
             // panelHead
             // 
@@ -139,6 +127,7 @@
             this.btnEXMin.ImageDefault = global::MuZiYangNote.Properties.Resources.Min;
             this.btnEXMin.ImageLeave = null;
             this.btnEXMin.ImageMove = null;
+            this.btnEXMin.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEXMin.Location = new System.Drawing.Point(393, 7);
             this.btnEXMin.Name = "btnEXMin";
             this.btnEXMin.Size = new System.Drawing.Size(20, 18);
@@ -159,6 +148,7 @@
             this.btnEXClose.ImageDefault = global::MuZiYangNote.Properties.Resources.Close;
             this.btnEXClose.ImageLeave = null;
             this.btnEXClose.ImageMove = null;
+            this.btnEXClose.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEXClose.Location = new System.Drawing.Point(419, 7);
             this.btnEXClose.Name = "btnEXClose";
             this.btnEXClose.Size = new System.Drawing.Size(20, 18);
@@ -167,37 +157,65 @@
             this.btnEXClose.TextEX = "";
             this.btnEXClose.ButtonClick += new System.EventHandler(this.btnEXClose_Click);
             // 
+            // butLogin
+            // 
+            this.butLogin.BackColor = System.Drawing.Color.White;
+            this.butLogin.BackColorEX = System.Drawing.Color.Transparent;
+            this.butLogin.BackColorLeave = System.Drawing.Color.Transparent;
+            this.butLogin.BackColorMove = System.Drawing.Color.Transparent;
+            this.butLogin.FontM = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.butLogin.ImageDefault = null;
+            this.butLogin.ImageLeave = null;
+            this.butLogin.ImageMove = null;
+            this.butLogin.LabelEXTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.butLogin.Location = new System.Drawing.Point(171, 161);
+            this.butLogin.Name = "butLogin";
+            this.butLogin.Size = new System.Drawing.Size(235, 23);
+            this.butLogin.TabIndex = 9;
+            this.butLogin.TextColor = System.Drawing.Color.Black;
+            this.butLogin.TextEX = "登  录";
+            // 
             // txtUserPwd
             // 
+            this.txtUserPwd.AllowReturn = false;
             this.txtUserPwd.BorderColor = System.Drawing.Color.Empty;
             this.txtUserPwd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserPwd.BorderWeight = -1;
             this.txtUserPwd.ControlTypeText = MuZiYangNote.UserControls.TextBoxEX.TextBoxType.String;
             this.txtUserPwd.Location = new System.Drawing.Point(171, 99);
+            this.txtUserPwd.Multiline = true;
             this.txtUserPwd.Name = "txtUserPwd";
             this.txtUserPwd.PasswordChar = '*';
-            this.txtUserPwd.Size = new System.Drawing.Size(235, 21);
-            this.txtUserPwd.TabIndex = 0;
+            this.txtUserPwd.Size = new System.Drawing.Size(235, 30);
+            this.txtUserPwd.TabIndex = 8;
+            this.txtUserPwd.TextBoxAutoSize = false;
             this.txtUserPwd.TextBoxHeight = 30;
+            this.txtUserPwd.TextMargin = new System.Windows.Forms.Padding(1);
             this.txtUserPwd.WaterMarkFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtUserPwd.WaterMarkText = "请输入密码";
             this.txtUserPwd.WaterMarkTextColor = System.Drawing.Color.Gray;
+            this.txtUserPwd.WordWrap = false;
             this.txtUserPwd.TextChanged += new System.EventHandler(this.txtUserPwd_TextChanged);
             // 
             // txtUserAccount
             // 
+            this.txtUserAccount.AllowReturn = false;
             this.txtUserAccount.BorderColor = System.Drawing.Color.Empty;
             this.txtUserAccount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUserAccount.BorderWeight = -1;
             this.txtUserAccount.ControlTypeText = MuZiYangNote.UserControls.TextBoxEX.TextBoxType.String;
             this.txtUserAccount.Location = new System.Drawing.Point(171, 61);
+            this.txtUserAccount.Multiline = true;
             this.txtUserAccount.Name = "txtUserAccount";
-            this.txtUserAccount.Size = new System.Drawing.Size(235, 21);
-            this.txtUserAccount.TabIndex = 0;
+            this.txtUserAccount.Size = new System.Drawing.Size(235, 30);
+            this.txtUserAccount.TabIndex = 7;
+            this.txtUserAccount.TextBoxAutoSize = false;
             this.txtUserAccount.TextBoxHeight = 30;
+            this.txtUserAccount.TextMargin = new System.Windows.Forms.Padding(1);
             this.txtUserAccount.WaterMarkFont = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtUserAccount.WaterMarkText = "账户\\手机号";
             this.txtUserAccount.WaterMarkTextColor = System.Drawing.Color.Gray;
+            this.txtUserAccount.WordWrap = false;
             // 
             // LoginForm
             // 
@@ -214,7 +232,7 @@
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picbUserImg)).EndInit();
             this.panelHead.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -224,14 +242,14 @@
 
         private UserControls.TextBoxEX txtUserAccount;
         private UserControls.TextBoxEX txtUserPwd;
-        private System.Windows.Forms.Button butLogin;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox chbAutoLogon;
         private System.Windows.Forms.CheckBox chbRememberThePassword;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picbUserImg;
         private System.Windows.Forms.Label laForgetThePassword;
         private System.Windows.Forms.Panel panelHead;
         private UserControls.ButtonEX btnEXMin;
         private UserControls.ButtonEX btnEXClose;
+        private UserControls.ButtonEX butLogin;
     }
 }

@@ -33,7 +33,7 @@ namespace MuZiYangNote
                 return;
             }
 
-            Application.Run(new LoginForm());
+            Application.Run(new MdiForm());
         }
         public static bool IsRunning()
         {

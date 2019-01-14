@@ -392,47 +392,7 @@ namespace MuZiYangNote
 
         #endregion
 
-        /// <summary>
-        /// 添加便签（自定义控件）
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnAddTask_Click(object sender, EventArgs e)
-        {
-            int maxNums = MaxConNums("TD");
-            UserControls.TaskDetails TD = new UserControls.TaskDetails();
-            string _v = MultiLanguageSetting.SundryLanguage("laTitle","01");//多语言
-            TD.Name = "TD" + DateTime.Now.ToString("yyyyMMddHHmmss") + maxNums.ToString().PadLeft(3,'0');
-            TD.ID = TD.Name;
-            TD.Title = _v + "TD" + maxNums.ToString().PadLeft(3, '0');
-            TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
-            Control[] TDObj = TDProperty(TD);
-            this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
-            //UserControl1 _f = new UserControl1();
-            //this.fyp01.Controls.Add(_f);
-            this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
-            this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
-
-            //普通便签
-            if (_noteType == NoteType.GeneralNote)
-            {
-                PlainNoteModel _PlainNoteM = new PlainNoteModel() {
-                    NotesType = _noteType,
-                    Topic = TD.Title,
-                    GridOrder = maxNums,
-                    SnNumber = "General-" + TD.ID,
-                    NoteContent = string.Empty
-                };
-                _PlainNotes.Add(_PlainNoteM);
-            }
-            //任务便签
-            else if (_noteType == NoteType.TaskNote)
-            {
-
-            }
-
-        }
-
+        
         #region  控件平铺
 
         #region
@@ -548,17 +508,9 @@ namespace MuZiYangNote
         }
         #endregion
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         #region 快捷键
-        /// <summary>
-        /// 快捷键
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        //快捷键
         private void Mdiform_KeyDown(object sender, KeyEventArgs e)
         {
             if ((int)e.Modifiers == ((int)Keys.Control + (int)Keys.Alt) && e.KeyCode == Keys.B)   //Ctrl + Alt + 数字0
@@ -655,30 +607,8 @@ namespace MuZiYangNote
             _fuh.TopMost = false;
         }
 
-        /// <summary>
-        /// 帮助
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void F1Help_Click(object sender, EventArgs e)
-        {
-            F1Open();
-        }
         #endregion
-
-
-        /// <summary>
-        /// 多行文本控件值变更事件
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void RtbTxt_TextChanged(object sender, EventArgs e)
-        {
-            RtbTxt.SelectionStart = RtbTxt.Text.Length;
-            RtbTxt.SelectionLength = 0;
-            RtbTxt.Focus();
-        }
-
+        
         #region 文件等拖进拖出 
         //无法触发由于程序使用了管理员启动
 
@@ -711,13 +641,87 @@ namespace MuZiYangNote
             else e.Effect = DragDropEffects.None;
         }
         #endregion
+        
+
+        #region 窗体文本语言切换
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            if (Program._LANGUAGETYPE != LanguageEnum.LanguageCN) {
+                this.MinNormalSwitch();
+                Program._LANGUAGETYPE = LanguageEnum.LanguageCN;
+                ManageLanguage.Instance.SetLanguage(Program._LANGUAGETYPE);//语种设置
+            }
+        }
+
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Program._LANGUAGETYPE != LanguageEnum.LanguageEN)
+            {
+                this.MinNormalSwitch();
+                Program._LANGUAGETYPE = LanguageEnum.LanguageEN;//语种配置切换
+                ManageLanguage.Instance.SetLanguage(Program._LANGUAGETYPE);//语种切换
+            }
+        }
 
 
-        /// <summary>
-        /// 展示切换
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        #endregion
+
+        #region 控件事件
+        //添加便签（自定义控件）
+        private void btnAddTask_Click(object sender, EventArgs e)
+        {
+            int maxNums = MaxConNums("TD");
+            UserControls.TaskDetails TD = new UserControls.TaskDetails();
+            string _v = MultiLanguageSetting.SundryLanguage("laTitle", "01");//多语言
+            TD.Name = "TD" + DateTime.Now.ToString("yyyyMMddHHmmss") + maxNums.ToString().PadLeft(3, '0');
+            TD.ID = TD.Name;
+            TD.Title = _v + "TD" + maxNums.ToString().PadLeft(3, '0');
+            TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
+            Control[] TDObj = TDProperty(TD);
+            this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
+            //UserControl1 _f = new UserControl1();
+            //this.fyp01.Controls.Add(_f);
+            this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
+            this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
+
+            //普通便签
+            if (_noteType == NoteType.GeneralNote)
+            {
+                PlainNoteModel _PlainNoteM = new PlainNoteModel()
+                {
+                    NotesType = _noteType,
+                    Topic = TD.Title,
+                    GridOrder = maxNums,
+                    SnNumber = "General-" + TD.ID,
+                    NoteContent = string.Empty
+                };
+                _PlainNotes.Add(_PlainNoteM);
+            }
+            //任务便签
+            else if (_noteType == NoteType.TaskNote)
+            {
+
+            }
+
+        }
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        //多行文本控件值变更事件
+        private void RtbTxt_TextChanged(object sender, EventArgs e)
+        {
+            RtbTxt.SelectionStart = RtbTxt.Text.Length;
+            RtbTxt.SelectionLength = 0;
+            RtbTxt.Focus();
+        }
+        //帮助
+        private void F1Help_Click(object sender, EventArgs e)
+        {
+            F1Open();
+        }
+        //展示切换
         private void btnShowType_Click(object sender, EventArgs e)
         {
             if (this.fyp01.Controls.Count == 0)
@@ -726,12 +730,13 @@ namespace MuZiYangNote
                 return;
             }
             //切换展示模式
-            _showType= _showType==ShowType.Tile?ShowType.List:ShowType.Tile;
+            _showType = _showType == ShowType.Tile ? ShowType.List : ShowType.Tile;
             //从列表切换为平铺
             if ((int)_showType == 0)
             {
 
-            }else 
+            }
+            else
             //从平铺切换为列表
             if ((int)_showType == 1)
             {
@@ -759,29 +764,39 @@ namespace MuZiYangNote
                 }
             }
         }
-
-        #region 窗体文本语言切换
-        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        //未登录时,提示语
+        private void laNoLogin_MouseLeave(object sender, EventArgs e)
         {
-            if (Program._LANGUAGETYPE != LanguageEnum.LanguageCN) {
-                this.MinNormalSwitch();
-                Program._LANGUAGETYPE = LanguageEnum.LanguageCN;
-                ManageLanguage.Instance.SetLanguage(Program._LANGUAGETYPE);//语种设置
-            }
+            laNoLogin.ForeColor = Color.Gray;
+            laNoLogin.Font = new Font("微软雅黑", 9, FontStyle.Bold);
         }
-
-        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        //未登录时,提示语
+        private void laNoLogin_MouseEnter(object sender, EventArgs e)
         {
-            if (Program._LANGUAGETYPE != LanguageEnum.LanguageEN)
+            laNoLogin.ForeColor = Color.Black;
+            laNoLogin.Font = new Font("微软雅黑", 9, FontStyle.Underline);
+        }
+        //未登录文本点击
+        private void laNoLogin_Click(object sender, EventArgs e)
+        {
+            //LoginForm _loginForm = new LoginForm();
+            //Panel _Panel = new Panel();
+            //_Panel.Width = this.Width;
+            //_Panel.Height = this.Height;
+            //_Panel.BackColor = Color.Black;
+            //_Panel.BringToFront();
+            //this.Controls.Add(_Panel);
+            Common.ShowProcessing("正在处理中，请稍候...", this, (obj) =>
             {
-                this.MinNormalSwitch();
-                Program._LANGUAGETYPE = LanguageEnum.LanguageEN;//语种配置切换
-                ManageLanguage.Instance.SetLanguage(Program._LANGUAGETYPE);//语种切换
-            }
+                //这里写处理耗时的代码，代码处理完成则自动关闭该窗口
+                for (int i = 0; i < 100; i++)
+                {
+                    System.Threading.Thread.Sleep(400);
+                }
+            }, null);
         }
-
-
-
         #endregion
+
+
     }
 }

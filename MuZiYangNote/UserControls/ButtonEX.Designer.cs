@@ -39,6 +39,7 @@
             this.labelEX.Name = "labelEX";
             this.labelEX.Size = new System.Drawing.Size(20, 20);
             this.labelEX.TabIndex = 0;
+            this.labelEX.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelEX.Click += new System.EventHandler(this.label_Click);
             this.labelEX.MouseLeave += new System.EventHandler(this.label_MouseLeave);
             this.labelEX.MouseMove += new System.Windows.Forms.MouseEventHandler(this.label_MouseMove);

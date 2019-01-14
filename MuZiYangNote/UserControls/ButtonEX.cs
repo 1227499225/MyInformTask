@@ -132,6 +132,33 @@ namespace MuZiYangNote.UserControls
         }
 
 
+        /*
+        * ============================================================
+        * 函数名：LabelEXTextAlign
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期：
+        * 描述：文本位置
+        * ============================================================
+        */
+        public ContentAlignment LabelEXTextAlign
+        {
+            get
+            {
+                return labelEXTextAlign;
+            }
+
+            set
+            {
+                labelEXTextAlign = value;
+                labelEX.TextAlign = labelEXTextAlign;
+            }
+        }
+        private ContentAlignment labelEXTextAlign = ContentAlignment.BottomCenter;
+
+
+
+
         public ButtonEX()
         {
             InitializeComponent();

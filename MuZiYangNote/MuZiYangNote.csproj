@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
     <Compile Include="FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,7 +97,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskDetailsCnOrEn.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FrmProcessing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserControls\FrmProcessing.Designer.cs">
+      <DependentUpon>FrmProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\FrmProcessing1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FrmProcessing.resx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TextBoxEX.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\TextBoxExS.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserHelperForm.cs">
@@ -174,6 +189,11 @@
     <EmbeddedResource Include="MultiLanguageConfig\TaskDetailsCnOrEn.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TaskDetailsCnOrEn.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FrmProcessing.resx">
+      <DependentUpon>FrmProcessing.cs</DependentUpon>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FrmProcessing1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextBoxEX.resx">
       <DependentUpon>TextBoxEX.cs</DependentUpon>
@@ -270,6 +290,9 @@
     <Content Include="Files\SystemFile\System\Geckofx-Core.dll" />
     <Content Include="Files\SystemFile\System\Geckofx-Winforms.dll" />
     <Content Include="Files\SystemFile\System\SQK_Ui.dll" />
+    <None Include="Resources\loading2.gif" />
+    <None Include="Resources\loading1.gif" />
+    <None Include="Resources\loading3.gif" />
     <None Include="Resources\main_7.jpg" />
   </ItemGroup>
   <ItemGroup>
