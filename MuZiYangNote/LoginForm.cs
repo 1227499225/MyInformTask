@@ -21,9 +21,9 @@ namespace MuZiYangNote
         public bool isOpenEnabled = true;
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            btnEXClose.Enabled = isOpenEnabled;
+            btnEXClose.Enabled = true;
             btnEXMin.Enabled = isOpenEnabled;
-            panelHead.Enabled = isOpenEnabled;
+            //panelHead.Enabled = isOpenEnabled;
         }
 
 
@@ -43,8 +43,15 @@ namespace MuZiYangNote
         //关闭
         private void btnEXClose_Click(object sender, EventArgs e)
         {
-            this.Dispose();
-            this.Close();
+            if (isOpenEnabled)
+            {
+                this.Dispose();
+                this.Close();
+            }
+            else {
+                this._ParentForm.ChangeLoginSet(false);
+            }
+
         }
         private void butLogin_MouseEnter(object sender, EventArgs e)
         {

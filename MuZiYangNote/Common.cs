@@ -56,7 +56,7 @@ namespace MuZiYangNote
     */
     class OpaqueCommand
     {
-        private UserControls.MaskLayer m_OpaqueLayer = null;//半透明蒙板层
+        public UserControls.MaskLayer m_OpaqueLayer = null;//半透明蒙板层
 
         /// <summary>
         /// 显示遮罩层
@@ -69,9 +69,11 @@ namespace MuZiYangNote
         {
             try
             {
+                if (ParentControl.Controls.Find("MaskLayer", false).Count() > 0)
+                    ParentControl.Controls.Remove((ParentControl.Controls.Find("MaskLayer", false))[0]);
                 if (ParentControl.Controls.Find("MaskLayer", false).Count() == 0)
                 {
-                    if (this.m_OpaqueLayer == null)
+                    //if (this.m_OpaqueLayer == null)
                     {
                         this.m_OpaqueLayer = new UserControls.MaskLayer(alpha, isShowLoadingImage);//实例化
                         this.m_OpaqueLayer.Name = "MaskLayer";

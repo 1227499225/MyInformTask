@@ -296,6 +296,10 @@
     <Content Include="Files\SystemFile\System\Geckofx-Core.dll" />
     <Content Include="Files\SystemFile\System\Geckofx-Winforms.dll" />
     <Content Include="Files\SystemFile\System\SQK_Ui.dll" />
+    <None Include="Resources\arrow2.png" />
+    <None Include="Resources\arrow5.png" />
+    <None Include="Resources\arrow4.png" />
+    <None Include="Resources\arrow3.png" />
     <None Include="Resources\loading2.gif" />
     <None Include="Resources\loading1.gif" />
     <None Include="Resources\loading3.gif" />

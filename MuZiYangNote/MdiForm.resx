@@ -408,6 +408,42 @@
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="laUserName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="laUserName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 9pt, style=Bold</value>
+  </data>
+  <data name="laUserName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="laUserName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 10</value>
+  </data>
+  <data name="laUserName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>128, 17</value>
+  </data>
+  <data name="laUserName.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="laUserName.Text" xml:space="preserve">
+    <value>暂未登录，请先登录！</value>
+  </data>
+  <data name="laUserName.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;laUserName.Name" xml:space="preserve">
+    <value>laUserName</value>
+  </data>
+  <data name="&gt;&gt;laUserName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;laUserName.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;laUserName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="laNoLogin.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -474,36 +510,6 @@
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="pictureBox1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 36</value>
-  </data>
-  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>StretchImage</value>
-  </data>
-  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
-    <value>pictureBox1</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="MdiTitle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -537,89 +543,62 @@
   <data name="&gt;&gt;MdiTitle.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="btnEXMin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="btnEXMin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>622, 7</value>
-  </data>
-  <data name="btnEXMin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="btnEXMin.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnEXMin.Name" xml:space="preserve">
-    <value>btnEXMin</value>
-  </data>
-  <data name="&gt;&gt;btnEXMin.Type" xml:space="preserve">
-    <value>MuZiYangNote.UserControls.ButtonEX, MuZiYangNote, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnEXMin.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;btnEXMin.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="btnEXMax.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="btnEXMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>651, 7</value>
-  </data>
-  <data name="btnEXMax.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="btnEXMax.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnEXMax.Name" xml:space="preserve">
-    <value>btnEXMax</value>
-  </data>
-  <data name="&gt;&gt;btnEXMax.Type" xml:space="preserve">
-    <value>MuZiYangNote.UserControls.ButtonEX, MuZiYangNote, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnEXMax.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;btnEXMax.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="btnEXClose.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="btnEXClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>680, 7</value>
-  </data>
-  <data name="btnEXClose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>20, 20</value>
-  </data>
-  <data name="btnEXClose.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnEXClose.Name" xml:space="preserve">
-    <value>btnEXClose</value>
-  </data>
-  <data name="&gt;&gt;btnEXClose.Type" xml:space="preserve">
-    <value>MuZiYangNote.UserControls.ButtonEX, MuZiYangNote, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnEXClose.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;btnEXClose.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <metadata name="MStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>118, 17</value>
   </metadata>
   <data name="MStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
   </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 21</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>语言(L)</value>
+  </data>
+  <data name="F1Help.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 21</value>
+  </data>
+  <data name="F1Help.Text" xml:space="preserve">
+    <value>日常操作</value>
+  </data>
+  <data name="个人中心ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 21</value>
+  </data>
+  <data name="个人中心ToolStripMenuItem.Text" xml:space="preserve">
+    <value>个人中心</value>
+  </data>
+  <data name="我的好友ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 21</value>
+  </data>
+  <data name="我的好友ToolStripMenuItem.Text" xml:space="preserve">
+    <value>我的好友</value>
+  </data>
+  <data name="其他ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="其他ToolStripMenuItem.Text" xml:space="preserve">
+    <value>其他01</value>
+  </data>
+  <data name="其他02ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="其他02ToolStripMenuItem.Text" xml:space="preserve">
+    <value>其他02</value>
+  </data>
+  <data name="其他03ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="其他03ToolStripMenuItem.Text" xml:space="preserve">
+    <value>其他03</value>
+  </data>
+  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>28, 21</value>
+  </data>
   <data name="MStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 41</value>
   </data>
   <data name="MStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>202, 25</value>
+    <value>390, 25</value>
   </data>
   <data name="MStrip.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -639,12 +618,6 @@
   <data name="&gt;&gt;MStrip.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 21</value>
-  </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>语言(L)</value>
-  </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
@@ -656,12 +629,6 @@
   </data>
   <data name="ToolStripMenuItem.Text" xml:space="preserve">
     <value>英文</value>
-  </data>
-  <data name="F1Help.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 21</value>
-  </data>
-  <data name="F1Help.Text" xml:space="preserve">
-    <value>日常操作</value>
   </data>
   <data name="TsmNoteHistory.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 22</value>
@@ -680,12 +647,6 @@
   </data>
   <data name="TsmF1Help.Text" xml:space="preserve">
     <value>F1帮助</value>
-  </data>
-  <data name="个人中心ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 21</value>
-  </data>
-  <data name="个人中心ToolStripMenuItem.Text" xml:space="preserve">
-    <value>个人中心</value>
   </data>
   <data name="个人资料ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
@@ -759,41 +720,116 @@
   <data name="登录邮件提醒ToolStripMenuItem.Text" xml:space="preserve">
     <value>登录时邮件提醒</value>
   </data>
-  <data name="laUserName.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="添加好友ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
   </data>
-  <data name="laUserName.Font" type="System.Drawing.Font, System.Drawing">
-    <value>微软雅黑, 9pt, style=Bold</value>
+  <data name="添加好友ToolStripMenuItem.Text" xml:space="preserve">
+    <value>添加好友</value>
   </data>
-  <data name="laUserName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="添加好友ToolStripMenuItem.ToolTipText" xml:space="preserve">
+    <value>推送、共享编辑、邮件发送</value>
+  </data>
+  <data name="pictureBox1.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="pictureBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="laUserName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>97, 9</value>
+  <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
   </data>
-  <data name="laUserName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>128, 17</value>
+  <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 36</value>
   </data>
-  <data name="laUserName.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="pictureBox1.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>StretchImage</value>
   </data>
-  <data name="laUserName.Text" xml:space="preserve">
-    <value>暂未登录，请先登录！</value>
+  <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
-  <data name="laUserName.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
   </data>
-  <data name="&gt;&gt;laUserName.Name" xml:space="preserve">
-    <value>laUserName</value>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;laUserName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;laUserName.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
     <value>panel1</value>
   </data>
-  <data name="&gt;&gt;laUserName.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnEXMin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="btnEXMin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>622, 7</value>
+  </data>
+  <data name="btnEXMin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="btnEXMin.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnEXMin.Name" xml:space="preserve">
+    <value>btnEXMin</value>
+  </data>
+  <data name="&gt;&gt;btnEXMin.Type" xml:space="preserve">
+    <value>MuZiYangNote.UserControls.ButtonEX, MuZiYangNote, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnEXMin.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnEXMin.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnEXMax.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="btnEXMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>651, 7</value>
+  </data>
+  <data name="btnEXMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="btnEXMax.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnEXMax.Name" xml:space="preserve">
+    <value>btnEXMax</value>
+  </data>
+  <data name="&gt;&gt;btnEXMax.Type" xml:space="preserve">
+    <value>MuZiYangNote.UserControls.ButtonEX, MuZiYangNote, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnEXMax.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnEXMax.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnEXClose.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="btnEXClose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>680, 7</value>
+  </data>
+  <data name="btnEXClose.Size" type="System.Drawing.Size, System.Drawing">
+    <value>20, 20</value>
+  </data>
+  <data name="btnEXClose.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;btnEXClose.Name" xml:space="preserve">
+    <value>btnEXClose</value>
+  </data>
+  <data name="&gt;&gt;btnEXClose.Type" xml:space="preserve">
+    <value>MuZiYangNote.UserControls.ButtonEX, MuZiYangNote, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnEXClose.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnEXClose.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -973,6 +1009,9 @@
         AAA=
 </value>
   </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
   </data>
@@ -1103,6 +1142,42 @@
     <value>登录邮件提醒ToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;登录邮件提醒ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;我的好友ToolStripMenuItem.Name" xml:space="preserve">
+    <value>我的好友ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;我的好友ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;添加好友ToolStripMenuItem.Name" xml:space="preserve">
+    <value>添加好友ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;添加好友ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem4.Name" xml:space="preserve">
+    <value>toolStripMenuItem4</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;其他ToolStripMenuItem.Name" xml:space="preserve">
+    <value>其他ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;其他ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;其他02ToolStripMenuItem.Name" xml:space="preserve">
+    <value>其他02ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;其他02ToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;其他03ToolStripMenuItem.Name" xml:space="preserve">
+    <value>其他03ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;其他03ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">

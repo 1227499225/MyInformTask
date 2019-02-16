@@ -82,7 +82,7 @@ namespace MuZiYangNote
 
             //DataTable dt = (new SendEmailBI()).GetUser("朱");
             //this.dataGridView1.DataSource = dt;
-           
+
         }
        
         #region  界面控制
@@ -795,6 +795,7 @@ namespace MuZiYangNote
                 _lf = new LoginForm(this);
                 _lf.isOpenEnabled = false;
                 fyp01.Visible = false;
+                _ml.m_OpaqueLayer = null;
                 //开启背景遮罩层
                 _ml.ShowOpaqueLayer(this, 200, false, _lf);
                 //移除当前控件事件
@@ -804,13 +805,28 @@ namespace MuZiYangNote
                 fyp01.Visible = true;
                 //关闭背景遮罩层
                 _ml.HideOpaqueLayer(_lf);
-                laNoLogin.Visible = false;
-                laUserName.Text = UserName;
-                laUserName.ForeColor = Color.Red;
-                laUserName.Visible = true;
+                if (!UserName.StrIsNull()) {
+                    laNoLogin.Visible = false;
+                    laUserName.Text = UserName;
+                    laUserName.ForeColor = Color.Red;
+                    laUserName.Visible = true;
+                }
             }
         }
+
+        #region 下拉图标控制
+        private void toolStripMenuItem4_DropDownOpened(object sender, EventArgs e)
+        {
+            toolStripMenuItem4.Image = MuZiYangNote.Properties.Resources.arrow2;
+        }
+        private void toolStripMenuItem4_DropDownClosed(object sender, EventArgs e)
+        {
+            toolStripMenuItem4.Image = MuZiYangNote.Properties.Resources.arrow5;
+        }
         #endregion
+
+        #endregion
+
 
 
     }
