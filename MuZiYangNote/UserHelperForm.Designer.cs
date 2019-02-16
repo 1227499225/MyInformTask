@@ -38,13 +38,10 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridViewLogs = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLogs)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -76,13 +73,16 @@
             this.btnEXMin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEXMin.BackColor = System.Drawing.Color.Transparent;
+            this.btnEXMin.BackColorEnter = System.Drawing.Color.Empty;
             this.btnEXMin.BackColorEX = System.Drawing.Color.Transparent;
             this.btnEXMin.BackColorLeave = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
             this.btnEXMin.BackColorMove = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
+            this.btnEXMin.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
             this.btnEXMin.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEXMin.ImageDefault = global::MuZiYangNote.Properties.Resources.Min;
             this.btnEXMin.ImageLeave = null;
             this.btnEXMin.ImageMove = null;
+            this.btnEXMin.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEXMin.Location = new System.Drawing.Point(582, 7);
             this.btnEXMin.Name = "btnEXMin";
             this.btnEXMin.Size = new System.Drawing.Size(20, 20);
@@ -95,13 +95,16 @@
             this.btnEXMax.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEXMax.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
+            this.btnEXMax.BackColorEnter = System.Drawing.Color.Empty;
             this.btnEXMax.BackColorEX = System.Drawing.Color.Transparent;
             this.btnEXMax.BackColorLeave = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
             this.btnEXMax.BackColorMove = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
+            this.btnEXMax.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
             this.btnEXMax.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEXMax.ImageDefault = global::MuZiYangNote.Properties.Resources.Max;
             this.btnEXMax.ImageLeave = null;
             this.btnEXMax.ImageMove = null;
+            this.btnEXMax.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEXMax.Location = new System.Drawing.Point(609, 8);
             this.btnEXMax.Name = "btnEXMax";
             this.btnEXMax.Size = new System.Drawing.Size(20, 20);
@@ -114,13 +117,16 @@
             this.btnEXClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEXClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
+            this.btnEXClose.BackColorEnter = System.Drawing.Color.Empty;
             this.btnEXClose.BackColorEX = System.Drawing.Color.Transparent;
             this.btnEXClose.BackColorLeave = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
             this.btnEXClose.BackColorMove = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
+            this.btnEXClose.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
             this.btnEXClose.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEXClose.ImageDefault = global::MuZiYangNote.Properties.Resources.Close;
             this.btnEXClose.ImageLeave = null;
             this.btnEXClose.ImageMove = null;
+            this.btnEXClose.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEXClose.Location = new System.Drawing.Point(641, 7);
             this.btnEXClose.Name = "btnEXClose";
             this.btnEXClose.Size = new System.Drawing.Size(20, 20);
@@ -168,12 +174,11 @@
             this.webBrowser1.ScrollBarsEnabled = false;
             this.webBrowser1.Size = new System.Drawing.Size(648, 264);
             this.webBrowser1.TabIndex = 0;
-            this.webBrowser1.Url = new System.Uri("C:\\Users\\wb-xyang2\\Desktop\\WFMInformTask\\MuZiYangNote\\Files\\SystemFile\\SystemPage" +
-        "s\\FmUserHelper.html", System.UriKind.Absolute);
+            this.webBrowser1.Url = new System.Uri("C:\\Users\\wb-xyang2\\Desktop\\MyInformTask\\MuZiYangNote\\Files\\SystemFile\\SystemPages" +
+        "\\FmUserHelper.html", System.UriKind.Absolute);
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.dataGridViewLogs);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -181,15 +186,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "其他";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // dataGridViewLogs
-            // 
-            this.dataGridViewLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewLogs.Location = new System.Drawing.Point(3, 63);
-            this.dataGridViewLogs.Name = "dataGridViewLogs";
-            this.dataGridViewLogs.RowTemplate.Height = 23;
-            this.dataGridViewLogs.Size = new System.Drawing.Size(645, 201);
-            this.dataGridViewLogs.TabIndex = 0;
             // 
             // UserHelperForm
             // 
@@ -207,8 +203,6 @@
             this.panel2.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLogs)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -225,6 +219,5 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.DataGridView dataGridViewLogs;
     }
 }

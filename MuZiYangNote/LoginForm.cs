@@ -12,13 +12,18 @@ namespace MuZiYangNote
 {
     public partial class LoginForm : Form
     {
-        public LoginForm()
+        private MdiForm _ParentForm = null;
+        public LoginForm(MdiForm ParentForm)
         {
             InitializeComponent();
+            this._ParentForm = ParentForm;
         }
-
+        public bool isOpenEnabled = true;
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            btnEXClose.Enabled = isOpenEnabled;
+            btnEXMin.Enabled = isOpenEnabled;
+            panelHead.Enabled = isOpenEnabled;
         }
 
 
@@ -40,6 +45,15 @@ namespace MuZiYangNote
         {
             this.Dispose();
             this.Close();
+        }
+        private void butLogin_MouseEnter(object sender, EventArgs e)
+        {
+            butLogin.BackColor = Color.Gray;
+        }
+
+        private void butLogin_MouseLeave(object sender, EventArgs e)
+        {
+            butLogin.BackColor = Color.White;
         }
         #endregion
 
@@ -80,6 +94,23 @@ namespace MuZiYangNote
         private void txtUserPwd_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void butLogin_ButtonClick(object sender, EventArgs e)
+        {
+            Common.ShowProcessing("正在处理中，请稍候...", this, (obj) =>
+            {
+                //这里写处理耗时的代码，代码处理完成则自动关闭该窗口
+                for (int i = 0; i < 100; i++)
+                {
+                    System.Threading.Thread.Sleep(10);
+                }
+            }, null);
+
+            if (_ParentForm != null)
+            {
+                _ParentForm.ChangeLoginSet(false,txtUserAccount.Text);
+            }
         }
     }
 }

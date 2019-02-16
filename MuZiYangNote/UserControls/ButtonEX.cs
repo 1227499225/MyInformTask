@@ -67,7 +67,21 @@ namespace MuZiYangNote.UserControls
                 labelEX.BackColor = _backColorEX;
             }
         }
+        
+        private Color backColorEnter;
+        public Color BackColorEnter
+        {
+            get{return backColorEnter;}
+            set{backColorEnter = value;}
+        }
 
+        public ButtonType buttonTypes=ButtonType.Min;
+        public ButtonType ButtonTypes
+        {
+            get { return buttonTypes; }
+            set { buttonTypes = value; }
+        }
+       
         /// <summary>
         /// 鼠标移动到控件上方显示的颜色
         /// </summary>
@@ -78,6 +92,7 @@ namespace MuZiYangNote.UserControls
             get { return backColorMove; }
             set { backColorMove = value; }
         }
+        
         /// <summary>
         /// 鼠标离开控件显示的背景色
         /// </summary>
@@ -88,6 +103,7 @@ namespace MuZiYangNote.UserControls
             get { return backColorLeave; }
             set { backColorLeave = value; }
         }
+       
         /// <summary>
         /// 控件的文字显示
         /// </summary>
@@ -102,6 +118,7 @@ namespace MuZiYangNote.UserControls
                 labelEX.Text = textEX;
             }
         }
+        
         /// <summary>
         /// 文字的颜色
         /// </summary>
@@ -116,6 +133,7 @@ namespace MuZiYangNote.UserControls
                 labelEX.ForeColor = textColor;
             }
         }
+       
         /// <summary>
         /// 用于显示文本的字体
         /// </summary>
@@ -154,6 +172,9 @@ namespace MuZiYangNote.UserControls
                 labelEX.TextAlign = labelEXTextAlign;
             }
         }
+
+
+
         private ContentAlignment labelEXTextAlign = ContentAlignment.BottomCenter;
 
 
@@ -186,7 +207,15 @@ namespace MuZiYangNote.UserControls
         {
             if (backColorMove != Color.Transparent)
             {
-                BackColorEX = Color.White;
+                if (ButtonTypes == ButtonType.Min)
+                {
+                    BackColorEX = Color.White;
+                }
+                else {
+                    BackColorEX = backColorEnter;
+                }
+                    
+
             }
             if (_imageMove != null)
             {
@@ -214,5 +243,18 @@ namespace MuZiYangNote.UserControls
         }
 
 
+        /*
+        * ============================================================
+        * 枚举：ButtonType
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期：
+        * 描述：按钮类型
+        * ============================================================
+        */
+        public enum ButtonType {
+            Min,
+            Max
+        }
     }
 }

@@ -65,6 +65,7 @@
             this.禁止IP登录ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.账户设置toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.登录邮件提醒ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.laUserName = new System.Windows.Forms.Label();
             this.gpbTaskList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -84,6 +85,7 @@
             // RtbTxt
             // 
             resources.ApplyResources(this.RtbTxt, "RtbTxt");
+            this.RtbTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.RtbTxt.Name = "RtbTxt";
             this.RtbTxt.ReadOnly = true;
             this.RtbTxt.TextChanged += new System.EventHandler(this.RtbTxt_TextChanged);
@@ -114,6 +116,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DimGray;
+            this.panel1.Controls.Add(this.laUserName);
             this.panel1.Controls.Add(this.laNoLogin);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
@@ -158,9 +161,11 @@
             // 
             resources.ApplyResources(this.btnEXMin, "btnEXMin");
             this.btnEXMin.BackColor = System.Drawing.Color.Transparent;
+            this.btnEXMin.BackColorEnter = System.Drawing.Color.Empty;
             this.btnEXMin.BackColorEX = System.Drawing.Color.Transparent;
             this.btnEXMin.BackColorLeave = System.Drawing.Color.DimGray;
             this.btnEXMin.BackColorMove = System.Drawing.Color.DimGray;
+            this.btnEXMin.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
             this.btnEXMin.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEXMin.ImageDefault = global::MuZiYangNote.Properties.Resources.Min;
             this.btnEXMin.ImageLeave = null;
@@ -175,9 +180,11 @@
             // 
             resources.ApplyResources(this.btnEXMax, "btnEXMax");
             this.btnEXMax.BackColor = System.Drawing.Color.DimGray;
+            this.btnEXMax.BackColorEnter = System.Drawing.Color.Empty;
             this.btnEXMax.BackColorEX = System.Drawing.Color.Transparent;
             this.btnEXMax.BackColorLeave = System.Drawing.Color.DimGray;
             this.btnEXMax.BackColorMove = System.Drawing.Color.DimGray;
+            this.btnEXMax.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
             this.btnEXMax.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEXMax.ImageDefault = global::MuZiYangNote.Properties.Resources.Max;
             this.btnEXMax.ImageLeave = null;
@@ -192,9 +199,11 @@
             // 
             resources.ApplyResources(this.btnEXClose, "btnEXClose");
             this.btnEXClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnEXClose.BackColorEnter = System.Drawing.Color.Empty;
             this.btnEXClose.BackColorEX = System.Drawing.Color.Transparent;
             this.btnEXClose.BackColorLeave = System.Drawing.Color.DimGray;
             this.btnEXClose.BackColorMove = System.Drawing.Color.DimGray;
+            this.btnEXClose.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
             this.btnEXClose.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEXClose.ImageDefault = global::MuZiYangNote.Properties.Resources.Close;
             this.btnEXClose.ImageLeave = null;
@@ -344,6 +353,15 @@
             this.登录邮件提醒ToolStripMenuItem.Name = "登录邮件提醒ToolStripMenuItem";
             resources.ApplyResources(this.登录邮件提醒ToolStripMenuItem, "登录邮件提醒ToolStripMenuItem");
             // 
+            // laUserName
+            // 
+            resources.ApplyResources(this.laUserName, "laUserName");
+            this.laUserName.ForeColor = System.Drawing.Color.Gray;
+            this.laUserName.Name = "laUserName";
+            this.laUserName.Click += new System.EventHandler(this.laNoLogin_Click);
+            this.laUserName.MouseEnter += new System.EventHandler(this.laNoLogin_MouseEnter);
+            this.laUserName.MouseLeave += new System.EventHandler(this.laNoLogin_MouseLeave);
+            // 
             // MdiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -383,7 +401,6 @@
         private System.Windows.Forms.Button btnAddTask;
         private System.Windows.Forms.ToolTip toolTip1;
         public System.Windows.Forms.RichTextBox RtbTxt;
-        public System.Windows.Forms.FlowLayoutPanel fyp01;
         private System.Windows.Forms.Button btnShowType;
         private System.Windows.Forms.MenuStrip MStrip;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
@@ -410,6 +427,8 @@
         private System.Windows.Forms.ToolStripMenuItem 登录邮件提醒ToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label laNoLogin;
+        protected System.Windows.Forms.FlowLayoutPanel fyp01;
+        private System.Windows.Forms.Label laUserName;
     }
 }
 

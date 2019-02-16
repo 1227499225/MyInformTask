@@ -58,6 +58,9 @@ namespace MuZiYangNote
         */
         private void Mdiform_Load(object sender, EventArgs e)
         {
+            //双缓冲
+            fyp01.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance| System.Reflection.BindingFlags.NonPublic).SetValue(fyp01, true, null);
+
             DateBaseLocation _dbl; //本地或云
             object[] obj01 = SpecialHelper.CreateTableSql<Model.ClientUserModel>(new Model.ClientUserModel(),out _dbl);
             PubConstant pc = new PubConstant(obj01[0].ToString());
@@ -75,7 +78,7 @@ namespace MuZiYangNote
 
             //窗体自身支持接受拖拽来的控件
             //this.AllowDrop = true;
-            this.fyp01.AllowDrop = true;//拖进拖出相关
+            //this.fyp01.AllowDrop = true;//拖进拖出相关
 
             //DataTable dt = (new SendEmailBI()).GetUser("朱");
             //this.dataGridView1.DataSource = dt;
@@ -513,11 +516,8 @@ namespace MuZiYangNote
         //快捷键
         private void Mdiform_KeyDown(object sender, KeyEventArgs e)
         {
-            if ((int)e.Modifiers == ((int)Keys.Control + (int)Keys.Alt) && e.KeyCode == Keys.B)   //Ctrl + Alt + 数字0
+            if ((int)e.Modifiers == ((int)Keys.Alt)&& e.KeyCode == Keys.B)   //Ctrl + Alt + 数字0
             {
-
-                //MessageBoxEX._Show("欢迎使用开发者模式");
-                //MessageBoxEX.Show("欢迎使用开发者模式", "Code");
                 MessageBoxEX testDialog = new MessageBoxEX("欢迎使用开发者模式", "Code");
                 if (testDialog.ShowDialog(this) == DialogResult.OK)
                 {
@@ -533,7 +533,7 @@ namespace MuZiYangNote
             }
             else
             //快速创建便签
-            if ((int)e.Modifiers == ((int)Keys.Control + (int)Keys.Alt) && e.KeyCode == Keys.C)
+            if ((int)e.Modifiers == ((int)Keys.Alt)&&e.KeyCode == Keys.C)
             {
                 btnAddTask_Click(sender, e);
             }
@@ -776,24 +776,39 @@ namespace MuZiYangNote
             laNoLogin.ForeColor = Color.Black;
             laNoLogin.Font = new Font("微软雅黑", 9, FontStyle.Underline);
         }
+        //遮罩层
+        private OpaqueCommand _ml = new OpaqueCommand();
+        //登录窗体
+        private LoginForm _lf = null;
         //未登录文本点击
         private void laNoLogin_Click(object sender, EventArgs e)
         {
-            //LoginForm _loginForm = new LoginForm();
-            //Panel _Panel = new Panel();
-            //_Panel.Width = this.Width;
-            //_Panel.Height = this.Height;
-            //_Panel.BackColor = Color.Black;
-            //_Panel.BringToFront();
-            //this.Controls.Add(_Panel);
-            Common.ShowProcessing("正在处理中，请稍候...", this, (obj) =>
+            ChangeLoginSet(true);
+        }
+        //关闭打开点击登录之前时配置的所有设置
+        public void Close_laNoLoginClick_Change() {
+            ChangeLoginSet(false);
+        }
+        public void ChangeLoginSet(bool _v,string UserName=null) {
+            if (_v)
             {
-                //这里写处理耗时的代码，代码处理完成则自动关闭该窗口
-                for (int i = 0; i < 100; i++)
-                {
-                    System.Threading.Thread.Sleep(400);
-                }
-            }, null);
+                _lf = new LoginForm(this);
+                _lf.isOpenEnabled = false;
+                fyp01.Visible = false;
+                //开启背景遮罩层
+                _ml.ShowOpaqueLayer(this, 200, false, _lf);
+                //移除当前控件事件
+                laNoLogin.RemoveControlEvent("laNoLogin_Click");
+            }
+            else {
+                fyp01.Visible = true;
+                //关闭背景遮罩层
+                _ml.HideOpaqueLayer(_lf);
+                laNoLogin.Visible = false;
+                laUserName.Text = UserName;
+                laUserName.ForeColor = Color.Red;
+                laUserName.Visible = true;
+            }
         }
         #endregion
 

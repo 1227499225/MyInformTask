@@ -108,6 +108,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FrmProcessing.resx</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MaskLayer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserControls\TextBoxEX.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -194,6 +197,9 @@
       <DependentUpon>FrmProcessing.cs</DependentUpon>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FrmProcessing1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\MaskLayer.resx">
+      <DependentUpon>MaskLayer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TextBoxEX.resx">
       <DependentUpon>TextBoxEX.cs</DependentUpon>

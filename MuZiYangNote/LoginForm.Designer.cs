@@ -47,6 +47,7 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.butLogin);
             this.panel1.Controls.Add(this.laForgetThePassword);
             this.panel1.Controls.Add(this.chbAutoLogon);
@@ -120,9 +121,11 @@
             this.btnEXMin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEXMin.BackColor = System.Drawing.Color.Transparent;
+            this.btnEXMin.BackColorEnter = System.Drawing.Color.Empty;
             this.btnEXMin.BackColorEX = System.Drawing.Color.Transparent;
             this.btnEXMin.BackColorLeave = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
             this.btnEXMin.BackColorMove = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
+            this.btnEXMin.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
             this.btnEXMin.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEXMin.ImageDefault = global::MuZiYangNote.Properties.Resources.Min;
             this.btnEXMin.ImageLeave = null;
@@ -140,10 +143,12 @@
             // 
             this.btnEXClose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEXClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
+            this.btnEXClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnEXClose.BackColorEnter = System.Drawing.Color.Empty;
             this.btnEXClose.BackColorEX = System.Drawing.Color.Transparent;
             this.btnEXClose.BackColorLeave = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
             this.btnEXClose.BackColorMove = System.Drawing.Color.FromArgb(((int)(((byte)(89)))), ((int)(((byte)(116)))), ((int)(((byte)(151)))));
+            this.btnEXClose.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
             this.btnEXClose.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnEXClose.ImageDefault = global::MuZiYangNote.Properties.Resources.Close;
             this.btnEXClose.ImageLeave = null;
@@ -159,10 +164,12 @@
             // 
             // butLogin
             // 
-            this.butLogin.BackColor = System.Drawing.Color.White;
-            this.butLogin.BackColorEX = System.Drawing.Color.Transparent;
-            this.butLogin.BackColorLeave = System.Drawing.Color.Transparent;
-            this.butLogin.BackColorMove = System.Drawing.Color.Transparent;
+            this.butLogin.BackColor = System.Drawing.Color.Silver;
+            this.butLogin.BackColorEnter = System.Drawing.Color.DarkGray;
+            this.butLogin.BackColorEX = System.Drawing.Color.Silver;
+            this.butLogin.BackColorLeave = System.Drawing.Color.Silver;
+            this.butLogin.BackColorMove = System.Drawing.Color.Silver;
+            this.butLogin.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Max;
             this.butLogin.FontM = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.butLogin.ImageDefault = null;
             this.butLogin.ImageLeave = null;
@@ -174,6 +181,7 @@
             this.butLogin.TabIndex = 9;
             this.butLogin.TextColor = System.Drawing.Color.Black;
             this.butLogin.TextEX = "登  录";
+            this.butLogin.ButtonClick += new System.EventHandler(this.butLogin_ButtonClick);
             // 
             // txtUserPwd
             // 

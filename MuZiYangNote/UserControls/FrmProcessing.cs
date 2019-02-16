@@ -30,7 +30,8 @@ namespace MuZiYangNote.UserControls
             const int SC_CLOSE = 0xF060;
             if (m.Msg == WM_SYSCOMMAND && (int)m.WParam == SC_CLOSE)
             {
-                MessageBoxEX _m = new MessageBoxEX("提示","加载过程中不允许任何操作！");
+                //瞎几把操作，让你乱点，给你禁调
+                //MessageBoxEX _m = new MessageBoxEX("提示","加载过程中不允许任何操作！");
                 return;
             }
             base.WndProc(ref m);
