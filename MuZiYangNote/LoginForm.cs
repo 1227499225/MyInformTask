@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model;
+using PublicHelper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,7 +51,12 @@ namespace MuZiYangNote
                 this.Close();
             }
             else {
-                this._ParentForm.ChangeLoginSet(false);
+                LogModel log = new LogModel()
+                {
+                    Erlv = MessageLevel.LogMessage,
+                    szStr = "退出登陆！",
+                };
+                this._ParentForm.ChangeLoginSet(false,ref log);
             }
 
         }
@@ -113,11 +120,27 @@ namespace MuZiYangNote
                     System.Threading.Thread.Sleep(10);
                 }
             }, null);
-
-            if (_ParentForm != null)
+            ClientUserModel cum = new ClientUserModel()
             {
-                _ParentForm.ChangeLoginSet(false,txtUserAccount.Text);
+                ClientUserName = this.txtUserAccount.Text,
+                ClientUserPwd = this.txtUserPwd.Text
+            };
+            LogModel log = new LogModel();
+            SpecialHelper.IsFileValObjExist<ClientUserModel>(cum, ref log, "ClientUserNickname");
+            if (log.Erlv == MessageLevel.LogNormal)
+            {
+                if (_ParentForm != null && !(log.szStr).StrIsNull())
+                {
+                    _ParentForm.ChangeLoginSet(false, ref log);
+                }
+                else if((log.szStr).StrIsNull())
+                {
+                    this.txtUserAccount.BorderColor = Color.Red;
+                        this.txtUserPwd.BorderColor = Color.Red;
+                }
             }
+
+
         }
     }
 }

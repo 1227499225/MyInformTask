@@ -44,10 +44,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Files\SystemFile\System\Geckofx-Winforms.dll</HintPath>
     </Reference>
-    <Reference Include="SQK_Ui, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Files\SystemFile\System\SQK_Ui.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -64,6 +60,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BaseEv.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="FormBase.cs">
       <SubType>Form</SubType>
@@ -96,6 +99,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskDetailsCnOrEn.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BaseUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BaseUserControl.Designer.cs">
+      <DependentUpon>BaseUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\FrmProcessing.cs">
       <SubType>Form</SubType>
@@ -164,6 +173,9 @@
     <Compile Include="WorkForm.Designer.cs">
       <DependentUpon>WorkForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
@@ -192,6 +204,9 @@
     <EmbeddedResource Include="MultiLanguageConfig\TaskDetailsCnOrEn.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TaskDetailsCnOrEn.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\BaseUserControl.resx">
+      <DependentUpon>BaseUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FrmProcessing.resx">
       <DependentUpon>FrmProcessing.cs</DependentUpon>
@@ -273,6 +288,10 @@
     <None Include="Resources\1526998417%281%29.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\kwig-master\KSharpEditor.csproj">
+      <Project>{3C07F543-3D96-4AC2-97B4-FF399FE558EC}</Project>
+      <Name>KSharpEditor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{e853dce6-485e-47a3-b7fa-5ebc6d223c19}</Project>
       <Name>Model</Name>
@@ -292,7 +311,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Files\SystemFile\SystemPages\FmUserHelper.html" />
-    <Content Include="Files\SystemFile\SystemPages\特效页.html" />
+    <Content Include="Files\SystemFile\SystemPages\人妖时间.html" />
     <Content Include="Files\SystemFile\System\Geckofx-Core.dll" />
     <Content Include="Files\SystemFile\System\Geckofx-Winforms.dll" />
     <Content Include="Files\SystemFile\System\SQK_Ui.dll" />

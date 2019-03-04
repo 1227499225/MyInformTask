@@ -31,7 +31,7 @@ namespace Model
         /// <summary>
         /// 用户自定义信息
         /// </summary>
-        public string szStr { get; set; }
+        public string szStr { get; set; } = string.Empty;
 
         /// <summary>
         /// 报错等级

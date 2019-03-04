@@ -40,7 +40,11 @@
             this.laUserName = new System.Windows.Forms.Label();
             this.laNoLogin = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.MdiTitle = new System.Windows.Forms.Label();
+            this.btnEXMin = new MuZiYangNote.UserControls.ButtonEX();
+            this.btnEXMax = new MuZiYangNote.UserControls.ButtonEX();
+            this.btnEXClose = new MuZiYangNote.UserControls.ButtonEX();
             this.MStrip = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,18 +68,14 @@
             this.登录邮件提醒ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.我的好友ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.添加好友ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnEXMin = new MuZiYangNote.UserControls.ButtonEX();
-            this.btnEXMax = new MuZiYangNote.UserControls.ButtonEX();
-            this.btnEXClose = new MuZiYangNote.UserControls.ButtonEX();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
             this.其他ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.其他02ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.其他03ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpbTaskList.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.MStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.MStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddTask
@@ -159,10 +159,73 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
             // MdiTitle
             // 
             resources.ApplyResources(this.MdiTitle, "MdiTitle");
             this.MdiTitle.Name = "MdiTitle";
+            // 
+            // btnEXMin
+            // 
+            resources.ApplyResources(this.btnEXMin, "btnEXMin");
+            this.btnEXMin.BackColor = System.Drawing.Color.Transparent;
+            this.btnEXMin.BackColorEnter = System.Drawing.Color.Empty;
+            this.btnEXMin.BackColorEX = System.Drawing.Color.Transparent;
+            this.btnEXMin.BackColorLeave = System.Drawing.Color.DimGray;
+            this.btnEXMin.BackColorMove = System.Drawing.Color.DimGray;
+            this.btnEXMin.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
+            this.btnEXMin.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEXMin.ImageDefault = ((System.Drawing.Image)(resources.GetObject("btnEXMin.ImageDefault")));
+            this.btnEXMin.ImageLeave = null;
+            this.btnEXMin.ImageMove = null;
+            this.btnEXMin.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEXMin.Name = "btnEXMin";
+            this.btnEXMin.TextColor = System.Drawing.Color.Black;
+            this.btnEXMin.TextEX = "";
+            this.btnEXMin.ButtonClick += new System.EventHandler(this.btnEXMin_ButtonClick);
+            // 
+            // btnEXMax
+            // 
+            resources.ApplyResources(this.btnEXMax, "btnEXMax");
+            this.btnEXMax.BackColor = System.Drawing.Color.DimGray;
+            this.btnEXMax.BackColorEnter = System.Drawing.Color.Empty;
+            this.btnEXMax.BackColorEX = System.Drawing.Color.Transparent;
+            this.btnEXMax.BackColorLeave = System.Drawing.Color.DimGray;
+            this.btnEXMax.BackColorMove = System.Drawing.Color.DimGray;
+            this.btnEXMax.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
+            this.btnEXMax.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEXMax.ImageDefault = ((System.Drawing.Image)(resources.GetObject("btnEXMax.ImageDefault")));
+            this.btnEXMax.ImageLeave = null;
+            this.btnEXMax.ImageMove = null;
+            this.btnEXMax.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEXMax.Name = "btnEXMax";
+            this.btnEXMax.TextColor = System.Drawing.Color.Black;
+            this.btnEXMax.TextEX = "";
+            this.btnEXMax.ButtonClick += new System.EventHandler(this.btnEXMax_ButtonClick);
+            // 
+            // btnEXClose
+            // 
+            resources.ApplyResources(this.btnEXClose, "btnEXClose");
+            this.btnEXClose.BackColor = System.Drawing.Color.DimGray;
+            this.btnEXClose.BackColorEnter = System.Drawing.Color.Empty;
+            this.btnEXClose.BackColorEX = System.Drawing.Color.Transparent;
+            this.btnEXClose.BackColorLeave = System.Drawing.Color.DimGray;
+            this.btnEXClose.BackColorMove = System.Drawing.Color.DimGray;
+            this.btnEXClose.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
+            this.btnEXClose.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEXClose.ImageDefault = ((System.Drawing.Image)(resources.GetObject("btnEXClose.ImageDefault")));
+            this.btnEXClose.ImageLeave = null;
+            this.btnEXClose.ImageMove = null;
+            this.btnEXClose.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEXClose.Name = "btnEXClose";
+            this.btnEXClose.TextColor = System.Drawing.Color.Black;
+            this.btnEXClose.TextEX = "";
+            this.btnEXClose.ButtonClick += new System.EventHandler(this.btnEXClose_ButtonClick);
             // 
             // MStrip
             // 
@@ -317,79 +380,14 @@
             this.添加好友ToolStripMenuItem.Name = "添加好友ToolStripMenuItem";
             resources.ApplyResources(this.添加好友ToolStripMenuItem, "添加好友ToolStripMenuItem");
             // 
-            // pictureBox1
-            // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Image = global::MuZiYangNote.Properties.Resources.main_7;
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnEXMin
-            // 
-            resources.ApplyResources(this.btnEXMin, "btnEXMin");
-            this.btnEXMin.BackColor = System.Drawing.Color.Transparent;
-            this.btnEXMin.BackColorEnter = System.Drawing.Color.Empty;
-            this.btnEXMin.BackColorEX = System.Drawing.Color.Transparent;
-            this.btnEXMin.BackColorLeave = System.Drawing.Color.DimGray;
-            this.btnEXMin.BackColorMove = System.Drawing.Color.DimGray;
-            this.btnEXMin.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
-            this.btnEXMin.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnEXMin.ImageDefault = global::MuZiYangNote.Properties.Resources.Min;
-            this.btnEXMin.ImageLeave = null;
-            this.btnEXMin.ImageMove = null;
-            this.btnEXMin.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnEXMin.Name = "btnEXMin";
-            this.btnEXMin.TextColor = System.Drawing.Color.Black;
-            this.btnEXMin.TextEX = "";
-            this.btnEXMin.ButtonClick += new System.EventHandler(this.btnEXMin_ButtonClick);
-            // 
-            // btnEXMax
-            // 
-            resources.ApplyResources(this.btnEXMax, "btnEXMax");
-            this.btnEXMax.BackColor = System.Drawing.Color.DimGray;
-            this.btnEXMax.BackColorEnter = System.Drawing.Color.Empty;
-            this.btnEXMax.BackColorEX = System.Drawing.Color.Transparent;
-            this.btnEXMax.BackColorLeave = System.Drawing.Color.DimGray;
-            this.btnEXMax.BackColorMove = System.Drawing.Color.DimGray;
-            this.btnEXMax.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
-            this.btnEXMax.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnEXMax.ImageDefault = global::MuZiYangNote.Properties.Resources.Max;
-            this.btnEXMax.ImageLeave = null;
-            this.btnEXMax.ImageMove = null;
-            this.btnEXMax.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnEXMax.Name = "btnEXMax";
-            this.btnEXMax.TextColor = System.Drawing.Color.Black;
-            this.btnEXMax.TextEX = "";
-            this.btnEXMax.ButtonClick += new System.EventHandler(this.btnEXMax_ButtonClick);
-            // 
-            // btnEXClose
-            // 
-            resources.ApplyResources(this.btnEXClose, "btnEXClose");
-            this.btnEXClose.BackColor = System.Drawing.Color.DimGray;
-            this.btnEXClose.BackColorEnter = System.Drawing.Color.Empty;
-            this.btnEXClose.BackColorEX = System.Drawing.Color.Transparent;
-            this.btnEXClose.BackColorLeave = System.Drawing.Color.DimGray;
-            this.btnEXClose.BackColorMove = System.Drawing.Color.DimGray;
-            this.btnEXClose.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
-            this.btnEXClose.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnEXClose.ImageDefault = global::MuZiYangNote.Properties.Resources.Close;
-            this.btnEXClose.ImageLeave = null;
-            this.btnEXClose.ImageMove = null;
-            this.btnEXClose.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnEXClose.Name = "btnEXClose";
-            this.btnEXClose.TextColor = System.Drawing.Color.Black;
-            this.btnEXClose.TextEX = "";
-            this.btnEXClose.ButtonClick += new System.EventHandler(this.btnEXClose_ButtonClick);
-            // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.其他ToolStripMenuItem,
             this.其他02ToolStripMenuItem,
             this.其他03ToolStripMenuItem});
-            this.toolStripMenuItem4.Image = global::MuZiYangNote.Properties.Resources.arrow5;
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             resources.ApplyResources(this.toolStripMenuItem4, "toolStripMenuItem4");
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
             this.toolStripMenuItem4.DropDownClosed += new System.EventHandler(this.toolStripMenuItem4_DropDownClosed);
             this.toolStripMenuItem4.DropDownOpened += new System.EventHandler(this.toolStripMenuItem4_DropDownOpened);
             // 
@@ -430,9 +428,9 @@
             this.gpbTaskList.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.MStrip.ResumeLayout(false);
             this.MStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

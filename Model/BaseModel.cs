@@ -17,7 +17,7 @@ namespace Model
         /// </summary>
         [Range(36,36)]
         [Description("任务Id")]
-        [Filed(IsIncrement = true,JudgeDatabaseIsExist =true)]
+        [Filed(IsIncrement = true)]
         public string TaskId { get; set; } = "{0}";
         
     }
@@ -54,6 +54,9 @@ namespace Model
         /// </summary>
         [Filed(IsIncrement = true)]
         public DateTime LastModifiedTime { get; set; }
+
+        [Filed(IsIncrement = true)]
+        public int IsDelete { get; set; } = 0;
     }
     public class BaseDetailModel : _BaseDetailModel
     {

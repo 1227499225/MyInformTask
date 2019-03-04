@@ -36,11 +36,13 @@ namespace PublicHelper
             
            }
        }
-       /// <summary>
-       /// 删除数据库
-       /// </summary>
-       public static void DeleteDB()
+        /// <summary>
+        /// 删除数据库
+        /// </summary>
+        public static void DeleteDB(string SQLiteDBpath = null)
        {
+            if (!SQLiteDBpath.StrIsNull())
+                pub.SQLiteDBpath = SQLiteDBpath;
            // = @"d:\test\123.sqlite";
            if (System.IO.File.Exists(pub.SQLiteDBpath))
            {

@@ -10,7 +10,7 @@ namespace Model
 {
     [Serializable]
     [Description("本地用户表")]
-    [_Mo(_dbl =DateBaseLocation._LOCAL)]
+    [_Mo(_dbl =DateBaseLocation._LOCAL, TableName = "ClientUserInfo")]
     public class ClientUserModel: _BaseDetailModel
     {
         [Range(1, 12)]
@@ -21,12 +21,12 @@ namespace Model
         [Range(1, 12)]
         [Description("用户昵称")]
         [Required(ErrorMessage = "{0}不能为空！")]
-        [Filed(IsIncrement = true,JudgeDatabaseIsExist =true)]
+        [Filed(IsIncrement = true)]
         public string ClientUserNickname { get; set; }
 
         [Description("用户Code")]
         [Required(ErrorMessage = "{0}不能为空！")]
-        [Filed(IsIncrement = true,JudgeDatabaseIsExist =true)]
+        [Filed(IsIncrement = true)]
         public string ClientUserId { get; set; }
 
         [Range(1, 16)]

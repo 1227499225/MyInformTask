@@ -70,13 +70,16 @@
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.btnClose.BackColorEnter = System.Drawing.Color.Empty;
             this.btnClose.BackColorEX = System.Drawing.Color.Transparent;
             this.btnClose.BackColorLeave = System.Drawing.SystemColors.ButtonShadow;
             this.btnClose.BackColorMove = System.Drawing.SystemColors.ButtonShadow;
+            this.btnClose.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Min;
             this.btnClose.FontM = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnClose.ImageDefault = global::MuZiYangNote.Properties.Resources.Close;
             this.btnClose.ImageLeave = null;
             this.btnClose.ImageMove = null;
+            this.btnClose.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnClose.Location = new System.Drawing.Point(158, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(20, 20);
@@ -101,9 +104,11 @@
             this.txtNoteContent.Name = "txtNoteContent";
             this.txtNoteContent.Size = new System.Drawing.Size(178, 168);
             this.txtNoteContent.TabIndex = 0;
+            this.txtNoteContent.TextChanged += new System.EventHandler(this.txtNoteContent_TextChanged);
             // 
             // TaskDetails
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

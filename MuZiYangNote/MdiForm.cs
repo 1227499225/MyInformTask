@@ -14,6 +14,7 @@ using MuZiYangNote.UserControls;
 using PublicHelper;
 using Model;
 using System.Collections;
+using System.IO;
 
 namespace MuZiYangNote
 {
@@ -43,7 +44,7 @@ namespace MuZiYangNote
         /// <summary>
         /// 普通任务
         /// </summary>
-        private List<Model.PlainNoteModel> _PlainNotes = new List<PlainNoteModel>();
+        public List<Model.PlainNoteModel> _PlainNotes = new List<PlainNoteModel>();
         #endregion
 
 
@@ -58,17 +59,25 @@ namespace MuZiYangNote
         */
         private void Mdiform_Load(object sender, EventArgs e)
         {
+            //FileInfo file = new FileInfo("../../Files/SystemFile/SystemPages/人妖时间.html");
+            //webBrowser1.Url = new Uri(file.FullName, UriKind.Absolute);
+            //webBrowser1.IsWebBrowserContextMenuEnabled = false;
             //双缓冲
             fyp01.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance| System.Reflection.BindingFlags.NonPublic).SetValue(fyp01, true, null);
 
-            DateBaseLocation _dbl; //本地或云
+            DateBaseLocation _dbl; //本webBrowser1地或云
             object[] obj01 = SpecialHelper.CreateTableSql<Model.ClientUserModel>(new Model.ClientUserModel(),out _dbl);
             PubConstant pc = new PubConstant(obj01[0].ToString());
             if (!System.IO.File.Exists(pc.SQLiteDBpath.Replace("Data Source=", "")))
             {
+                SqliteDBHelper.DeleteDB(pc.SQLiteDBpath);
                 SqliteDBHelper.CreateDB(pc.SQLiteDBpath);
                 //创建本地用户表
                 SqliteDBHelper.CreateTable(obj01[1].ToString(), obj01[0].ToString());
+                //创建本地普通便签表
+                obj01 = SpecialHelper.CreateTableSql<Model.PlainNoteModel>(new Model.PlainNoteModel(), out _dbl);
+                SqliteDBHelper.CreateTable(obj01[1].ToString(), obj01[0].ToString());
+
             }
             else {
                 //UserControl
@@ -82,7 +91,6 @@ namespace MuZiYangNote
 
             //DataTable dt = (new SendEmailBI()).GetUser("朱");
             //this.dataGridView1.DataSource = dt;
-
         }
        
         #region  界面控制
@@ -347,7 +355,7 @@ namespace MuZiYangNote
         {
             this.Dispose(true);
             this.Close();
-            Environment.Exit(0);
+            System.Environment.Exit(0);
         }
         /// <summary>
         /// 最大化和正常状态切换
@@ -398,17 +406,33 @@ namespace MuZiYangNote
         
         #region  控件平铺
 
-        #region
-        public void DataChanged(object sender, DataChangeEventArgs args)
+        #region  更新窗体控件 日志显示
+        public void DataChanged(object sender, BaseEv.DataChangeEventArgs args)
         {
-            //更新窗体控件
-            foreach (Control _cc in (sender as UserControls.TaskDetails).Parent.Parent.Parent.Controls)
+
+            if (sender.GetType().Name == "TaskDetails")
             {
-                if (_cc.Name == "RtbTxt")
+                //更新窗体控件
+                foreach (Control _cc in (sender as UserControls.TaskDetails).Parent.Parent.Parent.Controls)
                 {
-                    string Str = args.Str;
-                    MessageLevel ty = args.ty;
-                    new ShowLog(_cc as RichTextBox, ty, Str, args._c);
+                    if (_cc.Name == "RtbTxt")
+                    {
+                        string Str = args.Str;
+                        MessageLevel ty = args.ty;
+                        new ShowLog(_cc as RichTextBox, ty, Str, args._c);
+                    }
+                }
+            }
+            if (sender.GetType().Name == "StripTypeTaskDetails") {
+                //更新窗体控件
+                foreach (Control _cc in (sender as UserControls.StripTypeTaskDetails).Parent.Parent.Parent.Controls)
+                {
+                    if (_cc.Name == "RtbTxt")
+                    {
+                        string Str = args.Str;
+                        MessageLevel ty = args.ty;
+                        new ShowLog(_cc as RichTextBox, ty, Str, args._c);
+                    }
                 }
             }
         }
@@ -581,13 +605,13 @@ namespace MuZiYangNote
         }
         
         private void F1Open() {
-            string _PROMPT= MultiLanguageSetting.SundryLanguage("Prompt", "08");
-            string _ISWIDOWSOPENEN= MultiLanguageSetting.SundryLanguage("IsWidowsOpen", "08");
             UserHelperForm _fuh = new UserHelperForm(this);
             //判断窗体是否已打开
             Form _f = Lc.Find(p => p.Name == _fuh.Name);
             if (_f != null)
             {
+                string _PROMPT = MultiLanguageSetting.SundryLanguage("Prompt", "08");
+                string _ISWIDOWSOPENEN = MultiLanguageSetting.SundryLanguage("IsWidowsOpen", "08");
 
                 MessageBoxEX testDialog = new MessageBoxEX(_PROMPT, _ISWIDOWSOPENEN.Fill(_f.Text));
                 DialogResult _d = testDialog.ShowDialog(this);
@@ -599,12 +623,12 @@ namespace MuZiYangNote
                 }
                 return;
             }
-            _fuh.TopMost = true;
+            //_fuh.TopMost = true;
             _fuh.Show();
             string _WIDOWSHOW02 = MultiLanguageSetting.SundryLanguage("WidowShow02", "08");
-            new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW02.Fill(_fuh.Text,MultiLanguageSetting.SundryLanguage("Open","08")));
+            new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW02.Fill(_fuh.Text, MultiLanguageSetting.SundryLanguage("Open", "08")));
             Lc.Add(_fuh);
-            _fuh.TopMost = false;
+            //_fuh.TopMost = false;
         }
 
         #endregion
@@ -678,6 +702,7 @@ namespace MuZiYangNote
             TD.ID = TD.Name;
             TD.Title = _v + "TD" + maxNums.ToString().PadLeft(3, '0');
             TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
+            TD._ParentForm = this;
             Control[] TDObj = TDProperty(TD);
             this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
             //UserControl1 _f = new UserControl1();
@@ -734,7 +759,29 @@ namespace MuZiYangNote
             //从列表切换为平铺
             if ((int)_showType == 0)
             {
+                if (_PlainNotes.Count > 0)
+                {
+                    foreach (PlainNoteModel item in _PlainNotes)
+                    {
+                        var _t = this.fyp01.Controls.Find(item.SnNumber.Replace("General-", ""), true);
+                        if (_t.Count() > 0)
+                        {
+                            Control _td = _t[0];
+                            UserControls.TaskDetails TD = new UserControls.TaskDetails();
+                            TD.Name = item.SnNumber.Replace("General-", "");
+                            TD.ID = item.SnNumber.Replace("General-", "");
+                            TD.Title = item.Topic;
+                            TD.DataChange += new BaseUserControl.DataChangeHandler((new MdiForm()).DataChanged);
+                            if (string.IsNullOrEmpty(item.NoteContent))
+                                if (_td.Controls.Find("txtNoteContent", true).Count() > 0)
+                                    item.NoteContent = _td.Controls.Find("txtNoteContent", true)[0].Text;
+                            TD.TxtNoteContetnStr = item.NoteContent;
+                            this.fyp01.Controls.Remove(_td);
+                            this.fyp01.Controls.Add(TD);
+                        }
 
+                    }
+                }
             }
             else
             //从平铺切换为列表
@@ -752,6 +799,7 @@ namespace MuZiYangNote
                             TD.Name = item.SnNumber.Replace("General-", "");
                             TD.ID = item.SnNumber.Replace("General-", "");
                             TD.Title = item.Topic;
+                            TD.DataChange += new BaseUserControl.DataChangeHandler((new MdiForm()).DataChanged);
                             if (string.IsNullOrEmpty(item.NoteContent))
                                 if (_td.Controls.Find("txtNoteContent", true).Count() > 0)
                                     item.NoteContent = _td.Controls.Find("txtNoteContent", true)[0].Text;
@@ -783,13 +831,11 @@ namespace MuZiYangNote
         //未登录文本点击
         private void laNoLogin_Click(object sender, EventArgs e)
         {
-            ChangeLoginSet(true);
+            LogModel log = new LogModel();
+            ChangeLoginSet(true,ref log);
         }
-        //关闭打开点击登录之前时配置的所有设置
-        public void Close_laNoLoginClick_Change() {
-            ChangeLoginSet(false);
-        }
-        public void ChangeLoginSet(bool _v,string UserName=null) {
+        //登陆
+        public void ChangeLoginSet(bool _v,ref LogModel log) {
             if (_v)
             {
                 _lf = new LoginForm(this);
@@ -805,11 +851,24 @@ namespace MuZiYangNote
                 fyp01.Visible = true;
                 //关闭背景遮罩层
                 _ml.HideOpaqueLayer(_lf);
-                if (!UserName.StrIsNull()) {
-                    laNoLogin.Visible = false;
-                    laUserName.Text = UserName;
-                    laUserName.ForeColor = Color.Red;
-                    laUserName.Visible = true;
+                if (log.Erlv == MessageLevel.LogNormal)
+                {
+                    if (!(log.szStr).StrIsNull())
+                    {
+                        laNoLogin.Visible = false;
+                        laUserName.Text = log.szStr;
+                        laUserName.ForeColor = Color.Red;
+                        laUserName.Visible = true;
+                        new ShowLog(RtbTxt, MessageLevel.LogMessage, log.szStr + " 登陆成功！");
+                    }
+                }
+                else if (log.Erlv == MessageLevel.LogError)
+                {
+                    new ShowLog(RtbTxt, log.Erlv, "登录失败！报错信息：" + log.Erorr.Message);
+                }
+                else if (log.Erlv == MessageLevel.LogMessage)
+                {
+                    new ShowLog(RtbTxt, log.Erlv,   log.szStr);
                 }
             }
         }

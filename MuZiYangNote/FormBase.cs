@@ -1,5 +1,6 @@
 ﻿using Model;
 using MuZiYangNote.MultiLanguageConfig;
+using MuZiYangNote.UserControls;
 using PublicHelper;
 using System;
 using System.Collections;
@@ -25,6 +26,22 @@ namespace MuZiYangNote
             InitializeComponent();
             ManageLanguage.Instance.RegObject(this);
         }
+        #region 自定义事件参数类型，根据需要可设定多种参数便于传递
+        //声名委托
+        public delegate void DataChangeHandler(object sender, BaseEv.DataChangeEventArgs args);
+        // 声明事件
+        public event DataChangeHandler DataChange;
+        // 调用事件函数
+
+        public void OnDataChange(BaseEv.DataChangeEventArgs args)
+        {
+            if (DataChange != null)
+            {
+                DataChange(this, args);
+            }
+        }
+        #endregion
+
         #region 3、语种切换接口
         /// <summary>
         /// 语言切换的接口
@@ -56,6 +73,11 @@ namespace MuZiYangNote
                         {
                             resources.ApplyResources(item, item.Name);
                         };
+                        break;
+                    case "label":
+                        Label _la = ctl as Label;
+                        if (_la.Name == "laUserName")//用户昵称不做多语言转换
+                            resources.ApplyResources(_la, _la.Text);
                         break;
                     //多格式文本框
                     case "richtextbox":break;
@@ -235,4 +257,6 @@ namespace MuZiYangNote
         }
     }
     #endregion
+
+
 }

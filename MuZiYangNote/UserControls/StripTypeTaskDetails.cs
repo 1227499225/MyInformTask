@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PublicHelper;
+using Model;
 
 namespace MuZiYangNote.UserControls
 {
     /// <summary>
     /// 条形任务
     /// </summary>
-    public partial class StripTypeTaskDetails : UserControl
+    public partial class StripTypeTaskDetails : BaseUserControl
     {
         public StripTypeTaskDetails()
         {
@@ -66,11 +68,36 @@ namespace MuZiYangNote.UserControls
         }
         #endregion
 
+
+        #region 事件
+        //加载
         private void StripTypeTaskDetails_Load(object sender, EventArgs e)
         {
             this.laTitle.Text = this.title;
             this.ID = this.id;
             this.laNoteContent.Text = this.noteContent;
+             
         }
+
+        //右键显示
+        //protected override void OnMouseUp(MouseEventArgs e)
+        //{
+        //    base.OnMouseUp(e);
+        //    if (e.Button == MouseButtons.Right)
+        //    {
+        //        contextMenuStrip1.Show(this, e.Location);
+        //    }
+        //}
+
+        //右键操作关闭显示
+        private void ToolStripMenuItemClose_Click(object sender, EventArgs e)
+        {
+            string _v = MultiLanguageSetting.SundryLanguage("DeleteModule", "09");//多语言
+            OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.ID, this.title), MessageLevel.LogWarning));
+            this.Dispose();
+        }
+        #endregion
+
+
     }
 }

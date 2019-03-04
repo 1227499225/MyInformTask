@@ -154,12 +154,13 @@ namespace PublicHelper
         /// <typeparam name="T"></typeparam>
         /// <param name="m"></param>
         /// <param name="log"></param>
-        public static void IsFileValObjExist<T>(T m, ref LogModel log,string Field=null)
+        public static void IsFileValObjExist<T>(T m, ref LogModel log,string ResFieldVal=null)
         {
             try
             {
                 object[] attributes = typeof(T).GetCustomAttributes(typeof(Model._MoAttribute), true);
-                string SearchTableName = (attributes[0] as Model._MoAttribute).TableName;
+                string SearchTableName = (attributes[0] as Model._MoAttribute).TableName,
+                    DataSoureName = (attributes[0] as Model._MoAttribute).DataSoureName;
 
                 string strWhere = string.Empty;
                 Type type = typeof(T);
@@ -176,10 +177,15 @@ namespace PublicHelper
                     }
                 }
                 string szSQL = "SELECT 1 FROM {0} WHERE  IsDelete='0' {1}".Fill(SearchTableName, strWhere);
-                DataTable dt = DbHelperSQL.Query(szSQL).Tables[0];
+                if(!ResFieldVal.StrIsNull())
+                    szSQL = "SELECT "+ ResFieldVal + " FROM {0} WHERE  IsDelete='0' {1}".Fill(SearchTableName, strWhere);
+                DataTable dt = SqliteDBHelper.Query_dt(szSQL, DataSoureName);
                 if (!dt.DtisNull())
                 {
-                    log.resMsg = new ResMsg { MsgCode = MessageLevel.LogWarning, Message = strWhere.Replace("AND", ",字段:") + ",该条数据已存在！" };
+                    if (ResFieldVal.StrIsNull())
+                        log.resMsg = new ResMsg { MsgCode = MessageLevel.LogWarning, Message = strWhere.Replace("AND", ",字段:") + ",该条数据已存在！" };
+                    else
+                        log.szStr = dt.Rows[0]["" + ResFieldVal + ""].ToString();
                 }
                 else
                 {

@@ -17,23 +17,8 @@ namespace MuZiYangNote.UserControls
     /// <summary>
     /// 块状任务
     /// </summary>
-    public partial class TaskDetails : UserControl
+    public partial class TaskDetails : BaseUserControl
     {
-        #region 自定义事件参数类型，根据需要可设定多种参数便于传递
-        //声名委托
-        public delegate void DataChangeHandler(object sender, DataChangeEventArgs args);
-        // 声明事件
-        public event DataChangeHandler DataChange;
-        // 调用事件函数
-
-        public void OnDataChange(DataChangeEventArgs args)
-        {
-            if (DataChange != null)
-            {
-                DataChange(this, args);
-            }
-        }
-        #endregion
         public TaskDetails()
         {
             InitializeComponent();
@@ -42,6 +27,7 @@ namespace MuZiYangNote.UserControls
         }
         ~TaskDetails() { }
         #region 任务配置
+        public MdiForm _ParentForm { get; set; } = new MdiForm();
         private string title = string.Empty;
         [Description("用于显示文本")]
         public string Title
@@ -72,6 +58,21 @@ namespace MuZiYangNote.UserControls
                 id = value;
             }
         }
+
+
+        private string txtNoteContetnStr = string.Empty;
+        public string TxtNoteContetnStr
+        {
+            get
+            {
+                return txtNoteContetnStr;
+            }
+
+            set
+            {
+                txtNoteContetnStr = value;
+            }
+        }
         #endregion
 
         private void btnIsOk_Click(object sender, EventArgs e)
@@ -97,9 +98,12 @@ namespace MuZiYangNote.UserControls
         {
             laTitle.Text = this.title;
             string _v = MultiLanguageSetting.SundryLanguage( "AddModule","09");//多语言
-            OnDataChange(new DataChangeEventArgs(_v.Fill(this.title.Substring(this.title.Length-5,5), this.title), MessageLevel.LogAppend));
+            OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.title.Substring(this.title.Length-5,5), this.title), MessageLevel.LogAppend));
             txtChangTitle.LostFocus += new EventHandler(txtChangTitle_LostFocus);
 
+            if (!TxtNoteContetnStr.StrIsNull()) {
+                txtNoteContent.Text = TxtNoteContetnStr;
+            }
         }
         /// <summary>
         /// 失去焦点
@@ -110,15 +114,36 @@ namespace MuZiYangNote.UserControls
         {
             if (!string.IsNullOrEmpty(txtChangTitle.Text))
             {
-                if (laTitle.Text != txtChangTitle.Text) {
+                if (laTitle.Text != txtChangTitle.Text)
+                {
                     laTitle.Text = txtChangTitle.Text;
                     string _v = MultiLanguageSetting.SundryLanguage("UpdateTitle", "09");//多语言
-                    OnDataChange(new DataChangeEventArgs(_v.Fill(this.ID, this.title, laTitle.Text), MessageLevel.LogCustom, new ShowLog.customColor() { IsEnable = true, _c = Color.Blue }));
+                    OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.ID, this.title, laTitle.Text), MessageLevel.LogCustom, new ShowLog.customColor() { IsEnable = true, _c = Color.Blue }));
                     this.title = txtChangTitle.Text;
                 }
             }
+
+            RefreshData();
+
             txtChangTitle.Visible = false;
         }
+
+        //跟新数据
+        private void RefreshData()
+        {
+            if (_ParentForm._PlainNotes.Count > 0)
+            {
+                foreach (PlainNoteModel item in _ParentForm._PlainNotes)
+                {
+                    if (this.ID == item.SnNumber.Replace("General-", ""))
+                    {
+                        item.Topic = this.Title;
+                        item.NoteContent = this.txtNoteContent.Text;
+                    }
+                }
+            }
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
            
@@ -127,7 +152,7 @@ namespace MuZiYangNote.UserControls
         private void btnClose_ButtonClick(object sender, EventArgs e)
         {
             string _v = MultiLanguageSetting.SundryLanguage("DeleteModule","09");//多语言
-            OnDataChange(new DataChangeEventArgs(_v.Fill(this.ID, this.title), MessageLevel.LogWarning));
+            OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.ID, this.title), MessageLevel.LogWarning));
             this.Dispose();
         }
 
@@ -142,22 +167,10 @@ namespace MuZiYangNote.UserControls
 
         }
 
-
-    }
-
-    public class DataChangeEventArgs : EventArgs
-    {
-        public string Str{ get; set; }
-
-        public MessageLevel ty{ get; set; }
-
-        public ShowLog.customColor _c { get; set; }
-
-        public DataChangeEventArgs(string s1, MessageLevel s2, ShowLog.customColor c=null)
+        private void txtNoteContent_TextChanged(object sender, EventArgs e)
         {
-            Str = s1;
-            ty = s2;
-            _c = c;
+            RefreshData();
         }
     }
+
 }

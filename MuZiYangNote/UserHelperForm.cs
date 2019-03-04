@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using KSharpEditor;
+using Model;
 using MuZiYangNote.UserControls;
 using PublicHelper;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,33 +15,19 @@ using System.Windows.Forms;
 
 namespace MuZiYangNote
 {
-    public partial class UserHelperForm : FormBase
+    public partial class UserHelperForm : FormBase,IKEditorEventListener
     {
 
         private Form _parentForm = new Form();
 
-        public UserHelperForm(Form parentForm)
+        public UserHelperForm(Form parentForm=null)
         {
             InitializeComponent();
             this._parentForm = parentForm;
 
         }
 
-        #region 自定义事件参数类型，根据需要可设定多种参数便于传递
-        //声名委托
-        public delegate void DataChangeHandler(object sender, DataChangeEventArgs args);
-        // 声明事件
-        public event DataChangeHandler DataChange;
-        // 调用事件函数
 
-        public void OnDataChange(DataChangeEventArgs args)
-        {
-            if (DataChange != null)
-            {
-                DataChange(this, args);
-            }
-        }
-        #endregion
 
         private void FmUserHelper_Load(object sender, EventArgs e)
         {
@@ -47,24 +35,29 @@ namespace MuZiYangNote
             //this.laUserHelpeTitle.Text = MultiLanguageSetting.SundryLanguage("Prompt","08");
             this.LanguageChange();
             this.DataChange += new DataChangeHandler(DataChanged);
+            FileInfo file = new FileInfo("../../Files/SystemFile/SystemPages/FmUserHelper.html");
+            webBrowser1.Url = new Uri(file.FullName, UriKind.Absolute);
+
+            kEditor1.KEditorEventListener = this;//富文本
         }
         private void LanguageChange()
         {
             this.MinNormalSwitch();
             ManageLanguage.Instance.SetLanguage(Program._LANGUAGETYPE);//语种设置
-
         }
 
 
-        public void DataChanged(object sender, DataChangeEventArgs args)
+        public void DataChanged(object sender, BaseEv.DataChangeEventArgs args)
         {
-            //更新窗体控件
-            Control _cc = this._parentForm.Controls.Find("RtbTxt", true)[0];
-            if (_cc.Name == "RtbTxt")
-            {
-                string Str = args.Str;
-                Model.MessageLevel ty = args.ty;
-                new PublicHelper.ShowLog(_cc as RichTextBox, ty, Str, args._c);
+            if (this._parentForm != null) {
+                //更新窗体控件
+                Control _cc = this._parentForm.Controls.Find("RtbTxt", true)[0];
+                if (_cc.Name == "RtbTxt")
+                {
+                    string Str = args.Str;
+                    Model.MessageLevel ty = args.ty;
+                    new PublicHelper.ShowLog(_cc as RichTextBox, ty, Str, args._c);
+                }
             }
         }
 
@@ -107,10 +100,58 @@ namespace MuZiYangNote
         private void btnEXClose_ButtonClick(object sender, EventArgs e)
         {
             string _WIDOWSHOW02 = MultiLanguageSetting.SundryLanguage("WidowShow02", "08");
-            OnDataChange(new DataChangeEventArgs(_WIDOWSHOW02.Fill(this.Text, MultiLanguageSetting.SundryLanguage("Close", "08")), Model.MessageLevel.LogMessage, (new PublicHelper.ShowLog.customColor() { IsEnable = true, _c = Color.Red })));
-            (this._parentForm as MdiForm)._lc.Remove(this);
+            OnDataChange(new BaseEv.DataChangeEventArgs(_WIDOWSHOW02.Fill(this.Text, MultiLanguageSetting.SundryLanguage("Close", "08")), Model.MessageLevel.LogMessage, (new PublicHelper.ShowLog.customColor() { IsEnable = true, _c = Color.Red })));
+            if (this._parentForm != null)
+            {
+                (this._parentForm as MdiForm)._lc.Remove(this);
+            }
             this.Dispose(true);
             this.Close();
         }
+
+        #region 富文本框对应事件
+        public void OnEditorErrorOccured(Exception ex)
+        {
+            //hrow new NotImplementedException();
+        }
+
+        public void OnEditorLoadComplete()
+        {
+            //throw new NotImplementedException();
+        }
+
+        public void OnInsertImageClicked()
+        {
+            // throw new NotImplementedException();
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "*.jpg|*.jpg";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string n = "<img src=\"file://" + ofd.FileName + "\" />";
+                kEditor1.InsertNode(n);
+            }
+        }
+
+        public void OnOpenButtonClicked()
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "*.html|*.html";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string text = System.IO.File.ReadAllText(ofd.FileName);
+                kEditor1.InsertNode(text);
+            }
+        }
+
+        public void OnSaveButtonClicked()
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "*.html|*.html";
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                System.IO.File.WriteAllText(sfd.FileName, kEditor1.Html);
+            }
+        }
+        #endregion
     }
 }
