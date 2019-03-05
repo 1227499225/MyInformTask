@@ -45,6 +45,14 @@ namespace MuZiYangNote
         /// 普通任务
         /// </summary>
         public List<Model.PlainNoteModel> _PlainNotes = new List<PlainNoteModel>();
+        /// <summary>
+        /// 本webBrowser1地或云
+        /// </summary>
+        public DateBaseLocation _dbl;
+        /// <summary>
+        /// 本地数据库名称
+        /// </summary>
+        public string LocationDataBaseName= "SmallSheep.DB";
         #endregion
 
 
@@ -64,8 +72,7 @@ namespace MuZiYangNote
             //webBrowser1.IsWebBrowserContextMenuEnabled = false;
             //双缓冲
             fyp01.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance| System.Reflection.BindingFlags.NonPublic).SetValue(fyp01, true, null);
-
-            DateBaseLocation _dbl; //本webBrowser1地或云
+            
             object[] obj01 = SpecialHelper.CreateTableSql<Model.ClientUserModel>(new Model.ClientUserModel(),out _dbl);
             PubConstant pc = new PubConstant(obj01[0].ToString());
             if (!System.IO.File.Exists(pc.SQLiteDBpath.Replace("Data Source=", "")))
@@ -624,6 +631,10 @@ namespace MuZiYangNote
                 return;
             }
             //_fuh.TopMost = true;
+            #region 窗体设置最小
+            this.WindowState = FormWindowState.Maximized;
+            MaxNormalSwitch();
+            #endregion
             _fuh.Show();
             string _WIDOWSHOW02 = MultiLanguageSetting.SundryLanguage("WidowShow02", "08");
             new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW02.Fill(_fuh.Text, MultiLanguageSetting.SundryLanguage("Open", "08")));
@@ -715,11 +726,13 @@ namespace MuZiYangNote
             {
                 PlainNoteModel _PlainNoteM = new PlainNoteModel()
                 {
+                    Id=Guid.NewGuid().ToString(),
                     NotesType = _noteType,
                     Topic = TD.Title,
                     GridOrder = maxNums,
                     SnNumber = "General-" + TD.ID,
-                    NoteContent = string.Empty
+                    NoteContent = string.Empty,
+                    TaskId=Guid.NewGuid().ToString()
                 };
                 _PlainNotes.Add(_PlainNoteM);
             }
