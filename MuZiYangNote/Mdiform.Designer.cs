@@ -51,6 +51,7 @@
             this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.F1Help = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmNoteHistory = new System.Windows.Forms.ToolStripMenuItem();
+            this.窗体内部展示ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmDailyOperationHistory = new System.Windows.Forms.ToolStripMenuItem();
             this.TsmF1Help = new System.Windows.Forms.ToolStripMenuItem();
             this.个人中心ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -271,8 +272,16 @@
             // 
             // TsmNoteHistory
             // 
+            this.TsmNoteHistory.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.窗体内部展示ToolStripMenuItem});
             this.TsmNoteHistory.Name = "TsmNoteHistory";
             resources.ApplyResources(this.TsmNoteHistory, "TsmNoteHistory");
+            // 
+            // 窗体内部展示ToolStripMenuItem
+            // 
+            this.窗体内部展示ToolStripMenuItem.Name = "窗体内部展示ToolStripMenuItem";
+            resources.ApplyResources(this.窗体内部展示ToolStripMenuItem, "窗体内部展示ToolStripMenuItem");
+            this.窗体内部展示ToolStripMenuItem.Click += new System.EventHandler(this.窗体内部展示ToolStripMenuItem_Click);
             // 
             // TsmDailyOperationHistory
             // 
@@ -479,6 +488,7 @@
         private System.Windows.Forms.ToolStripMenuItem 其他ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 其他02ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 其他03ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 窗体内部展示ToolStripMenuItem;
     }
 }
 

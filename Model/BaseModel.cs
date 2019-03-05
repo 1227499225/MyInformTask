@@ -11,7 +11,7 @@ namespace Model
 
         [Description("基础id")]
         [Filed(IsIncrement = true)]
-        public string Id { get; set; } = "{1}";
+        public string Id { get; set; } =Guid.NewGuid().ToString();
         /// <summary>
         /// 任务Id--关联所有
         /// </summary>
@@ -53,7 +53,7 @@ namespace Model
         /// 上次修改时间 主/明细表都需要
         /// </summary>
         [Filed(IsIncrement = true)]
-        public DateTime LastModifiedTime { get; set; }
+        public DateTime LastModifiedTime { get; set; } = Convert.ToDateTime(DateTime.Now.ToString("s"));
 
         [Filed(IsIncrement = true)]
         public int IsDelete { get; set; } = 0;
@@ -79,7 +79,7 @@ namespace Model
         [Description("单号")]
         [Required(ErrorMessage = "{0}不能为空！")]
         [Filed(IsIncrement = true)]
-        public string SnNumber { get; set; } = string.Empty;
+        public string SnNumber { get; set; } = "{1}";
 
         [Description("主题")]
         [Required(ErrorMessage = "{0}不能为空！")]

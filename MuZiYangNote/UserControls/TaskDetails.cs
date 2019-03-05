@@ -11,6 +11,8 @@ using MuZiYangNote;
 using System.Configuration;
 using PublicHelper;
 using Model;
+using System.Data.SqlClient;
+using System.Collections;
 
 namespace MuZiYangNote.UserControls
 {
@@ -135,10 +137,31 @@ namespace MuZiYangNote.UserControls
             {
                 foreach (PlainNoteModel item in _ParentForm._PlainNotes)
                 {
-                    if (this.ID == item.SnNumber.Replace("General-", ""))
+                    if (this.ID == item.Id)
                     {
                         item.Topic = this.Title;
                         item.NoteContent = this.txtNoteContent.Text;
+                        string szSQL = (SpecialHelper.SqlHelper.TaskSqlDic("V02001")).Fill(item.TaskId);
+                        string res= SqliteDBHelper.QueryString(szSQL, _ParentForm.LocationDataBaseName);
+                        if (Convert.ToInt32(res) > 0)
+                        {
+                            //修改
+                            item.LastModifiedTime = Convert.ToDateTime(DateTime.Now.ToString("s"));
+                            item.ModifyContent = "/";
+                            object[] _ob = SpecialHelper.CreateUpdateSql<PlainNoteModel>(item);
+                            int i = SqliteDBHelper.ExecuteSql(_ob[0].ToString(), _ob[1].ToString());
+                        }
+                        else {
+                            //新增
+                           object[] _ob= SpecialHelper.CreateInserSql<PlainNoteModel>(item); 
+                            ArrayList listSql = new ArrayList();
+                            listSql.Add(_ob[0].ToString().Replace("@strSqlValue", (_ob[1].ToString())));
+                           string taskid= InstHelper.CreatTaskInfo<PlainNoteModel>(
+                                SqlList: listSql,
+                                CreatorId: Program.ProgramUserId
+                                );
+                            item.TaskId = taskid;
+                        }
                     }
                 }
             }

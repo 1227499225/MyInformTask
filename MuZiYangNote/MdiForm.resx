@@ -766,6 +766,12 @@
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
     <value>语言(L)</value>
   </data>
+  <data name="窗体内部展示ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="窗体内部展示ToolStripMenuItem.Text" xml:space="preserve">
+    <value>窗体内部展示</value>
+  </data>
   <data name="TsmNoteHistory.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 22</value>
   </data>
@@ -1164,6 +1170,12 @@
     <value>TsmNoteHistory</value>
   </data>
   <data name="&gt;&gt;TsmNoteHistory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;窗体内部展示ToolStripMenuItem.Name" xml:space="preserve">
+    <value>窗体内部展示ToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;窗体内部展示ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;TsmDailyOperationHistory.Name" xml:space="preserve">

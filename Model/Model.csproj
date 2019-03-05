@@ -46,13 +46,14 @@
     <Compile Include="BaseProgramInfoModel.cs" />
     <Compile Include="ClientUserModel.cs" />
     <Compile Include="EventNoteModel.cs" />
+    <Compile Include="InstSerialModel.cs" />
     <Compile Include="LogModel.cs" />
     <Compile Include="OperationTrajectoryModel.cs" />
     <Compile Include="PlainNoteModel.cs" />
     <Compile Include="EnumBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemVariateBase.cs" />
-    <Compile Include="TaskModel.cs" />
+    <Compile Include="InstTaskModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

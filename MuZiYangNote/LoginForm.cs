@@ -126,7 +126,7 @@ namespace MuZiYangNote
                 ClientUserPwd = this.txtUserPwd.Text
             };
             LogModel log = new LogModel();
-            SpecialHelper.IsFileValObjExist<ClientUserModel>(cum, ref log, "ClientUserNickname");
+            SpecialHelper.IsFileValObjExist<ClientUserModel>(cum, ref log, "ClientUserNickname,Id");
             if (log.Erlv == MessageLevel.LogNormal)
             {
                 if (_ParentForm != null && !(log.szStr).StrIsNull())

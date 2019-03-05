@@ -152,13 +152,21 @@ namespace MuZiYangNote.UserControls
             {
                 if (Dt.Rows.Count > 0)
                 {
-                    //string[] str = new string[dataGridView1.Rows.Count];
+                    string[] str = new string[dataGridView1.Rows.Count];
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         if (dataGridView1.Rows[i].Selected == true)
                         {
-                            //str[i] = dataGridView1.Rows[i].Cells[1].Value.ToString();
-
+                            string id = dataGridView1.Rows[i].Cells["Id"].Value.ToString();
+                            DataTable DataTable0 = (dataGridView1.DataSource as DataTable);
+                            Dt = DataTable0.Clone();
+                           DataRow[] dr= DataTable0.Select("Id='"+ id + "'");
+                            foreach (DataRow item in dr)
+                            {
+                                DataRow drs = Dt.NewRow();
+                                drs = item;
+                                Dt.Rows.Add(drs.ItemArray);
+                            }
                             //dataGridView1.SelectedRows[0].Cells[1].Value//当前选中行
                         }
                     }

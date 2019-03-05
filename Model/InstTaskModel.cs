@@ -14,7 +14,7 @@ namespace Model
     [Serializable]
     [Description("任务实体类")]
     [_Mo(TableName = "InstTask")]
-    public class TaskModel: _BaseDetailModel
+    public class InstTaskModel: _BaseDetailModel
     {
         [Range(1, 30)]
         [Description("标题")]

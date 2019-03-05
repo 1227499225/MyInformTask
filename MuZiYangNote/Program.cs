@@ -11,6 +11,7 @@ namespace MuZiYangNote
     static class Program
     {
         public static string Min = "";
+        public static string ProgramUserId = string.Empty;
         private static DateTime Period = Convert.ToDateTime("2019-3-6");
         /// <summary>
         /// 超级管理员代码
@@ -66,7 +67,7 @@ namespace MuZiYangNote
         /// </summary>
         public static void ExceedATrialPeriod() {
             //试用期小于当前日期
-            if (DateTime.Compare(Period, DateTime.Now) < 0) {
+            if (DateTime.Compare(Period, DateTime.Now) <= 0) {
                 MessageBoxEX.Show("已超过使用期限！");
                 string path = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
                 Process.Start(path + "Uninstall.exe");

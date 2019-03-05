@@ -79,16 +79,25 @@ namespace MuZiYangNote
             {
                 SqliteDBHelper.DeleteDB(pc.SQLiteDBpath);
                 SqliteDBHelper.CreateDB(pc.SQLiteDBpath);
-                //创建本地用户表
-                SqliteDBHelper.CreateTable(obj01[1].ToString(), obj01[0].ToString());
-                //创建本地普通便签表
-                obj01 = SpecialHelper.CreateTableSql<Model.PlainNoteModel>(new Model.PlainNoteModel(), out _dbl);
-                SqliteDBHelper.CreateTable(obj01[1].ToString(), obj01[0].ToString());
-
             }
-            else {
+            else
+            {
                 //UserControl
             }
+            //创建本地用户表
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+                //创建本地普通便签表
+                obj01 = SpecialHelper.CreateTableSql<Model.PlainNoteModel>(new Model.PlainNoteModel(), out _dbl);
+                SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+
+            //创建本地编号记录表
+            obj01 = SpecialHelper.CreateTableSql<Model.InstSerialModel>(new Model.InstSerialModel(), out _dbl);
+                SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+
+            //创建本地任务记录表
+            obj01 = SpecialHelper.CreateTableSql<Model.InstTaskModel>(new Model.InstTaskModel(), out _dbl);
+                SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+
             MyConfig mc = new MyConfig();
             AppSettingsSection ap = (mc.ReadConfig()) as AppSettingsSection;
 
@@ -710,7 +719,7 @@ namespace MuZiYangNote
             UserControls.TaskDetails TD = new UserControls.TaskDetails();
             string _v = MultiLanguageSetting.SundryLanguage("laTitle", "01");//多语言
             TD.Name = "TD" + DateTime.Now.ToString("yyyyMMddHHmmss") + maxNums.ToString().PadLeft(3, '0');
-            TD.ID = TD.Name;
+            TD.ID = Guid.NewGuid().ToString();
             TD.Title = _v + "TD" + maxNums.ToString().PadLeft(3, '0');
             TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
             TD._ParentForm = this;
@@ -726,13 +735,11 @@ namespace MuZiYangNote
             {
                 PlainNoteModel _PlainNoteM = new PlainNoteModel()
                 {
-                    Id=Guid.NewGuid().ToString(),
+                    Id= TD.ID,
                     NotesType = _noteType,
                     Topic = TD.Title,
                     GridOrder = maxNums,
-                    SnNumber = "General-" + TD.ID,
                     NoteContent = string.Empty,
-                    TaskId=Guid.NewGuid().ToString()
                 };
                 _PlainNotes.Add(_PlainNoteM);
             }
@@ -868,11 +875,15 @@ namespace MuZiYangNote
                 {
                     if (!(log.szStr).StrIsNull())
                     {
+                        string[] _vv = log.szStr.Split(',');
                         laNoLogin.Visible = false;
-                        laUserName.Text = log.szStr;
+                        laUserName.Text = _vv[0];
                         laUserName.ForeColor = Color.Red;
                         laUserName.Visible = true;
-                        new ShowLog(RtbTxt, MessageLevel.LogMessage, log.szStr + " 登陆成功！");
+                        MemoryCacheHelper.GetUserFullName(_vv[1]);//存入缓存
+                        Program.ProgramUserId = _vv[1];
+                        //ClientUserModel u= MemoryCacheHelper.GetInfo<ClientUserModel>(Program.ProgramUserId);
+                        new ShowLog(RtbTxt, MessageLevel.LogMessage, _vv[0] + " 登陆成功！");
                     }
                 }
                 else if (log.Erlv == MessageLevel.LogError)
@@ -896,10 +907,85 @@ namespace MuZiYangNote
             toolStripMenuItem4.Image = MuZiYangNote.Properties.Resources.arrow5;
         }
         #endregion
+        private void 窗体内部展示ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Program.ProgramUserId))
+            {
+                MessageBoxEX.Show("请先登陆！");
+                return;
+            }
+            DataTable dt = SqliteDBHelper.Query_dt((SpecialHelper.SqlHelper.TaskSqlDic("V02002")).Fill(Program.ProgramUserId), LocationDataBaseName);
 
+            MessageBoxEX testDialog = new MessageBoxEX("历史便签", dt);
+            if (testDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                DataTable _dt = testDialog.Dt;
+                foreach (DataRow dr in _dt.Rows)
+                {
+                    int maxNums = MaxConNums("TD");
+                    UserControls.TaskDetails TD = new UserControls.TaskDetails();
+                    string _v = MultiLanguageSetting.SundryLanguage("laTitle", "01");//多语言
+                    TD.Name = dr["SnNumber"].ToString();
+                    TD.ID = dr["Id"].ToString();
+                    TD.Title = dr["Topic"].ToString();
+                    TextBox tb = (TextBox)this.findControl(TD, "txtNoteContent");
+                    tb.Text = dr["NoteContent"].ToString();
+                    TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
+                    TD._ParentForm = this;
+                    Control[] TDObj = TDProperty(TD);
+                    this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
+                    this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
+                    this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
+
+                    //普通便签
+                    if (_noteType == NoteType.GeneralNote)
+                    {
+                        PlainNoteModel _PlainNoteM = new PlainNoteModel()
+                        {
+                            Id = TD.ID,
+                            NotesType = _noteType,
+                            Topic = TD.Title,
+                            GridOrder = maxNums,
+                            NoteContent = string.Empty,
+                        };
+                        _PlainNotes.Add(_PlainNoteM);
+                    }
+                    //任务便签
+                    else if (_noteType == NoteType.TaskNote)
+                    {
+
+                    }
+                }
+            }
+                
+        }
         #endregion
-
-
+        /// <summary>
+        /// 在winform中查找控件
+        /// </summary>
+        /// <param ></param>
+        /// <param ></param>
+        /// <returns></returns>
+        private System.Windows.Forms.Control findControl(System.Windows.Forms.Control control, string controlName)
+        {
+            Control c1;
+            foreach (Control c in control.Controls)
+            {
+                if (c.Name == controlName)
+                {
+                    return c;
+                }
+                else if (c.Controls.Count > 0)
+                {
+                    c1 = findControl(c, controlName);
+                    if (c1 != null)
+                    {
+                        return c1;
+                    }
+                }
+            }
+            return null;
+        }
 
     }
 }

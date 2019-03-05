@@ -59,21 +59,42 @@ namespace PublicHelper
         /// <summary>
        /// 添加表
         /// </summary>
-       public static void CreateTable(string CommandText,string DataSoure=null)
+       public static void CreateTable(string CommandText,string DataSoure=null,string StrTableName=null)
         {
             // = @"d:\test\123.sqlite";
-            SQLiteConnection cn = new SQLiteConnection(_sd(DataSoure,pub.SQLiteDBpath));
-            if (cn.State!= System.Data.ConnectionState.Open)
-            {
-                cn.Open();
-                SQLiteCommand cmd = new SQLiteCommand();
-                cmd.Connection = cn;
-                cmd.CommandText = CommandText; //"CREATE TABLE t1(id varchar(4),score int)";
-                //cmd.CommandText = "CREATE TABLE IF NOT EXISTS t1(id varchar(4),score int)";
-                cmd.ExecuteNonQuery();
+            if (!IsExistTable(StrTableName, DataSoure)) {
+                SQLiteConnection cn = new SQLiteConnection(_sd(DataSoure, pub.SQLiteDBpath));
+                if (cn.State != System.Data.ConnectionState.Open)
+                {
+                    cn.Open();
+                    SQLiteCommand cmd = new SQLiteCommand();
+                    cmd.Connection = cn;
+                    cmd.CommandText = CommandText; //"CREATE TABLE t1(id varchar(4),score int)";
+                                                   //cmd.CommandText = "CREATE TABLE IF NOT EXISTS t1(id varchar(4),score int)";
+                    cmd.ExecuteNonQuery();
+                }
+                cn.Close();
             }
-            cn.Close();
         }
+        public static bool IsExistTable(string TableName,string DataSoure=null) {
+            try
+            {
+                if (string.IsNullOrEmpty(TableName) || string.IsNullOrEmpty(DataSoure))
+                    return true;
+                string szSQL = "select * from sqlite_master where type = 'table' and name = '" + TableName + "'";
+                DataTable dt = Query_dt(szSQL, DataSoure);
+                if (dt.Rows.Count > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
        /// <summary>
        /// 删除表
        /// </summary>
@@ -132,22 +153,73 @@ namespace PublicHelper
        /// </summary>
        /// <param name="CommandText"></param>
        /// <returns></returns>
-       public static DataTable Query_dt(string CommandText,string DataSoure=null) 
+       public static DataTable Query_dt(string Sql,string DataSoure=null) 
        {
            DataTable dt = new DataTable();
            SQLiteConnection cn = new SQLiteConnection( _sd(DataSoure,pub.SQLiteDBpath));
            cn.Open();
-           SQLiteDataAdapter da = new SQLiteDataAdapter(CommandText, cn);
+           SQLiteDataAdapter da = new SQLiteDataAdapter(Sql, cn);
            da.Fill(dt);
            cn.Close();
            return dt;
        }
-       /// <summary>
-       /// 事务
-       /// </summary>
-       /// <param name="cn"></param>
-       /// <param name="cmd"></param>
-       public static void TransActionOperate(List<string> SQL_list,string DataSoure=null)
+
+        public static string QueryString(string Sql, string DataSoure = null)
+        {
+            string res = null;
+            DataTable dt = new DataTable();
+            SQLiteConnection cn = new SQLiteConnection(_sd(DataSoure, pub.SQLiteDBpath));
+            cn.Open();
+            SQLiteDataAdapter da = new SQLiteDataAdapter(Sql, cn);
+            da.Fill(dt);
+            cn.Close();
+            if (dt != null)
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    res = dt.Rows[0][0].ToString();
+                }
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 执行
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="DataSoure"></param>
+        /// <returns></returns>
+        public static int ExecuteSql(string sql,string DataSoure=null)
+        {
+            try
+            {
+                SQLiteConnection cn = new SQLiteConnection(_sd(DataSoure, pub.SQLiteDBpath));
+                cn.Open();//打开连接  
+                          //using (SQLiteTransaction tr = cn.BeginTransaction())
+                          //{
+                SQLiteCommand cmd = new SQLiteCommand(cn);
+                //cmd.Transaction = tr; 
+                cmd.CommandText = sql;
+                int i = cmd.ExecuteNonQuery();
+                cn.Close();
+                cmd.Parameters.Clear();
+                cmd.Dispose();
+                return i;
+                //}
+            }
+            catch (Exception)
+            {
+
+                return 0;
+            }
+
+        }
+        /// <summary>
+        /// 事务
+        /// </summary>
+        /// <param name="cn"></param>
+        /// <param name="cmd"></param>
+        public static void TransActionOperate(List<string> SQL_list,string DataSoure=null)
        {
            SQLiteConnection cn = new SQLiteConnection( _sd(DataSoure,pub.SQLiteDBpath));
            cn.Open();//打开连接  
@@ -187,7 +259,7 @@ namespace PublicHelper
        /// <param name="szSQL"></param>
        /// <param name="parameter"></param>
        /// <returns></returns>
-       static bool TransActionOperate_1( string szSQL, SQLiteParameter[] parameter,string DataSoure=null)
+      public static bool TransActionOperate_1( string szSQL, SQLiteParameter[] parameter,string DataSoure=null)
        {
            bool blnRes = false;
             using (SQLiteConnection cn = new SQLiteConnection(_sd(DataSoure,pub.SQLiteDBpath)))
