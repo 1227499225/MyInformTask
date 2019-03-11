@@ -73,6 +73,14 @@
             this.其他ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.其他02ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.其他03ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.字体设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBox2 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBox3 = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripComboBox4 = new System.Windows.Forms.ToolStripComboBox();
+            this.颜色ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.gpbTaskList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -237,7 +245,8 @@
             this.F1Help,
             this.个人中心ToolStripMenuItem,
             this.我的好友ToolStripMenuItem,
-            this.toolStripMenuItem4});
+            this.toolStripMenuItem4,
+            this.toolStripMenuItem5});
             this.MStrip.Name = "MStrip";
             // 
             // toolStripMenuItem1
@@ -415,6 +424,65 @@
             this.其他03ToolStripMenuItem.Name = "其他03ToolStripMenuItem";
             resources.ApplyResources(this.其他03ToolStripMenuItem, "其他03ToolStripMenuItem");
             // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.字体设置ToolStripMenuItem});
+            this.toolStripMenuItem5.Image = global::MuZiYangNote.Properties.Resources.setting1;
+            resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            // 
+            // 字体设置ToolStripMenuItem
+            // 
+            this.字体设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripComboBox1,
+            this.toolStripComboBox2,
+            this.toolStripComboBox3,
+            this.toolStripComboBox4,
+            this.颜色ToolStripMenuItem});
+            this.字体设置ToolStripMenuItem.Name = "字体设置ToolStripMenuItem";
+            resources.ApplyResources(this.字体设置ToolStripMenuItem, "字体设置ToolStripMenuItem");
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.Items.AddRange(new object[] {
+            resources.GetString("toolStripComboBox1.Items"),
+            resources.GetString("toolStripComboBox1.Items1")});
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            resources.ApplyResources(this.toolStripComboBox1, "toolStripComboBox1");
+            // 
+            // toolStripComboBox2
+            // 
+            this.toolStripComboBox2.Items.AddRange(new object[] {
+            resources.GetString("toolStripComboBox2.Items"),
+            resources.GetString("toolStripComboBox2.Items1"),
+            resources.GetString("toolStripComboBox2.Items2"),
+            resources.GetString("toolStripComboBox2.Items3")});
+            this.toolStripComboBox2.Name = "toolStripComboBox2";
+            resources.ApplyResources(this.toolStripComboBox2, "toolStripComboBox2");
+            // 
+            // toolStripComboBox3
+            // 
+            this.toolStripComboBox3.Items.AddRange(new object[] {
+            resources.GetString("toolStripComboBox3.Items"),
+            resources.GetString("toolStripComboBox3.Items1")});
+            this.toolStripComboBox3.Name = "toolStripComboBox3";
+            resources.ApplyResources(this.toolStripComboBox3, "toolStripComboBox3");
+            // 
+            // toolStripComboBox4
+            // 
+            this.toolStripComboBox4.Items.AddRange(new object[] {
+            resources.GetString("toolStripComboBox4.Items"),
+            resources.GetString("toolStripComboBox4.Items1")});
+            this.toolStripComboBox4.Name = "toolStripComboBox4";
+            resources.ApplyResources(this.toolStripComboBox4, "toolStripComboBox4");
+            // 
+            // 颜色ToolStripMenuItem
+            // 
+            this.颜色ToolStripMenuItem.Name = "颜色ToolStripMenuItem";
+            resources.ApplyResources(this.颜色ToolStripMenuItem, "颜色ToolStripMenuItem");
+            this.颜色ToolStripMenuItem.Click += new System.EventHandler(this.颜色ToolStripMenuItem_Click);
+            // 
             // MdiForm
             // 
             resources.ApplyResources(this, "$this");
@@ -489,6 +557,14 @@
         private System.Windows.Forms.ToolStripMenuItem 其他02ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 其他03ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 窗体内部展示ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem 字体设置ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox3;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox4;
+        private System.Windows.Forms.ToolStripMenuItem 颜色ToolStripMenuItem;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

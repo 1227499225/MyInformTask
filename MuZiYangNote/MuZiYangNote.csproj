@@ -106,6 +106,12 @@
     <Compile Include="UserControls\BaseUserControl.Designer.cs">
       <DependentUpon>BaseUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FontConfig.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\FontConfig.Designer.cs">
+      <DependentUpon>FontConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\FrmProcessing.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\BaseUserControl.resx">
       <DependentUpon>BaseUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\FontConfig.resx">
+      <DependentUpon>FontConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\FrmProcessing.resx">
       <DependentUpon>FrmProcessing.cs</DependentUpon>
@@ -315,6 +324,9 @@
     <Content Include="Files\SystemFile\System\Geckofx-Core.dll" />
     <Content Include="Files\SystemFile\System\Geckofx-Winforms.dll" />
     <Content Include="Files\SystemFile\System\SQK_Ui.dll" />
+    <None Include="Resources\setting.png" />
+    <None Include="Resources\setting1.jpg" />
+    <None Include="Resources\setting.jpg" />
     <None Include="Resources\arrow2.png" />
     <None Include="Resources\arrow5.png" />
     <None Include="Resources\arrow4.png" />

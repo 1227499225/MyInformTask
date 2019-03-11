@@ -99,9 +99,12 @@
             // 
             // txtNoteContent
             // 
+            this.txtNoteContent.BackColor = System.Drawing.Color.MintCream;
+            this.txtNoteContent.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtNoteContent.Location = new System.Drawing.Point(2, 6);
             this.txtNoteContent.Multiline = true;
             this.txtNoteContent.Name = "txtNoteContent";
+            this.txtNoteContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtNoteContent.Size = new System.Drawing.Size(178, 168);
             this.txtNoteContent.TabIndex = 0;
             this.txtNoteContent.TextChanged += new System.EventHandler(this.txtNoteContent_TextChanged);

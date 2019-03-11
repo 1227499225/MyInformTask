@@ -715,6 +715,13 @@ namespace MuZiYangNote
         //添加便签（自定义控件）
         private void btnAddTask_Click(object sender, EventArgs e)
         {
+            AddTaskModule();
+        }
+        //新增模块
+        private void AddTaskModule()
+        {
+            if (!isLogin())
+                return;
             int maxNums = MaxConNums("TD");
             UserControls.TaskDetails TD = new UserControls.TaskDetails();
             string _v = MultiLanguageSetting.SundryLanguage("laTitle", "01");//多语言
@@ -735,7 +742,7 @@ namespace MuZiYangNote
             {
                 PlainNoteModel _PlainNoteM = new PlainNoteModel()
                 {
-                    Id= TD.ID,
+                    Id = TD.ID,
                     NotesType = _noteType,
                     Topic = TD.Title,
                     GridOrder = maxNums,
@@ -748,8 +755,54 @@ namespace MuZiYangNote
             {
 
             }
-
         }
+        //展示已有模块
+        private void AddTaskModule(DataTable dt) {
+            foreach (DataRow dr in dt.Rows)
+            {
+                PlainNoteModel _f = _PlainNotes.Find(p => p.Id == dr["Id"].ToString());
+                if (_f == null)
+                {
+                    int maxNums = MaxConNums("TD");
+                    UserControls.TaskDetails TD = new UserControls.TaskDetails();
+                    string _v = MultiLanguageSetting.SundryLanguage("laTitle", "01");//多语言
+                    TD.Name = dr["SnNumber"].ToString();
+                    TD.ID = dr["Id"].ToString();
+                    TD.Title = dr["Topic"].ToString();
+                    TextBox tb = (TextBox)this.findControl(TD, "txtNoteContent");
+                    tb.Text = dr["NoteContent"].ToString();
+                    TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
+                    TD._ParentForm = this;
+                    Control[] TDObj = TDProperty(TD);
+                    this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
+                    this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
+                    this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
+
+                    //普通便签
+                    if (_noteType == NoteType.GeneralNote)
+                    {
+                        PlainNoteModel _PlainNoteM = new PlainNoteModel()
+                        {
+                            Id = TD.ID,
+                            NotesType = _noteType,
+                            Topic = TD.Title,
+                            GridOrder = maxNums,
+                            NoteContent = dr["NoteContent"].ToString(),
+                            TaskId = dr["TaskId"].ToString(),
+                            SnNumber = dr["SnNumber"].ToString(),
+                        };
+                        _PlainNotes.Add(_PlainNoteM);
+                    }
+                    //任务便签
+                    else if (_noteType == NoteType.TaskNote)
+                    {
+
+                    }
+                }
+
+            }
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -909,53 +962,13 @@ namespace MuZiYangNote
         #endregion
         private void 窗体内部展示ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Program.ProgramUserId))
-            {
-                MessageBoxEX.Show("请先登陆！");
+            if (!isLogin())
                 return;
-            }
             DataTable dt = SqliteDBHelper.Query_dt((SpecialHelper.SqlHelper.TaskSqlDic("V02002")).Fill(Program.ProgramUserId), LocationDataBaseName);
-
             MessageBoxEX testDialog = new MessageBoxEX("历史便签", dt);
             if (testDialog.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable _dt = testDialog.Dt;
-                foreach (DataRow dr in _dt.Rows)
-                {
-                    int maxNums = MaxConNums("TD");
-                    UserControls.TaskDetails TD = new UserControls.TaskDetails();
-                    string _v = MultiLanguageSetting.SundryLanguage("laTitle", "01");//多语言
-                    TD.Name = dr["SnNumber"].ToString();
-                    TD.ID = dr["Id"].ToString();
-                    TD.Title = dr["Topic"].ToString();
-                    TextBox tb = (TextBox)this.findControl(TD, "txtNoteContent");
-                    tb.Text = dr["NoteContent"].ToString();
-                    TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
-                    TD._ParentForm = this;
-                    Control[] TDObj = TDProperty(TD);
-                    this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
-                    this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
-                    this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
-
-                    //普通便签
-                    if (_noteType == NoteType.GeneralNote)
-                    {
-                        PlainNoteModel _PlainNoteM = new PlainNoteModel()
-                        {
-                            Id = TD.ID,
-                            NotesType = _noteType,
-                            Topic = TD.Title,
-                            GridOrder = maxNums,
-                            NoteContent = string.Empty,
-                        };
-                        _PlainNotes.Add(_PlainNoteM);
-                    }
-                    //任务便签
-                    else if (_noteType == NoteType.TaskNote)
-                    {
-
-                    }
-                }
+                AddTaskModule(testDialog.Dt);
             }
                 
         }
@@ -987,5 +1000,29 @@ namespace MuZiYangNote
             return null;
         }
 
+        private bool isLogin() {
+            if (string.IsNullOrEmpty(Program.ProgramUserId))
+            {
+                MessageBoxEX.Show("请先登陆！");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        private void 颜色ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDia = new ColorDialog();
+
+            if (colorDia.ShowDialog() == DialogResult.OK)
+            {
+                //获取所选择的颜色
+                Color colorChoosed = colorDia.Color;
+                //改变panel的背景色
+                //flowLayoutPanel1.BackColor = colorChoosed;
+                //Font _ft=new Font()
+            }
+        }
     }
 }

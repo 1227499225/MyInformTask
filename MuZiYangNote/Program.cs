@@ -12,7 +12,7 @@ namespace MuZiYangNote
     {
         public static string Min = "";
         public static string ProgramUserId = string.Empty;
-        private static DateTime Period = Convert.ToDateTime("2019-3-6");
+        private static DateTime Period = Convert.ToDateTime("2019-3-31");
         /// <summary>
         /// 超级管理员代码
         /// </summary>

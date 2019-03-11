@@ -100,7 +100,7 @@ namespace MuZiYangNote.UserControls
         {
             laTitle.Text = this.title;
             string _v = MultiLanguageSetting.SundryLanguage( "AddModule","09");//多语言
-            OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.title.Substring(this.title.Length-5,5), this.title), MessageLevel.LogAppend));
+            OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.Name, this.title), MessageLevel.LogAppend));
             txtChangTitle.LostFocus += new EventHandler(txtChangTitle_LostFocus);
 
             if (!TxtNoteContetnStr.StrIsNull()) {
@@ -120,7 +120,7 @@ namespace MuZiYangNote.UserControls
                 {
                     laTitle.Text = txtChangTitle.Text;
                     string _v = MultiLanguageSetting.SundryLanguage("UpdateTitle", "09");//多语言
-                    OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.ID, this.title, laTitle.Text), MessageLevel.LogCustom, new ShowLog.customColor() { IsEnable = true, _c = Color.Blue }));
+                    OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.Name, this.title, laTitle.Text), MessageLevel.LogCustom, new ShowLog.customColor() { IsEnable = true, _c = Color.Blue }));
                     this.title = txtChangTitle.Text;
                 }
             }
@@ -175,7 +175,10 @@ namespace MuZiYangNote.UserControls
         private void btnClose_ButtonClick(object sender, EventArgs e)
         {
             string _v = MultiLanguageSetting.SundryLanguage("DeleteModule","09");//多语言
-            OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.ID, this.title), MessageLevel.LogWarning));
+            OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.Name, this.title), MessageLevel.LogWarning));
+           PlainNoteModel _p= (_ParentForm._PlainNotes).Find(p=>p.Id==this.id);
+            if (_p != null)
+                (_ParentForm._PlainNotes).Remove(_p);
             this.Dispose();
         }
 
