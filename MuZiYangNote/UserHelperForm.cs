@@ -138,6 +138,7 @@ namespace MuZiYangNote
             ofd.Filter = "*.html|*.html";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
+                kEditor1.ClearConext();
                 string text = System.IO.File.ReadAllText(ofd.FileName);
                 kEditor1.InsertNode(text);
             }
@@ -153,5 +154,36 @@ namespace MuZiYangNote
             }
         }
         #endregion
+
+        private void btnEXMax_ButtonClick(object sender, EventArgs e)
+        {
+            this.MaxNormalSwitch();
+        }
+        /// <summary>
+        /// 最大化和正常状态切换
+        /// </summary>
+        private void MaxNormalSwitch()
+        {
+            if (this.WindowState == FormWindowState.Maximized)//如果当前状态是最大化状态 则窗体需要恢复默认大小
+            {
+                this.WindowState = FormWindowState.Normal;
+                //
+                this.btnEXMax.ImageDefault = global::MuZiYangNote.Properties.Resources.Max;
+            }
+            else
+            {
+                //防止遮挡任务栏
+                this.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+                this.WindowState = FormWindowState.Maximized;
+                //最大化图标切换
+                this.btnEXMax.ImageDefault = global::MuZiYangNote.Properties.Resources.MaxNormal;
+            }
+            this.Invalidate();//使重绘
+        }
+
+        private void btnEXMin_ButtonClick(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
     }
 }

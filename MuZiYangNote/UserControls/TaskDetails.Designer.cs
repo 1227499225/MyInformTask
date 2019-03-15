@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.laTitle = new System.Windows.Forms.Label();
             this.txtChangTitle = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose = new MuZiYangNote.UserControls.ButtonEX();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtNoteContent = new System.Windows.Forms.TextBox();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -134,5 +136,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtNoteContent;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

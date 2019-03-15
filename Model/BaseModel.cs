@@ -94,6 +94,12 @@ namespace Model
         [Required(ErrorMessage = "{0}不能为空！")]
         [Filed(IsIncrement = true, JudgeDatabaseIsExist = true)]
         public string NoteContent { get; set; } = string.Empty;
+
+        [Range(1, 2)]
+        [Description("启动程序是否默认打开")]
+        [Required(ErrorMessage = "{0}不能为空！")]
+        [Filed(IsIncrement = true)]
+        public int IsOpen { get; set; } = 0;
     }
 
 

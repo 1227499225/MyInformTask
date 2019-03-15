@@ -91,6 +91,7 @@
             this.btnEXMin.TabIndex = 3;
             this.btnEXMin.TextColor = System.Drawing.Color.Black;
             this.btnEXMin.TextEX = "";
+            this.btnEXMin.ButtonClick += new System.EventHandler(this.btnEXMin_ButtonClick);
             // 
             // btnEXMax
             // 
@@ -113,6 +114,7 @@
             this.btnEXMax.TabIndex = 3;
             this.btnEXMax.TextColor = System.Drawing.Color.Black;
             this.btnEXMax.TextEX = "";
+            this.btnEXMax.ButtonClick += new System.EventHandler(this.btnEXMax_ButtonClick);
             // 
             // btnEXClose
             // 
@@ -150,10 +152,11 @@
             // 
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
-            this.tabControl.Location = new System.Drawing.Point(3, 3);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(662, 296);
+            this.tabControl.Size = new System.Drawing.Size(668, 302);
             this.tabControl.TabIndex = 0;
             // 
             // tabPage1
@@ -162,7 +165,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(654, 270);
+            this.tabPage1.Size = new System.Drawing.Size(660, 276);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "快捷操作简介";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -174,7 +177,7 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(648, 264);
+            this.webBrowser1.Size = new System.Drawing.Size(654, 270);
             this.webBrowser1.TabIndex = 0;
             this.webBrowser1.Url = new System.Uri("C:\\Users\\wb-xyang2\\Desktop\\MyInformTask\\MuZiYangNote\\Files\\SystemFile\\SystemPages" +
         "\\FmUserHelper.html", System.UriKind.Absolute);
@@ -185,18 +188,19 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(654, 270);
+            this.tabPage2.Size = new System.Drawing.Size(660, 276);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "其他";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // kEditor1
             // 
+            this.kEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kEditor1.Html = "<p>&nbsp;</p>";
             this.kEditor1.KEditorEventListener = null;
-            this.kEditor1.Location = new System.Drawing.Point(6, 6);
+            this.kEditor1.Location = new System.Drawing.Point(3, 3);
             this.kEditor1.Name = "kEditor1";
-            this.kEditor1.Size = new System.Drawing.Size(642, 258);
+            this.kEditor1.Size = new System.Drawing.Size(654, 270);
             this.kEditor1.TabIndex = 0;
             // 
             // UserHelperForm

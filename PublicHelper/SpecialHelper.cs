@@ -361,7 +361,9 @@ namespace PublicHelper
                     //PlainNoteInfo
                     {"V02001","SELECT Count(id) FROM PlainNote WHERE TASKID='{0}'" },//是否存在
                     {"V02002","SELECT a.* FROM PlainNote a inner join  InstTask t on a.TaskId=t.Id where t.CreatorId='{0}'" },//查询所有
-                    {"V02003","" },
+                    {"V02003",@"select pn.* from PlainNote pn 
+                                inner join insttask t on pn.TaskId=t.Id
+                                where t.CreatorId='{0}' and pn.IsOpen='{1}'" },//查询是否需要打开的单子
                     {"V02004","" },
 
                     {"V03001","" },
@@ -527,11 +529,31 @@ namespace PublicHelper
 
             return (T)MemoryCache.Default[key];
         }
+
+        /*
+        * ============================================================
+        * 函数名：GetInfo
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期： 2019-03-06
+        * 描述： 读取字符串
+        * ============================================================
+        */
         public static string GetInfo(string Key) {
-            return (MemoryCache.Default["Security_UserFullName" + Key]).ToString();
+            return (MemoryCache.Default[Key]).ToString();
         }
+
+        /*
+        * ============================================================
+        * 函数名：GetInfo
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期： 2019-03-06
+        * 描述： 读取json字符串缓存
+        * ============================================================
+        */
         public static T GetInfo<T>(string Key) {
-          return JsonAndMode.Json2Class<T>((MemoryCache.Default["Security_UserFullName"+Key]).ToString());
+          return JsonAndMode.Json2Class<T>((MemoryCache.Default[Key]).ToString());
         }
         private static CacheItemPolicy CreatePolicy(TimeSpan? slidingExpiration, DateTime? absoluteExpiration)
         {
@@ -550,11 +572,16 @@ namespace PublicHelper
 
             return policy;
         }
-        /// <summary>
-        /// 根据用户的ID，获取用户的信息，并放到缓存里面
-        /// </summary>
-        /// <param name="userId">用户的ID</param>
-        /// <returns></returns>
+
+        /*
+        * ============================================================
+        * 函数名：GetUserFullName
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期： 2019-03-06
+        * 描述： 根据用户的ID，获取用户的信息，并放到缓存里面
+        * ============================================================
+        */
         public static string GetUserFullName(string userId)
         {
 
@@ -566,7 +593,7 @@ namespace PublicHelper
             string StrTableName = (attributes[0] as Model._MoAttribute).TableName,
                     DataSoureName = (attributes[0] as Model._MoAttribute).DataSoureName;
 
-            string key = "Security_UserFullName" + userId;
+            string key = "Security_UserFullName";
             string UserInfo = MemoryCacheHelper.GetCacheItem<string>(key,
                 delegate () { return JsonAndMode.Class2Json<ClientUserModel>(DataTableToModelHelper.GetItem<ClientUserModel>((SqliteDBHelper.Query_dt((SpecialHelper.SqlHelper.TaskSqlDic("V01001")).Fill(userId), DataSoureName)).Rows[0])); },
                 new TimeSpan(0, 60, 0));//30分钟过期

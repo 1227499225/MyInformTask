@@ -11199,6 +11199,10 @@
              $('#summernote').summernote('insertText', text);
          }
 
+         function Clear() {
+             $('.note-editable').html("");
+         }
+
          $(document).ready(function () {
              $('#summernote').summernote({
                  focus:true,

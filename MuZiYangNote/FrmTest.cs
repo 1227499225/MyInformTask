@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace MuZiYangNote
 {
-    public partial class Form1 : Form//, IKEditorEventListener
+    public partial class FrmTest : Form//, IKEditorEventListener
     {
-        public Form1()
+        public FrmTest()
         {
             InitializeComponent();
         }

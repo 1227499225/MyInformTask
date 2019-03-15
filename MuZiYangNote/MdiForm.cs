@@ -53,6 +53,17 @@ namespace MuZiYangNote
         /// 本地数据库名称
         /// </summary>
         public string LocationDataBaseName= "SmallSheep.DB";
+
+        /// <summary>
+        /// 程序打开时 预加载已设置默认打开模块
+        /// </summary>
+        private BackgroundWorker backgroundWorkerLoadingIsOpenNote;
+        /// <summary>
+        /// 线程间调用代理
+        /// </summary>
+        /// <param name="dt"></param>
+        private delegate void DisplayDelegate(DataTable dt);
+
         #endregion
 
 
@@ -107,8 +118,68 @@ namespace MuZiYangNote
 
             //DataTable dt = (new SendEmailBI()).GetUser("朱");
             //this.dataGridView1.DataSource = dt;
+
+            //创建backgroundWorkerLoadingIsOpenNote
+             CreatWorker();
         }
-       
+
+        #region 多线程处理
+        #region BackgroundWorker的应用
+        //创建
+        public void CreatWorker()
+        {
+            backgroundWorkerLoadingIsOpenNote = new BackgroundWorker();                      //新建BackgroundWorker
+            // worker = new BackgroundWorker();                      //新建BackgroundWorker
+            backgroundWorkerLoadingIsOpenNote.WorkerReportsProgress = true;                  //允许报告进度
+            backgroundWorkerLoadingIsOpenNote.WorkerSupportsCancellation = true;             //允许取消线程
+            backgroundWorkerLoadingIsOpenNote.DoWork += worker_DoWork;                       //设置主要工作逻辑
+            backgroundWorkerLoadingIsOpenNote.ProgressChanged += worker_ProgressChanged;     //进度变化的相关处理
+            backgroundWorkerLoadingIsOpenNote.RunWorkerCompleted += worker_RunWorkerCompleted;  //线程完成时的处理
+        }
+        //启动BackgroundWorker
+        public void StartWorker()
+        {
+            backgroundWorkerLoadingIsOpenNote.RunWorkerAsync();
+        }
+        private void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker tempWorker = sender as BackgroundWorker;
+            //for (int i = 0; i < 100; i++)
+            //{
+            //    Thread.Sleep(200);    //避免太快，让线程暂停一会再报告进度
+            //    tempWorker.ReportProgress(i);//报告进度，触发ProgressChanged事件
+            //}
+            //if (tempWorker.CancellationPending)  //当点击Cancel按钮时，CancellationPending被设置为true
+            //{
+            //    e.Cancel = true;  //此处设置Cancel=true后，就可以在RunWorkerCompleted中判断e.Cancelled是否为true
+            //    break;
+            //}
+
+            //查询 需要被打开的单子
+            DataTable dt = SqliteDBHelper.Query_dt((SpecialHelper.SqlHelper.TaskSqlDic("V02003")).Fill(Program.ProgramUserId,"1"),this.LocationDataBaseName);
+            AddTaskModule(dt);
+        }
+        //改变进度条的值
+        private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+
+        }        
+        //线程执行完成
+        private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            new ShowLog(RtbTxt, MessageLevel.LogNormal, "默认打开项已加载完毕！");
+        }
+        //取消线程
+        private void cancelWorker()
+        {
+            if (backgroundWorkerLoadingIsOpenNote.IsBusy)
+                backgroundWorkerLoadingIsOpenNote.CancelAsync();
+            else
+                MessageBox.Show("There is no thead running now.");
+        }
+        #endregion
+        #endregion
+
         #region  界面控制
         #region
         private const int CS_DropSHADOW = 0x20000;
@@ -771,10 +842,29 @@ namespace MuZiYangNote
                     TD.Title = dr["Topic"].ToString();
                     TextBox tb = (TextBox)this.findControl(TD, "txtNoteContent");
                     tb.Text = dr["NoteContent"].ToString();
+                    //Label la = (Label)this.findControl(TD, "laTitle");
+                    //Label laCreationTime = new Label();
+                    //laCreationTime.Text = DateTime.Now.ToString("s");
+                    ////laCreationTime.BackColor = Color.Transparent;
+                    //laCreationTime.Dock = DockStyle.Bottom;
+                    //tb.Parent.Controls.Add(laCreationTime);
                     TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
                     TD._ParentForm = this;
                     Control[] TDObj = TDProperty(TD);
-                    this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
+                    //this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
+                    //如果调用该函数的线程和控件flowLayoutPanel1位于同一个线程内
+                    if (this.fyp01.InvokeRequired == false)
+                    {
+                        this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
+                    }
+                    //如果调用该函数的线程和控件flowLayoutPanel1不在同一个线程
+                    else
+                    {
+                        //通过使用Invoke的方法，让子线程告诉窗体线程来完成相应的控件操作
+                        DisplayDelegate disp = new DisplayDelegate(AddTaskModule);
+                        //使用控件flowLayoutPanel1的Invoke方法执行Display代理(其类型是DisplayDelegate)
+                        this.fyp01.Invoke(disp, dt);
+                    }
                     this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
                     this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
 
@@ -790,6 +880,7 @@ namespace MuZiYangNote
                             NoteContent = dr["NoteContent"].ToString(),
                             TaskId = dr["TaskId"].ToString(),
                             SnNumber = dr["SnNumber"].ToString(),
+                            IsOpen=Convert.ToInt32(dr["IsOpen"].ToString()),
                         };
                         _PlainNotes.Add(_PlainNoteM);
                     }
@@ -937,6 +1028,8 @@ namespace MuZiYangNote
                         Program.ProgramUserId = _vv[1];
                         //ClientUserModel u= MemoryCacheHelper.GetInfo<ClientUserModel>(Program.ProgramUserId);
                         new ShowLog(RtbTxt, MessageLevel.LogMessage, _vv[0] + " 登陆成功！");
+
+                        StartWorker();
                     }
                 }
                 else if (log.Erlv == MessageLevel.LogError)

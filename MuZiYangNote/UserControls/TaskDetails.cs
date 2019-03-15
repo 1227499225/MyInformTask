@@ -106,6 +106,11 @@ namespace MuZiYangNote.UserControls
             if (!TxtNoteContetnStr.StrIsNull()) {
                 txtNoteContent.Text = TxtNoteContetnStr;
             }
+
+            //laCreationTime.Parent= txtNoteContent.Parent;
+            //laCreationTime.BackColor = Color.Transparent;
+            //laCreationTime.Dock = DockStyle.Bottom;
+            //laCreationTime.Location = new Point(80, 80);
         }
         /// <summary>
         /// 失去焦点

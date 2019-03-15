@@ -171,6 +171,17 @@ namespace KSharpEditor
                 OnError(ex);
             }
         }
+
+        public void ClearConext() {
+             try
+            {
+                kBrowserEditor.Document.InvokeScript("Clear");
+            }
+            catch (Exception ex)
+            {
+                OnError(ex);
+            }
+        }
     }
 }
 
@@ -209,3 +220,5 @@ namespace KSharpEditor
 //KEditor.InsertNode(string html)
 //// 插入文本
 //KEditor.InsertText(string text)
+////清理
+////KEditor.ClearConext()
