@@ -118,8 +118,16 @@ namespace Model
         [Description("英文")]
         LanguageEN,
     }
-
-
+    /// <summary>
+    /// be in common use  通用
+    /// </summary>
+    public enum Types {
+        _null,
+        _a,
+        _b,
+        _c,
+        _d
+    }
     /*
     * ============================================================
     * 函数名：ModularizationSql

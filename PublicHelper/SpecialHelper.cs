@@ -360,7 +360,13 @@ namespace PublicHelper
                     {"V01004","" },
                     //PlainNoteInfo
                     {"V02001","SELECT Count(id) FROM PlainNote WHERE TASKID='{0}'" },//是否存在
-                    {"V02002","SELECT a.* FROM PlainNote a inner join  InstTask t on a.TaskId=t.Id where t.CreatorId='{0}'" },//查询所有
+                    {"V02002",@"SELECT a.*
+                                 ,CASE IFNULL(ite.TaskEditPwd,0) WHEN 0 THEN 0 ELSE 1 END AS _ep,CASE IFNULL(ite.TaskQueryPwd,0) WHEN 0 THEN 0 ELSE 1 END _qp 
+                                FROM PlainNote a 
+                                INNER JOIN InstTask t on a.TaskId=t.Id
+                                LEFT JOIN InstTaskEncryption ite on t.Id=ite.TaskId  where t.CreatorId='{0}'
+                                order by t.CreateTime desc
+                                " },//查询所有
                     {"V02003",@"select pn.* from PlainNote pn 
                                 inner join insttask t on pn.TaskId=t.Id
                                 where t.CreatorId='{0}' and pn.IsOpen='{1}'" },//查询是否需要打开的单子

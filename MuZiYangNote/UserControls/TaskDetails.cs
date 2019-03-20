@@ -83,7 +83,7 @@ namespace MuZiYangNote.UserControls
             //if (txtAddress.Text != "")
             //{
                 //MessageBoxEX testDialog = new MessageBoxEX(null);
-                MessageBoxEX testDialog =new MessageBoxEX("用户信息", new DataTable());
+                MessageBoxEX testDialog =new MessageBoxEX("用户信息", new DataTable(),Types._null);
                 if (testDialog.ShowDialog(this) == DialogResult.OK)
                 {
                   testDialog.ty.Str = "";

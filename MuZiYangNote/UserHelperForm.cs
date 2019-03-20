@@ -185,5 +185,13 @@ namespace MuZiYangNote
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void kEditor1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((int)e.Modifiers == ((int)Keys.Control) && e.KeyCode == Keys.S)
+            {
+                OnSaveButtonClicked();
+            }
+        }
     }
 }

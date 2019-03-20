@@ -66,6 +66,7 @@
     <Compile Include="FrmTest.Designer.cs">
       <DependentUpon>FrmTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="RewriteControlClass\TextAndImageColumn.cs" />
     <Compile Include="UserControls\BaseEv.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="FormBase.cs">

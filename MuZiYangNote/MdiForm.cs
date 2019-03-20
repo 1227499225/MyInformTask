@@ -109,6 +109,10 @@ namespace MuZiYangNote
             obj01 = SpecialHelper.CreateTableSql<Model.InstTaskModel>(new Model.InstTaskModel(), out _dbl);
                 SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
 
+            //创建本地任务记录表
+            obj01 = SpecialHelper.CreateTableSql<Model.InstTaskEncryptionModel>(new Model.InstTaskEncryptionModel(), out _dbl);
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+
             MyConfig mc = new MyConfig();
             AppSettingsSection ap = (mc.ReadConfig()) as AppSettingsSection;
 
@@ -653,7 +657,7 @@ namespace MuZiYangNote
             if (e.KeyCode == Keys.F1) {
                 F1Open();
             } else if ((int)e.Modifiers == ((int)Keys.Control)&&e.KeyCode==Keys.Z) {
-                MessageBoxEX testDialog = new MessageBoxEX("测试", new DataTable());
+                MessageBoxEX testDialog = new MessageBoxEX("测试", new DataTable(),Types._null);
                 //DialogResult _d = testDialog.ShowDialog(this);
             }
             else
@@ -1058,7 +1062,7 @@ namespace MuZiYangNote
             if (!isLogin())
                 return;
             DataTable dt = SqliteDBHelper.Query_dt((SpecialHelper.SqlHelper.TaskSqlDic("V02002")).Fill(Program.ProgramUserId), LocationDataBaseName);
-            MessageBoxEX testDialog = new MessageBoxEX("历史便签", dt);
+            MessageBoxEX testDialog = new MessageBoxEX("历史便签", dt,Types._a);
             if (testDialog.ShowDialog(this) == DialogResult.OK)
             {
                 AddTaskModule(testDialog.Dt);

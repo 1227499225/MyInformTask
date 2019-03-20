@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Model;
+using MuZiYangNote.RewriteControlClass;
 
 namespace MuZiYangNote.UserControls
 {
@@ -47,6 +49,8 @@ namespace MuZiYangNote.UserControls
             set { _dt = value; }
         }
 
+        public Types DataTableType { get; set; } = Types._null;
+
         private DataTable _dt = new DataTable();
 
         public MessageBoxEX(string text)
@@ -60,10 +64,11 @@ namespace MuZiYangNote.UserControls
             this._contentText = text;
             InitializeComponent();
         }
-        public MessageBoxEX(string title, DataTable dt)
+        public MessageBoxEX(string title, DataTable dt,Types _dataTableType)
         {
             this.TitleText = title;
             Dt = dt;//(new MyObject.SendEmailBI()).GetUser("朱");
+            DataTableType = _dataTableType;
             InitializeComponent();
         }
         //public MessageBoxEX()
@@ -91,10 +96,23 @@ namespace MuZiYangNote.UserControls
                 {
                     this.lblMessage.Visible = false;
                     this.dataGridView1.Visible = true;
-                    this.dataGridView1.DataSource = Dt;
                     this.dataGridView1.DefaultCellStyle.BackColor = Color.Gray;
                     this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;//设置为整行被选中
                     this.dataGridView1.ReadOnly = true;
+                    //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                    //dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    this.dataGridView1.DataSource = Dt;
+                    if (DataTableType == Types._a)
+                    {
+                        this.dataGridView1.AutoGenerateColumns = false;
+                        TextAndImageColumn ColumnRoleName = new TextAndImageColumn();
+                        ColumnRoleName.DataPropertyName = "Power";
+                        ColumnRoleName.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+                        ColumnRoleName.Name = "Power";
+                        ColumnRoleName.HeaderText = "权限";
+                        ColumnRoleName.Width = 100;
+                        this.dataGridView1.Columns.Add(ColumnRoleName);
+                    }
                 }
             }
         }
@@ -160,7 +178,7 @@ namespace MuZiYangNote.UserControls
                             string id = dataGridView1.Rows[i].Cells["Id"].Value.ToString();
                             DataTable DataTable0 = (dataGridView1.DataSource as DataTable);
                             Dt = DataTable0.Clone();
-                           DataRow[] dr= DataTable0.Select("Id='"+ id + "'");
+                            DataRow[] dr = DataTable0.Select("Id='" + id + "'");
                             foreach (DataRow item in dr)
                             {
                                 DataRow drs = Dt.NewRow();
@@ -229,10 +247,10 @@ namespace MuZiYangNote.UserControls
         /// <param name="title"></param>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static DialogResult Show(string title, DataTable dt)
+        public static DialogResult Show(string title, DataTable dt,Types _ty)
         {
             DataTable dts = new DataTable();
-            MessageBoxEX msgbox = new MessageBoxEX(title, dt);
+            MessageBoxEX msgbox = new MessageBoxEX(title, dt, _ty);
             return msgbox.ShowDialog();
         }
         #endregion
@@ -278,5 +296,43 @@ namespace MuZiYangNote.UserControls
                 btnOK_Click(sender, e);
             }
         }
+
+        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+
+            if (e.RowIndex > -1)
+            {
+                int intGrade01 = Convert.ToInt32(this.dataGridView1.Rows[e.RowIndex].Cells["_ep"].Value);
+                int intGrade02 = Convert.ToInt32(this.dataGridView1.Rows[e.RowIndex].Cells["_qp"].Value);
+                if (intGrade01 == 0 && intGrade02 == 0)
+                {//都不加密
+                    //dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                }
+                if (intGrade01 == 1 && intGrade02 == 1)
+                {//都加密
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                }
+                if ((intGrade01 == 0 && intGrade02 == 1) || (intGrade01 == 1 && intGrade02 == 0))
+                {
+                    dataGridView1.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Black;
+
+                    //Image.FromFile
+                    TextAndImageCell cell = dataGridView1.Rows[e.RowIndex].Cells["Power"] as TextAndImageCell;
+                    cell.Image = GetImage(@"H:\小样儿书签\MyInformTask最新版本\MuZiYangNote\Resources\1526998417(1).jpg");
+                }
+
+            }
+        }
+        public System.Drawing.Image GetImage(string path)
+        {
+            System.IO.FileStream fs = new System.IO.FileStream(path, System.IO.FileMode.Open);
+            System.Drawing.Image result = System.Drawing.Image.FromStream(fs);
+
+            fs.Close();
+
+            return result;
+
+        }
     }
 }
+
