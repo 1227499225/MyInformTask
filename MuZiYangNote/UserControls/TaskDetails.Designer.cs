@@ -36,6 +36,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtNoteContent = new System.Windows.Forms.TextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -43,18 +44,20 @@
             // laTitle
             // 
             this.laTitle.AutoSize = true;
-            this.laTitle.Location = new System.Drawing.Point(6, 9);
+            this.laTitle.Location = new System.Drawing.Point(8, 11);
+            this.laTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.laTitle.Name = "laTitle";
-            this.laTitle.Size = new System.Drawing.Size(29, 12);
+            this.laTitle.Size = new System.Drawing.Size(37, 15);
             this.laTitle.TabIndex = 1;
             this.laTitle.Text = "标题";
             this.laTitle.DoubleClick += new System.EventHandler(this.laTitle_DoubleClick);
             // 
             // txtChangTitle
             // 
-            this.txtChangTitle.Location = new System.Drawing.Point(3, 2);
+            this.txtChangTitle.Location = new System.Drawing.Point(4, 2);
+            this.txtChangTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtChangTitle.Name = "txtChangTitle";
-            this.txtChangTitle.Size = new System.Drawing.Size(121, 21);
+            this.txtChangTitle.Size = new System.Drawing.Size(160, 25);
             this.txtChangTitle.TabIndex = 3;
             this.txtChangTitle.Visible = false;
             // 
@@ -65,8 +68,9 @@
             this.panel1.Controls.Add(this.laTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(183, 26);
+            this.panel1.Size = new System.Drawing.Size(244, 32);
             this.panel1.TabIndex = 4;
             // 
             // btnClose
@@ -82,9 +86,10 @@
             this.btnClose.ImageLeave = null;
             this.btnClose.ImageMove = null;
             this.btnClose.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(158, 6);
+            this.btnClose.Location = new System.Drawing.Point(211, 8);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(20, 20);
+            this.btnClose.Size = new System.Drawing.Size(27, 25);
             this.btnClose.TabIndex = 2;
             this.btnClose.TextColor = System.Drawing.Color.Black;
             this.btnClose.TextEX = "";
@@ -94,31 +99,38 @@
             // 
             this.panel2.Controls.Add(this.txtNoteContent);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 26);
+            this.panel2.Location = new System.Drawing.Point(0, 32);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(183, 177);
+            this.panel2.Size = new System.Drawing.Size(244, 222);
             this.panel2.TabIndex = 5;
             // 
             // txtNoteContent
             // 
             this.txtNoteContent.BackColor = System.Drawing.Color.MintCream;
             this.txtNoteContent.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtNoteContent.Location = new System.Drawing.Point(2, 6);
+            this.txtNoteContent.Location = new System.Drawing.Point(3, 8);
+            this.txtNoteContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNoteContent.Multiline = true;
             this.txtNoteContent.Name = "txtNoteContent";
             this.txtNoteContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNoteContent.Size = new System.Drawing.Size(178, 168);
+            this.txtNoteContent.Size = new System.Drawing.Size(236, 209);
             this.txtNoteContent.TabIndex = 0;
             this.txtNoteContent.TextChanged += new System.EventHandler(this.txtNoteContent_TextChanged);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // TaskDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "TaskDetails";
-            this.Size = new System.Drawing.Size(183, 203);
+            this.Size = new System.Drawing.Size(244, 254);
             this.Load += new System.EventHandler(this.TaskDetails_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -137,5 +149,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox txtNoteContent;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

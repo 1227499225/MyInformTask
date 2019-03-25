@@ -24,9 +24,7 @@ namespace MuZiYangNote
         {
             InitializeComponent();
             this._parentForm = parentForm;
-
         }
-
 
 
         private void FmUserHelper_Load(object sender, EventArgs e)

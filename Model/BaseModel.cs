@@ -150,4 +150,12 @@ namespace Model
 
     }
 
+    /// <summary>
+    /// 键值
+    /// </summary>
+    public class _KeyStrModel {
+       public string Key { get; set; }
+       public Object Value { get; set; }
+    }
+
 }

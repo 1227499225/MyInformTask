@@ -95,7 +95,6 @@ namespace MuZiYangNote.UserControls
             //}
             
         }
-
         private void TaskDetails_Load(object sender, EventArgs e)
         {
             laTitle.Text = this.title;
@@ -111,6 +110,9 @@ namespace MuZiYangNote.UserControls
             //laCreationTime.BackColor = Color.Transparent;
             //laCreationTime.Dock = DockStyle.Bottom;
             //laCreationTime.Location = new Point(80, 80);
+
+            timer1.Start();
+            //timer1.
         }
         /// <summary>
         /// 失去焦点
@@ -135,6 +137,7 @@ namespace MuZiYangNote.UserControls
             txtChangTitle.Visible = false;
         }
 
+        private List<_KeyStrModel> _LK = new List<_KeyStrModel>();
         //跟新数据
         private void RefreshData()
         {
@@ -142,33 +145,74 @@ namespace MuZiYangNote.UserControls
             {
                 foreach (PlainNoteModel item in _ParentForm._PlainNotes)
                 {
+                    _KeyStrModel _k = new _KeyStrModel();
                     if (this.ID == item.Id)
                     {
                         item.Topic = this.Title;
                         item.NoteContent = this.txtNoteContent.Text;
-                        string szSQL = (SpecialHelper.SqlHelper.TaskSqlDic("V02001")).Fill(item.TaskId);
-                        string res= SqliteDBHelper.QueryString(szSQL, _ParentForm.LocationDataBaseName);
-                        if (Convert.ToInt32(res) > 0)
+                        _k.Key = item.Id;
+                        _k.Value = item as Object;
+                        lock (_LK)
                         {
-                            //修改
-                            item.LastModifiedTime = Convert.ToDateTime(DateTime.Now.ToString("s"));
-                            item.ModifyContent = "/";
-                            object[] _ob = SpecialHelper.CreateUpdateSql<PlainNoteModel>(item);
-                            int i = SqliteDBHelper.ExecuteSql(_ob[0].ToString(), _ob[1].ToString());
-                        }
-                        else {
-                            //新增
-                           object[] _ob= SpecialHelper.CreateInserSql<PlainNoteModel>(item); 
-                            ArrayList listSql = new ArrayList();
-                            listSql.Add(_ob[0].ToString().Replace("@strSqlValue", (_ob[1].ToString())));
-                           string taskid= InstHelper.CreatTaskInfo<PlainNoteModel>(
-                                SqlList: listSql,
-                                CreatorId: Program.ProgramUserId
-                                );
-                            item.TaskId = taskid;
+                            _KeyStrModel a = _LK.Select(p => p.Key == _k.Key) as _KeyStrModel;
+                            if (a == null)
+                            {
+                                _LK.Add(_k);
+                            }
+                            else {
+                                _LK.Remove(a);
+                                _LK.Add(_k);
+                            }
                         }
                     }
                 }
+
+                if (_LK.Count > 0)
+                {
+                    if (timer1.Enabled == false)
+                        timer1.Start();
+                }
+                    
+            }
+        }
+
+        private void ActionSql() {
+            lock (_LK)
+            {
+                if (_LK.Count == 0)
+                {
+                    return;
+                }
+                foreach (_KeyStrModel _L in _LK)
+                {
+                    PlainNoteModel item = _L.Value as PlainNoteModel;
+                    string szSQL = (SpecialHelper.SqlHelper.TaskSqlDic("V02001")).Fill(item.TaskId);
+                    string res = SqliteDBHelper.QueryString(szSQL, _ParentForm.LocationDataBaseName);
+
+                    if (Convert.ToInt32(res) > 0)
+                    {
+                        //修改
+                        item.LastModifiedTime = Convert.ToDateTime(DateTime.Now.ToString("s"));
+                        item.ModifyContent = "/";
+                        object[] _ob = SpecialHelper.CreateUpdateSql<PlainNoteModel>(item);
+                        int i = SqliteDBHelper.ExecuteSql(_ob[0].ToString(), _ob[1].ToString());
+                        _L.Key = "0";
+                    }
+                    else
+                    {
+                            //新增
+                            object[] _ob = SpecialHelper.CreateInserSql<PlainNoteModel>(item);
+                            ArrayList listSql = new ArrayList();
+                            listSql.Add(_ob[0].ToString().Replace("@strSqlValue", (_ob[1].ToString())));
+                            string taskid = InstHelper.CreatTaskInfo<PlainNoteModel>(
+                                 SqlList: listSql,
+                                 CreatorId: Program.ProgramUserId
+                                 );
+                            item.TaskId = taskid;
+                        _L.Key = "0";
+                    }
+                }
+                _LK.RemoveAll(p=>p.Key=="0");
             }
         }
 
@@ -201,6 +245,23 @@ namespace MuZiYangNote.UserControls
         private void txtNoteContent_TextChanged(object sender, EventArgs e)
         {
             RefreshData();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            ActionSql();
+            int _i = 0;
+            lock(_LK) {
+                _i = _LK.Count;
+            }
+            if (_i > 0)
+            {
+                if (timer1.Interval != 100)
+                    this.timer1.Interval = 100;
+            }
+            else {
+                this.timer1.Stop();
+            }
         }
     }
 

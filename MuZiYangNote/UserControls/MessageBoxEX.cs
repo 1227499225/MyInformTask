@@ -318,7 +318,7 @@ namespace MuZiYangNote.UserControls
 
                     //Image.FromFile
                     TextAndImageCell cell = dataGridView1.Rows[e.RowIndex].Cells["Power"] as TextAndImageCell;
-                    cell.Image = GetImage(@"H:\小样儿书签\MyInformTask最新版本\MuZiYangNote\Resources\1526998417(1).jpg");
+                    //cell.Image = GetImage(@"H:\小样儿书签\MyInformTask最新版本\MuZiYangNote\Resources\1526998417(1).jpg");
                 }
 
             }

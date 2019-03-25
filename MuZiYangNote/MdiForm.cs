@@ -66,7 +66,6 @@ namespace MuZiYangNote
 
         #endregion
 
-
         /*
         * ============================================================
         * 函数名：Mdiform_Load
@@ -81,6 +80,7 @@ namespace MuZiYangNote
             //FileInfo file = new FileInfo("../../Files/SystemFile/SystemPages/人妖时间.html");
             //webBrowser1.Url = new Uri(file.FullName, UriKind.Absolute);
             //webBrowser1.IsWebBrowserContextMenuEnabled = false;
+
             //双缓冲
             fyp01.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance| System.Reflection.BindingFlags.NonPublic).SetValue(fyp01, true, null);
             
@@ -126,6 +126,16 @@ namespace MuZiYangNote
             //创建backgroundWorkerLoadingIsOpenNote
              CreatWorker();
         }
+
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+        //        return cp;
+        //    }
+        //}
 
         #region 多线程处理
         #region BackgroundWorker的应用
@@ -810,7 +820,6 @@ namespace MuZiYangNote
             //UserControl1 _f = new UserControl1();
             //this.fyp01.Controls.Add(_f);
             this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
-            this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
 
             //普通便签
             if (_noteType == NoteType.GeneralNote)
@@ -860,6 +869,7 @@ namespace MuZiYangNote
                     if (this.fyp01.InvokeRequired == false)
                     {
                         this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
+                        this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
                     }
                     //如果调用该函数的线程和控件flowLayoutPanel1不在同一个线程
                     else
@@ -869,8 +879,6 @@ namespace MuZiYangNote
                         //使用控件flowLayoutPanel1的Invoke方法执行Display代理(其类型是DisplayDelegate)
                         this.fyp01.Invoke(disp, dt);
                     }
-                    this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
-                    this.fyp01.VerticalScroll.Value = this.fyp01.VerticalScroll.Maximum;
 
                     //普通便签
                     if (_noteType == NoteType.GeneralNote)
