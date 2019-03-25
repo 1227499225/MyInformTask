@@ -176,6 +176,7 @@ namespace MuZiYangNote.UserControls
             }
         }
 
+        //新增修改数据
         private void ActionSql() {
             lock (_LK)
             {
@@ -266,3 +267,9 @@ namespace MuZiYangNote.UserControls
     }
 
 }
+
+//界面加载开始定时器
+//存储集合数据为空，定时器停止
+//添加数据，数据集添加数据，启动定时器,开始处理数据集数据
+//根据数据库是否存在判断，已有则执行修改，反之新增。
+//新增数据至数据集时，若数据集中存在当前数据，则根据Key辨识后删除在新增。
