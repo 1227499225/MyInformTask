@@ -5,7 +5,6 @@ using PublicHelper;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -49,60 +48,83 @@ namespace MuZiYangNote
         public virtual void Language()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(this.GetType());
-            ArrayList list = new ArrayList();
-            FindControls(list, this);
-            this.Text = resources.GetString("$this.Text");
-
-            foreach (Control ctl in list)
+            try
             {
-                switch (((ctl.GetType()).Name).ToLower())
+                ArrayList list = new ArrayList();
+                FindControls(list, this);
+                this.Text = resources.GetString("$this.Text");
+                list = SpecialHelper.GetSingle(list);
+                foreach (Control ctl in list)
                 {
-                    //菜单
-                    case "menustrip":
-                        foreach (ToolStripMenuItem item in (ctl as MenuStrip).Items)
-                        {
-                            resources.ApplyResources(item, item.Name);
-                            foreach (ToolStripMenuItem subItem in item.DropDownItems)
+                    switch (((ctl.GetType()).Name).ToLower())
+                    {
+                        //菜单
+                        case "menustrip":
+                            foreach (ToolStripMenuItem n in (ctl as MenuStrip).Items)
                             {
-                                resources.ApplyResources(subItem, subItem.Name);
+                                if (!(n.Name).StrIsNull())
+                                    resources.ApplyResources(n, n.Name);
+                                _MenuStrip_ToolStripMenuItem(n, ref resources);
                             }
-                        };
-                        break;
-                    case "tabcontrol":
-                        foreach (TabPage item in (ctl as TabControl).TabPages)
-                        {
-                            resources.ApplyResources(item, item.Name);
-                        };
-                        break;
-                    case "label":
-                        Label _la = ctl as Label;
-                        if (_la.Name == "laUserName")//用户昵称不做多语言转换
-                            resources.ApplyResources(_la, _la.Text);
-                        break;
-                    //多格式文本框
-                    case "richtextbox":break;
-                    //文本框
-                    case "textbox":break;
-                    //容器
-                    case "panel":break;
-                    case "flowlayoutpanel":break;
-                    case "tooltip": break;
-                    //其他
-                    default:
-                        if (ctl.Visible)//只为显示的其他控件做转换
-                        {
-                            string _v = MultiLanguageSetting.SundryLanguage(ctl.Name, null, null, false);
-                            if (_v.StrIsNull())
-                                resources.ApplyResources(ctl, ctl.Name);
-                            else
-                                ctl.Text = _v;
-                        }
+                            
+                            break;
+                        case "tabcontrol":
+                            foreach (TabPage item in (ctl as TabControl).TabPages)
+                            {
+                                if (!(item.Name).StrIsNull()&& item!=null)
+                                    resources.ApplyResources(item, item.Name);
+                            };
+                            break;
+                        case "label":
+                            Label _la = ctl as Label;
+                            if (_la.Name == "laUserName")//用户昵称不做多语言转换
+                                resources.ApplyResources(_la, _la.Text);
+                            break;
+                        //多格式文本框
+                        case "richtextbox": break;
+                        //文本框
+                        case "textbox": break;
+                        //容器
+                        case "panel": break;
+                        case "flowlayoutpanel": break;
+                        case "tooltip": break;
+                        //其他
+                        default:
+                            if (ctl.Visible)//只为显示的其他控件做转换
+                            {
+                                string _v = MultiLanguageSetting.SundryLanguage(ctl.Name, null, null, false);
+                                if (_v.StrIsNull())
+                                {
+                                    if (((new TaskDetails()).Controls.Find(ctl.Name, true)).Count() == 0&& !(ctl.Name).StrIsNull()&& ctl != null)
+                                        resources.ApplyResources(ctl, ctl.Name);
+                                }
+                                else
+                                    ctl.Text = _v;
+                            }
 
-                        break;
+                            break;
+                    }
+                }
+                this.ResumeLayout(false);
+                this.PerformLayout();
+
+
+            }
+            catch (Exception ex)
+            {
+                //new ShowLog((list.ToArray().Select(p => p.Equals((new MdiForm()))) as MdiForm).Controls.Find("RtbTxt", true)[0] as RichTextBox, MessageLevel.LogError, ex.Message);
+            }
+        }
+        private void _MenuStrip_ToolStripMenuItem(ToolStripMenuItem subItem, ref System.ComponentModel.ComponentResourceManager resources) {
+            if (subItem != null && !(subItem.Name).StrIsNull())
+                resources.ApplyResources(subItem, subItem.Name);
+            if ((subItem.DropDownItems).Count > 0) {
+                foreach (var sItem in (subItem.DropDownItems))
+                {
+                    if (sItem.GetType().ToString().EndsWith("ToolStripMenuItem"))
+                        _MenuStrip_ToolStripMenuItem(sItem as ToolStripMenuItem, ref resources);
                 }
             }
-
-
         }
 
         /// <summary>
@@ -155,7 +177,10 @@ namespace MuZiYangNote
         {
             if (objectList.Contains(item) != true)
             {
-                objectList.Add(item);
+                if (objectList.Count == 0)
+                    objectList.Add(item);
+                else if ((objectList.ToArray().Select(p => p.GetType().Name == item.GetType().Name)).First() == false)//避免添加过多导致语言切换窗体卡顿
+                    objectList.Add(item);
             }
         }
         /// <summary>
@@ -182,6 +207,7 @@ namespace MuZiYangNote
         /// </summary>
         void CallBackLanguage()
         {
+            var _obj = objectList.ToArray().Last();
             //遍历所有Form，以切换其语言
             foreach (FormBase form in objectList)
             {
@@ -195,14 +221,15 @@ namespace MuZiYangNote
     //根据当前的语言区域,更新主窗口菜单的语言
     public class MultiLanguageSetting
     {
-        public static string SundryLanguage(string Filde, string _Code = null, string oldFilde = null,bool ifTheyKnow=true)
+        public static string SundryLanguage(string Filde, string _Code = null, string oldFilde = null, bool ifTheyKnow = true)
         {
             string _v = string.Empty, BaseName = "MuZiYangNote.MultiLanguageConfig.";
             if (Program._LANGUAGETYPE == LanguageEnum.LanguageCN)
                 Filde = Filde + "Cn";
             else
                 Filde = Filde + "En";
-            if (!string.IsNullOrEmpty(_Code)) {
+            if (!string.IsNullOrEmpty(_Code))
+            {
                 switch (_Code)
                 {
                     case "09"://日志部分多语言
@@ -215,10 +242,13 @@ namespace MuZiYangNote
                     //    if (Program._LANGUAGETYPE == LanguageEnum.LanguageCN)
                     //        _v = Language<StripTypeTaskDetailsCn>(BaseName + "StripTypeTaskDetailsCn", Filde);
                     //break;
-                    case "08":
-                            _v = (Language<CommonCnOrEn>(BaseName + "CommonCnOrEn", Filde));
+                    case "03":
+                        _v = (Language<MdiFormCnOrEn>(BaseName + "MdiFormCnOrEn", Filde));
                         break;
-                    default:break;
+                    case "08":
+                        _v = (Language<CommonCnOrEn>(BaseName + "CommonCnOrEn", Filde));
+                        break;
+                    default: break;
 
                 }
             }
@@ -237,13 +267,17 @@ namespace MuZiYangNote
                 if (!_v.StrIsNull())
                     return _v;
 
+                _v = (Language<MdiFormCnOrEn>(BaseName + "MdiFormCnOrEn", Filde));
+                if (!_v.StrIsNull())
+                    return _v;
+
             }
 
             if (string.IsNullOrEmpty(_v) && ifTheyKnow)
-            return _v = (SundryLanguage("LanguageError", "08", Filde));
+                return _v = (SundryLanguage("LanguageError", "08", Filde));
 
-            if(Filde.Replace("En","").Replace("Cn","") == "LanguageError")
-                _v= _v.Fill(oldFilde);
+            if (Filde.Replace("En", "").Replace("Cn", "") == "LanguageError")
+                _v = _v.Fill(oldFilde);
 
 
             return _v;

@@ -81,10 +81,12 @@
             this.toolStripComboBox4 = new System.Windows.Forms.ToolStripComboBox();
             this.颜色ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.gpbTaskList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.MStrip.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddTask
@@ -99,8 +101,8 @@
             // 
             // RtbTxt
             // 
-            resources.ApplyResources(this.RtbTxt, "RtbTxt");
             this.RtbTxt.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.RtbTxt, "RtbTxt");
             this.RtbTxt.Name = "RtbTxt";
             this.RtbTxt.ReadOnly = true;
             this.RtbTxt.TextChanged += new System.EventHandler(this.RtbTxt_TextChanged);
@@ -116,9 +118,9 @@
             // 
             // gpbTaskList
             // 
-            resources.ApplyResources(this.gpbTaskList, "gpbTaskList");
             this.gpbTaskList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.gpbTaskList.Controls.Add(this.fyp01);
+            resources.ApplyResources(this.gpbTaskList, "gpbTaskList");
             this.gpbTaskList.Name = "gpbTaskList";
             this.gpbTaskList.TabStop = false;
             // 
@@ -192,6 +194,7 @@
             this.btnEXMin.ImageDefault = ((System.Drawing.Image)(resources.GetObject("btnEXMin.ImageDefault")));
             this.btnEXMin.ImageLeave = null;
             this.btnEXMin.ImageMove = null;
+            this.btnEXMin.LabelEXImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnEXMin.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEXMin.Name = "btnEXMin";
             this.btnEXMin.TextColor = System.Drawing.Color.Black;
@@ -211,6 +214,7 @@
             this.btnEXMax.ImageDefault = ((System.Drawing.Image)(resources.GetObject("btnEXMax.ImageDefault")));
             this.btnEXMax.ImageLeave = null;
             this.btnEXMax.ImageMove = null;
+            this.btnEXMax.LabelEXImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnEXMax.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEXMax.Name = "btnEXMax";
             this.btnEXMax.TextColor = System.Drawing.Color.Black;
@@ -230,6 +234,7 @@
             this.btnEXClose.ImageDefault = ((System.Drawing.Image)(resources.GetObject("btnEXClose.ImageDefault")));
             this.btnEXClose.ImageLeave = null;
             this.btnEXClose.ImageMove = null;
+            this.btnEXClose.LabelEXImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnEXClose.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnEXClose.Name = "btnEXClose";
             this.btnEXClose.TextColor = System.Drawing.Color.Black;
@@ -240,6 +245,7 @@
             // 
             this.MStrip.BackColor = System.Drawing.SystemColors.ButtonFace;
             resources.ApplyResources(this.MStrip, "MStrip");
+            this.MStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.F1Help,
@@ -483,16 +489,22 @@
             resources.ApplyResources(this.颜色ToolStripMenuItem, "颜色ToolStripMenuItem");
             this.颜色ToolStripMenuItem.Click += new System.EventHandler(this.颜色ToolStripMenuItem_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.MStrip);
+            this.panel2.Controls.Add(this.btnAddTask);
+            this.panel2.Controls.Add(this.btnShowType);
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Name = "panel2";
+            // 
             // MdiForm
             // 
             resources.ApplyResources(this, "$this");
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.RtbTxt);
-            this.Controls.Add(this.btnShowType);
-            this.Controls.Add(this.btnAddTask);
             this.Controls.Add(this.gpbTaskList);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.MStrip);
             this.KeyPreview = true;
             this.MainMenuStrip = this.MStrip;
             this.Name = "MdiForm";
@@ -508,8 +520,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.MStrip.ResumeLayout(false);
             this.MStrip.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -565,6 +578,7 @@
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox4;
         private System.Windows.Forms.ToolStripMenuItem 颜色ToolStripMenuItem;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 

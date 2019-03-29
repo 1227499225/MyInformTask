@@ -29,7 +29,7 @@ namespace MuZiYangNote.UserControls
         }
         ~TaskDetails() { }
         #region 任务配置
-        public MdiForm _ParentForm { get; set; } = new MdiForm();
+        public MdiForm _ParentForm { get; set; }
         private string title = string.Empty;
         [Description("用于显示文本")]
         public string Title
@@ -141,6 +141,8 @@ namespace MuZiYangNote.UserControls
         //跟新数据
         private void RefreshData()
         {
+            if (_ParentForm == null)
+                return;
             if (_ParentForm._PlainNotes.Count > 0)
             {
                 foreach (PlainNoteModel item in _ParentForm._PlainNotes)
@@ -217,16 +219,11 @@ namespace MuZiYangNote.UserControls
             }
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void btnClose_ButtonClick(object sender, EventArgs e)
         {
             string _v = MultiLanguageSetting.SundryLanguage("DeleteModule","09");//多语言
             OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.Name, this.title), MessageLevel.LogWarning));
-           PlainNoteModel _p= (_ParentForm._PlainNotes).Find(p=>p.Id==this.id);
+            PlainNoteModel _p= (_ParentForm._PlainNotes).Find(p=>p.Id==this.id);
             if (_p != null)
                 (_ParentForm._PlainNotes).Remove(_p);
             this.Dispose();

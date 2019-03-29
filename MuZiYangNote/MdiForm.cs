@@ -77,12 +77,9 @@ namespace MuZiYangNote
         */
         private void Mdiform_Load(object sender, EventArgs e)
         {
-            //FileInfo file = new FileInfo("../../Files/SystemFile/SystemPages/人妖时间.html");
-            //webBrowser1.Url = new Uri(file.FullName, UriKind.Absolute);
-            //webBrowser1.IsWebBrowserContextMenuEnabled = false;
-
+            Mdiform_ControlLocation(Types._a);
             //双缓冲
-            fyp01.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance| System.Reflection.BindingFlags.NonPublic).SetValue(fyp01, true, null);
+            //fyp01.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance| System.Reflection.BindingFlags.NonPublic).SetValue(fyp01, true, null);
             
             object[] obj01 = SpecialHelper.CreateTableSql<Model.ClientUserModel>(new Model.ClientUserModel(),out _dbl);
             PubConstant pc = new PubConstant(obj01[0].ToString());
@@ -127,15 +124,18 @@ namespace MuZiYangNote
              CreatWorker();
         }
 
-        //protected override CreateParams CreateParams
-        //{
-        //    get
-        //    {
-        //        CreateParams cp = base.CreateParams;
-        //        cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
-        //        return cp;
-        //    }
-        //}
+        /// <summary>
+        /// 界面上放置大量的控件（尤其是自定义控件）会导致在窗体加载时，速度变得缓慢；当切换页面时，也会时常产生闪烁的问题，非常影响用户体验
+        /// </summary>
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
+            }
+        }
 
         #region 多线程处理
         #region BackgroundWorker的应用
@@ -498,8 +498,32 @@ namespace MuZiYangNote
         {
             int x = this.Width / 2 - MdiTitle.Width / 2;
             MdiTitle.Location = new Point(x, MdiTitle.Location.Y);
-            btnAddTask.Left = this.Width - btnAddTask.Width - 110;
-            btnShowType.Left = this.Width - btnAddTask.Width - 30;
+            panel1.Width = this.Width;
+            panel2.Width = this.Width;
+            gpbTaskList.Width = this.Width;
+            RtbTxt.Width = this.Width;
+            gpbTaskList.Height = this.Height - panel1.Height - panel2.Height - RtbTxt.Height;
+            RtbTxt.Location = new Point(0,this.Height- RtbTxt.Height);
+
+            Mdiform_ControlLocation(Types._null);
+        }
+
+        //控件位置
+        public void Mdiform_ControlLocation(Types Tys)
+        {
+            if (Tys==Types._a||Tys==Types._null)
+            {
+                panel1.Location = new Point(0,0);//顶部模块
+                #region 最小化、最大化、关闭 按钮位置控制
+                int BtnEXParent_X = btnEXClose.Parent.Width, BtnEXParent_H = btnEXClose.Parent.Height;
+                btnEXClose.Location = new Point(BtnEXParent_X - 10-btnEXClose.Width, BtnEXParent_H/2- btnEXClose.Height/2);
+                btnEXMax.Location = new Point(btnEXClose.Location.X-10-btnEXMax.Width, BtnEXParent_H / 2 - btnEXMax.Height / 2);
+                btnEXMin.Location = new Point(btnEXMax.Location.X - 10 - btnEXMin.Width, BtnEXParent_H / 2 - btnEXMin.Height / 2);
+                #endregion
+
+                btnShowType.Location = new Point(btnShowType.Parent.Width-10- btnShowType.Width, btnShowType.Parent.Height / 2 - btnShowType.Height / 2);
+                btnAddTask.Location = new Point(btnShowType.Location.X - 10 - btnAddTask.Width, btnAddTask.Parent.Height / 2 - btnAddTask.Height / 2);
+            }
         }
 
         #endregion
@@ -704,36 +728,46 @@ namespace MuZiYangNote
                 MessageBoxEX.Show(_tiShi, _conText);
             }
         }
-        
-        private void F1Open() {
-            UserHelperForm _fuh = new UserHelperForm(this);
-            //判断窗体是否已打开
-            Form _f = Lc.Find(p => p.Name == _fuh.Name);
-            if (_f != null)
-            {
-                string _PROMPT = MultiLanguageSetting.SundryLanguage("Prompt", "08");
-                string _ISWIDOWSOPENEN = MultiLanguageSetting.SundryLanguage("IsWidowsOpen", "08");
 
-                MessageBoxEX testDialog = new MessageBoxEX(_PROMPT, _ISWIDOWSOPENEN.Fill(_f.Text));
-                DialogResult _d = testDialog.ShowDialog(this);
-                if (_d == DialogResult.OK)
-                {
-                    _f.TopMost = true;
-                    string _WIDOWSHOW01 = MultiLanguageSetting.SundryLanguage("WidowShow01", "08");
-                    new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW01.Fill(_f.Text));
-                }
-                return;
+        private UserHelperForm _fuh;
+        private void F1Open() {
+            if (_fuh == null || _fuh.IsDisposed)
+            {
+                _fuh =  new UserHelperForm(this);
+                _fuh.Show();//未打开，直接打开。
             }
-            //_fuh.TopMost = true;
-            #region 窗体设置最小
-            this.WindowState = FormWindowState.Maximized;
-            MaxNormalSwitch();
-            #endregion
-            _fuh.Show();
-            string _WIDOWSHOW02 = MultiLanguageSetting.SundryLanguage("WidowShow02", "08");
-            new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW02.Fill(_fuh.Text, MultiLanguageSetting.SundryLanguage("Open", "08")));
-            Lc.Add(_fuh);
-            //_fuh.TopMost = false;
+            else
+            {
+                _fuh.Activate();//已打开，获得焦点，置顶。
+            }
+
+                //判断窗体是否已打开
+            //    Form _f = Lc.Find(p => p.Name == _fuh.Name);
+            //if (_f != null)
+            //{
+            //    string _PROMPT = MultiLanguageSetting.SundryLanguage("Prompt", "08");
+            //    string _ISWIDOWSOPENEN = MultiLanguageSetting.SundryLanguage("IsWidowsOpen", "08");
+
+            //    MessageBoxEX testDialog = new MessageBoxEX(_PROMPT, _ISWIDOWSOPENEN.Fill(_f.Text));
+            //    DialogResult _d = testDialog.ShowDialog(this);
+            //    if (_d == DialogResult.OK)
+            //    {
+            //        _f.TopMost = true;
+            //        string _WIDOWSHOW01 = MultiLanguageSetting.SundryLanguage("WidowShow01", "08");
+            //        new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW01.Fill(_f.Text));
+            //    }
+            //    return;
+            //}
+            ////_fuh.TopMost = true;
+            //#region 窗体设置最小
+            ////this.WindowState = FormWindowState.Maximized;
+            ////MaxNormalSwitch();
+            //#endregion
+            ////_fuh.Show();
+            //string _WIDOWSHOW02 = MultiLanguageSetting.SundryLanguage("WidowShow02", "08");
+            //new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW02.Fill(_fuh.Text, MultiLanguageSetting.SundryLanguage("Open", "08")));
+            ////Lc.Add(_fuh);
+            ////_fuh.TopMost = false;
         }
 
         #endregion
@@ -855,16 +889,9 @@ namespace MuZiYangNote
                     TD.Title = dr["Topic"].ToString();
                     TextBox tb = (TextBox)this.findControl(TD, "txtNoteContent");
                     tb.Text = dr["NoteContent"].ToString();
-                    //Label la = (Label)this.findControl(TD, "laTitle");
-                    //Label laCreationTime = new Label();
-                    //laCreationTime.Text = DateTime.Now.ToString("s");
-                    ////laCreationTime.BackColor = Color.Transparent;
-                    //laCreationTime.Dock = DockStyle.Bottom;
-                    //tb.Parent.Controls.Add(laCreationTime);
                     TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
                     TD._ParentForm = this;
                     Control[] TDObj = TDProperty(TD);
-                    //this.fyp01.Controls.Add(TDObj[TDObj.Length - 1]);
                     //如果调用该函数的线程和控件flowLayoutPanel1位于同一个线程内
                     if (this.fyp01.InvokeRequired == false)
                     {

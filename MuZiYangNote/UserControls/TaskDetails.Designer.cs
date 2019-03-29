@@ -55,7 +55,7 @@
             // txtChangTitle
             // 
             this.txtChangTitle.Location = new System.Drawing.Point(4, 2);
-            this.txtChangTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtChangTitle.Margin = new System.Windows.Forms.Padding(4);
             this.txtChangTitle.Name = "txtChangTitle";
             this.txtChangTitle.Size = new System.Drawing.Size(160, 25);
             this.txtChangTitle.TabIndex = 3;
@@ -68,7 +68,7 @@
             this.panel1.Controls.Add(this.laTitle);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(244, 32);
             this.panel1.TabIndex = 4;
@@ -85,11 +85,12 @@
             this.btnClose.ImageDefault = global::MuZiYangNote.Properties.Resources.Close;
             this.btnClose.ImageLeave = null;
             this.btnClose.ImageMove = null;
-            this.btnClose.LabelEXTextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClose.Location = new System.Drawing.Point(211, 8);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnClose.LabelEXImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnClose.LabelEXTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnClose.Location = new System.Drawing.Point(212, 5);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(27, 25);
+            this.btnClose.Size = new System.Drawing.Size(27, 26);
             this.btnClose.TabIndex = 2;
             this.btnClose.TextColor = System.Drawing.Color.Black;
             this.btnClose.TextEX = "";
@@ -100,7 +101,7 @@
             this.panel2.Controls.Add(this.txtNoteContent);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 32);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(244, 222);
             this.panel2.TabIndex = 5;
@@ -110,11 +111,11 @@
             this.txtNoteContent.BackColor = System.Drawing.Color.MintCream;
             this.txtNoteContent.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.txtNoteContent.Location = new System.Drawing.Point(3, 8);
-            this.txtNoteContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNoteContent.Margin = new System.Windows.Forms.Padding(4);
             this.txtNoteContent.Multiline = true;
             this.txtNoteContent.Name = "txtNoteContent";
             this.txtNoteContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNoteContent.Size = new System.Drawing.Size(236, 209);
+            this.txtNoteContent.Size = new System.Drawing.Size(237, 210);
             this.txtNoteContent.TabIndex = 0;
             this.txtNoteContent.TextChanged += new System.EventHandler(this.txtNoteContent_TextChanged);
             // 
@@ -128,7 +129,7 @@
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "TaskDetails";
             this.Size = new System.Drawing.Size(244, 254);
             this.Load += new System.EventHandler(this.TaskDetails_Load);

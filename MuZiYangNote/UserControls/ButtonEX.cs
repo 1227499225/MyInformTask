@@ -149,7 +149,7 @@ namespace MuZiYangNote.UserControls
             }
         }
 
-
+        private ContentAlignment labelEXTextAlign = ContentAlignment.MiddleCenter;
         /*
         * ============================================================
         * 函数名：LabelEXTextAlign
@@ -172,10 +172,30 @@ namespace MuZiYangNote.UserControls
                 labelEX.TextAlign = labelEXTextAlign;
             }
         }
+        private ContentAlignment labelEXImageAlign= ContentAlignment.MiddleCenter;
 
+        /*
+        * ============================================================
+        * 函数名：LabelEXTextAlign
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期：
+        * 描述：图片位置
+        * ============================================================
+        */
+        public ContentAlignment LabelEXImageAlign {
+            get
+            {
+                return labelEXImageAlign;
+            }
 
+            set
+            {
+                labelEXImageAlign = value;
+                labelEX.ImageAlign = labelEXImageAlign;
+            }
+        }
 
-        private ContentAlignment labelEXTextAlign = ContentAlignment.BottomCenter;
 
 
 

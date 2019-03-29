@@ -36,15 +36,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Geckofx-Core, Version=45.0.33.0, Culture=neutral, PublicKeyToken=3209ac31600d1857, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Files\SystemFile\System\Geckofx-Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Geckofx-Winforms, Version=45.0.33.0, Culture=neutral, PublicKeyToken=3209ac31600d1857, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Files\SystemFile\System\Geckofx-Winforms.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -65,6 +58,11 @@
     </Compile>
     <Compile Include="FrmTest.Designer.cs">
       <DependentUpon>FrmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiLanguageConfig\MdiFormCnOrEn.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MdiFormCnOrEn.resx</DependentUpon>
     </Compile>
     <Compile Include="RewriteControlClass\TextAndImageColumn.cs" />
     <Compile Include="UserControls\BaseEv.cs" />
@@ -204,6 +202,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LogsCnOrEn.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="MultiLanguageConfig\MdiFormCnOrEn.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MdiFormCnOrEn.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="MultiLanguageConfig\PromptRelevant.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>PromptRelevant.Designer.cs</LastGenOutput>
@@ -211,6 +213,7 @@
     <EmbeddedResource Include="MultiLanguageConfig\TaskDetailsCnOrEn.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>TaskDetailsCnOrEn.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\BaseUserControl.resx">
       <DependentUpon>BaseUserControl.cs</DependentUpon>

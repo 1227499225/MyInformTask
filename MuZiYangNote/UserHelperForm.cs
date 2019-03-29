@@ -30,7 +30,7 @@ namespace MuZiYangNote
         private void FmUserHelper_Load(object sender, EventArgs e)
         {
             //后续添加中英文切换
-            //this.laUserHelpeTitle.Text = MultiLanguageSetting.SundryLanguage("Prompt","08");
+            //this.laUserHelpeTitle.Text = MultiLanguageSetting.SundryLanguage("Prompt", "08");
             this.LanguageChange();
             this.DataChange += new DataChangeHandler(DataChanged);
             FileInfo file = new FileInfo("../../Files/SystemFile/SystemPages/FmUserHelper.html");

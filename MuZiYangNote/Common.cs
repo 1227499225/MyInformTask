@@ -78,7 +78,7 @@ namespace MuZiYangNote
                         this.m_OpaqueLayer = new UserControls.MaskLayer(alpha, isShowLoadingImage);//实例化
                         this.m_OpaqueLayer.Name = "MaskLayer";
                         ParentControl.Controls.Add(this.m_OpaqueLayer);//添加控件
-                        ParentControl.Controls.SetChildIndex(this.m_OpaqueLayer, 0);//最前显示
+                        //ParentControl.Controls.SetChildIndex(this.m_OpaqueLayer, 1000);//最前显示
                         this.m_OpaqueLayer.Dock = DockStyle.Fill;
                         this.m_OpaqueLayer.BringToFront();
 

@@ -25,7 +25,6 @@ namespace MuZiYangNote.UserControls
         private bool _transparentBG = true;//是否使用透明
         private int _alpha = 125;//设置透明度
         private System.ComponentModel.Container components = new System.ComponentModel.Container();
-
         public MaskLayer()
             : this(125, true)
         {
@@ -166,7 +165,6 @@ namespace MuZiYangNote.UserControls
             // 
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ResumeLayout(false);
-
         }
     }
 }

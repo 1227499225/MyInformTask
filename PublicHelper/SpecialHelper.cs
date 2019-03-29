@@ -336,6 +336,20 @@ namespace PublicHelper
             }
         }
 
+        //ArrayList去重   
+        public static ArrayList GetSingle(ArrayList list)
+        {
+            ArrayList newList = new ArrayList();
+            foreach (Object str in list)
+            {
+                if (!newList.Contains(str))
+                {
+                    newList.Add(str);
+                }
+            }
+            return newList;
+        }
+
         #region 相关SQL配置
         /// <summary>
         /// 相关SQL语句整理
