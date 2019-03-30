@@ -81,11 +81,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmBaseHostHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmBaseHostHelper.Designer.cs">
+      <DependentUpon>FrmBaseHostHelper.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmTest.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmTest.Designer.cs">
       <DependentUpon>FrmTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmViewCorrelation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmViewCorrelation.Designer.cs">
+      <DependentUpon>FrmViewCorrelation.cs</DependentUpon>
     </Compile>
     <Compile Include="MultiLanguageConfig\MdiFormCnOrEn.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -206,11 +218,17 @@
     <Compile Include="WorkForm.Designer.cs">
       <DependentUpon>WorkForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmBaseHostHelper.resx">
+      <DependentUpon>FrmBaseHostHelper.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmTest.resx">
       <DependentUpon>FrmTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmViewCorrelation.resx">
+      <DependentUpon>FrmViewCorrelation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

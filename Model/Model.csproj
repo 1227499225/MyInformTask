@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseLanguageModel.cs" />
     <Compile Include="BaseModel.cs" />
     <Compile Include="BaseProgramInfoModel.cs" />
+    <Compile Include="BaseTableColumnViewModel.cs" />
     <Compile Include="ClientUserModel.cs" />
     <Compile Include="EventNoteModel.cs" />
     <Compile Include="InstSerialModel.cs" />

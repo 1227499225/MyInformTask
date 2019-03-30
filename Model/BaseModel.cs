@@ -23,7 +23,9 @@ namespace Model
     }
     public class _BaseModel
     {
-
+        [Description("基础id")]
+        [Filed(IsIncrement = true)]
+        public string Id { get; set; } = Guid.NewGuid().ToString();
     }
     public class _BaseDetailModel : BaseModel
     {

@@ -668,16 +668,27 @@ namespace MuZiYangNote
         {
             if ((int)e.Modifiers == ((int)Keys.Alt)&& e.KeyCode == Keys.B)   //Ctrl + Alt + 数字0
             {
+                if (!isLogin())
+                    return;
                 MessageBoxEX testDialog = new MessageBoxEX("欢迎使用开发者模式", "Code");
                 if (testDialog.ShowDialog(this) == DialogResult.OK)
                 {
                     PublicHelper.ConstantMessage ty = testDialog.ty;
-                    if (ty.Str == "New _W")
+
+                    switch (ty.Str)
                     {
-                        WorkForm wf = new WorkForm();
-                        //wf.TopMost = true;//显示最前面
-                        wf.Show();//显示  父级窗体可编辑
-                        Lc.Add(wf);
+                        case "New _W":
+                            WorkForm wf = new WorkForm();
+                            //wf.TopMost = true;//显示最前面
+                            wf.Show();//显示  父级窗体可编辑
+                            Lc.Add(wf);
+                            break;
+                        case "New _W View":
+                            FrmViewCorrelation _fvc = new FrmViewCorrelation();
+                            _fvc.Show();
+                            _fvc.Activate();
+                            break;
+                        default:break;
                     }
                 }
             }
