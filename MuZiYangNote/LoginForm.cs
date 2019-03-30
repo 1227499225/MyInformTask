@@ -26,6 +26,9 @@ namespace MuZiYangNote
             btnEXClose.Enabled = true;
             btnEXMin.Enabled = isOpenEnabled;
             //panelHead.Enabled = isOpenEnabled;
+
+            txtUserAccount.Text = "superadmin";
+            txtUserPwd.Text = "123456";
         }
 
 
@@ -135,8 +138,8 @@ namespace MuZiYangNote
                 }
                 else if((log.szStr).StrIsNull())
                 {
-                    this.txtUserAccount.BorderColor = Color.Red;
-                        this.txtUserPwd.BorderColor = Color.Red;
+                    this.txtUserAccount.BorderRenderStyle =(new UserControls.TTextBoxBorderRenderStyle() { LineColor=Color.Red});
+                    this.txtUserPwd.BorderRenderStyle = (new UserControls.TTextBoxBorderRenderStyle() { LineColor = Color.Red });
                 }
             }
 

@@ -24,9 +24,8 @@ namespace MuZiYangNote.UserControls
         public TaskDetails()
         {
             InitializeComponent();
-            //Control.CheckForIllegalCrossThreadCalls = false;  
-            
         }
+
         ~TaskDetails() { }
         #region 任务配置
         public MdiForm _ParentForm { get; set; }
@@ -45,9 +44,6 @@ namespace MuZiYangNote.UserControls
             }
         }
         private string id = string.Empty;
-        /// <summary>
-        /// 
-        /// </summary>
         public string ID
         {
             get
@@ -95,6 +91,7 @@ namespace MuZiYangNote.UserControls
             //}
             
         }
+
         private void TaskDetails_Load(object sender, EventArgs e)
         {
             laTitle.Text = this.title;
@@ -114,11 +111,8 @@ namespace MuZiYangNote.UserControls
             timer1.Start();
             //timer1.
         }
-        /// <summary>
-        /// 失去焦点
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        //失去焦点
         private void txtChangTitle_LostFocus(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtChangTitle.Text))

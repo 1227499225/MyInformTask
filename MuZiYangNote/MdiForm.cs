@@ -24,10 +24,12 @@ namespace MuZiYangNote
         {
             InitializeComponent();
         }
+
         ~MdiForm()
         {
 
         }
+     
         #region 全局变量
         /// <summary>
         /// 任务展示模式(默认)
@@ -94,8 +96,8 @@ namespace MuZiYangNote
             }
             //创建本地用户表
             SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
-                //创建本地普通便签表
-                obj01 = SpecialHelper.CreateTableSql<Model.PlainNoteModel>(new Model.PlainNoteModel(), out _dbl);
+            //创建本地普通便签表
+            obj01 = SpecialHelper.CreateTableSql<Model.PlainNoteModel>(new Model.PlainNoteModel(), out _dbl);
                 SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
 
             //创建本地编号记录表
@@ -124,9 +126,7 @@ namespace MuZiYangNote
              CreatWorker();
         }
 
-        /// <summary>
-        /// 界面上放置大量的控件（尤其是自定义控件）会导致在窗体加载时，速度变得缓慢；当切换页面时，也会时常产生闪烁的问题，非常影响用户体验
-        /// </summary>
+        // 界面上放置大量的控件（尤其是自定义控件）会导致在窗体加载时，速度变得缓慢；当切换页面时，也会时常产生闪烁的问题，非常影响用户体验
         protected override CreateParams CreateParams
         {
             get
@@ -489,16 +489,10 @@ namespace MuZiYangNote
             }
         }
         #endregion
-        /// <summary>
-        /// 窗体大小
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        //窗体大小
         private void Mdiform_Resize(object sender, EventArgs e)
         {
-            int x = this.Width / 2 - MdiTitle.Width / 2;
-            MdiTitle.Location = new Point(x, MdiTitle.Location.Y);
-            panel1.Width = this.Width;
             panel2.Width = this.Width;
             gpbTaskList.Width = this.Width;
             RtbTxt.Width = this.Width;
@@ -513,12 +507,19 @@ namespace MuZiYangNote
         {
             if (Tys==Types._a||Tys==Types._null)
             {
+                int x = this.Width / 2 - MdiTitle.Width / 2;
+                MdiTitle.Location = new Point(x, MdiTitle.Location.Y);
+                panel1.Width = this.Width;
                 panel1.Location = new Point(0,0);//顶部模块
+
                 #region 最小化、最大化、关闭 按钮位置控制
                 int BtnEXParent_X = btnEXClose.Parent.Width, BtnEXParent_H = btnEXClose.Parent.Height;
-                btnEXClose.Location = new Point(BtnEXParent_X - 10-btnEXClose.Width, BtnEXParent_H/2- btnEXClose.Height/2);
-                btnEXMax.Location = new Point(btnEXClose.Location.X-10-btnEXMax.Width, BtnEXParent_H / 2 - btnEXMax.Height / 2);
-                btnEXMin.Location = new Point(btnEXMax.Location.X - 10 - btnEXMin.Width, BtnEXParent_H / 2 - btnEXMin.Height / 2);
+                btnEXClose.Location = new Point(BtnEXParent_X -0-btnEXClose.Width, BtnEXParent_H/2- btnEXClose.Height/2);
+                btnEXMax.Location = new Point(btnEXClose.Location.X-0-btnEXMax.Width, BtnEXParent_H / 2 - btnEXMax.Height / 2);
+                btnEXMin.Location = new Point(btnEXMax.Location.X - 0 - btnEXMin.Width, BtnEXParent_H / 2 - btnEXMin.Height / 2);
+                btnEXClose.Size = new Size(btnEXClose.Parent.Height, btnEXClose.Parent.Height);
+                btnEXMax.Size = new Size(btnEXClose.Parent.Height, btnEXClose.Parent.Height);
+                btnEXMin.Size = new Size(btnEXClose.Parent.Height, btnEXClose.Parent.Height);
                 #endregion
 
                 btnShowType.Location = new Point(btnShowType.Parent.Width-10- btnShowType.Width, btnShowType.Parent.Height / 2 - btnShowType.Height / 2);
@@ -735,13 +736,18 @@ namespace MuZiYangNote
             {
                 _fuh =  new UserHelperForm(this);
                 _fuh.Show();//未打开，直接打开。
+                string _WIDOWSHOW02 = MultiLanguageSetting.SundryLanguage("WidowShow02", "08");
+                new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW02.Fill(_fuh.Text, MultiLanguageSetting.SundryLanguage("Open", "08")));
+                _fuh.Activate();//已打开，获得焦点，置顶。
             }
             else
             {
+                string _WIDOWSHOW01 = MultiLanguageSetting.SundryLanguage("WidowShow01", "08");
+                new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW01.Fill(_fuh.Text));
                 _fuh.Activate();//已打开，获得焦点，置顶。
             }
 
-                //判断窗体是否已打开
+            //判断窗体是否已打开
             //    Form _f = Lc.Find(p => p.Name == _fuh.Name);
             //if (_f != null)
             //{
@@ -1105,12 +1111,8 @@ namespace MuZiYangNote
                 
         }
         #endregion
-        /// <summary>
-        /// 在winform中查找控件
-        /// </summary>
-        /// <param ></param>
-        /// <param ></param>
-        /// <returns></returns>
+
+        //在winform中查找控件
         private System.Windows.Forms.Control findControl(System.Windows.Forms.Control control, string controlName)
         {
             Control c1;

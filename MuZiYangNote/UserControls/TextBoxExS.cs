@@ -36,6 +36,7 @@ namespace MuZiYangNote.UserControls
             this.MouseDown += new MouseEventHandler(MouseHideCaret);
             this.MouseClick += new MouseEventHandler(MouseHideCaret);
             this.MouseDoubleClick += new MouseEventHandler(MouseHideCaret);
+            //this.MouseLeave += new EventHandler(MouseLeaves);
             this.Enter += new System.EventHandler(MouseEnterHideCaret);
             //    InitializeComponent();
             //this.SetStyle(ControlStyles.UserPaint
@@ -197,15 +198,27 @@ namespace MuZiYangNote.UserControls
         /// </summary>
         public void SetTextDispLayout()
         {
-            if (Text == "")
+            //if (Text == "")
+            //    return;
+            //Rectangle rect = new Rectangle();
+            //SendMessage(this.Handle, EM_GETRECT, (IntPtr)0, ref rect);
+            //SizeF size = CreateGraphics().MeasureString(Text, Font);
+            //rect.Y = (int)(Height - size.Height) / 2 + TextMargin.Top;
+            //rect.X = 1 + TextMargin.Left;
+            //rect.Height = Height - 2;
+            //rect.Width = Width - TextMargin.Right - TextMargin.Left - 2;
+            //SendMessage(this.Handle, EM_SETRECT, IntPtr.Zero, ref rect);
+
+            if (string.IsNullOrEmpty(Text))
                 return;
             Rectangle rect = new Rectangle();
-            //SendMessage(this.Handle, EM_GETRECT, (IntPtr)0, ref rect);
-            SizeF size = CreateGraphics().MeasureString(Text, Font);
+            SendMessage(this.Handle, EM_GETRECT, (IntPtr)0, ref rect);
+            SizeF size = CreateGraphics().MeasureString(Text, Font);//垂直居中 計算文本高度
             rect.Y = (int)(Height - size.Height) / 2 + TextMargin.Top;
-            rect.X = 1 + TextMargin.Left;
-            rect.Height = Height - 2;
-            rect.Width = Width - TextMargin.Right - TextMargin.Left - 2;
+            //rect.Y = TextMargin.Top;
+            rect.X = TextMargin.Left;
+            rect.Height = Height;
+            rect.Width = Width - TextMargin.Right - TextMargin.Left;
             SendMessage(this.Handle, EM_SETRECT, IntPtr.Zero, ref rect);
         }
 
@@ -337,6 +350,23 @@ namespace MuZiYangNote.UserControls
             SetCaret(sender as TextBox);
         }
         #endregion
+
+        //private const int WM_KILLFOCUS = 0x0008;
+
+        ////发送失去焦点的Window消息
+        //public static void SendBlurMsg(IntPtr hWnd)
+        //{
+        //    PostMessage(hWnd, WM_KILLFOCUS, 0, 0);
+        //}
+
+        //[DllImport("user32.dll")]
+        //private static extern void PostMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+
+
+        //void MouseLeaves(object sender, EventArgs e)
+        //{
+        //    SendBlurMsg((sender as TextBox).Handle);
+        //}
     }
 
     [TypeConverter(typeof(ExpandableObjectConverter))]

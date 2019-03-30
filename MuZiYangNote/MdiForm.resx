@@ -163,7 +163,7 @@
     <value>1</value>
   </data>
   <data name="RtbTxt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 306</value>
+    <value>0, 344</value>
   </data>
   <data name="RtbTxt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 2, 4, 2</value>
@@ -172,7 +172,7 @@
     <value>Vertical</value>
   </data>
   <data name="RtbTxt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>858, 99</value>
+    <value>858, 146</value>
   </data>
   <data name="RtbTxt.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -241,7 +241,7 @@
     <value>4, 2, 4, 2</value>
   </data>
   <data name="fyp01.Size" type="System.Drawing.Size, System.Drawing">
-    <value>853, 198</value>
+    <value>853, 236</value>
   </data>
   <data name="fyp01.TabIndex" type="System.Int32, mscorlib">
     <value>99999</value>
@@ -268,7 +268,7 @@
     <value>4, 2, 4, 2</value>
   </data>
   <data name="gpbTaskList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>861, 220</value>
+    <value>861, 258</value>
   </data>
   <data name="gpbTaskList.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -298,7 +298,7 @@
     <value>NoControl</value>
   </data>
   <data name="laUserName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 8</value>
+    <value>128, 9</value>
   </data>
   <data name="laUserName.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -337,7 +337,7 @@
     <value>NoControl</value>
   </data>
   <data name="laNoLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>112, 8</value>
+    <value>128, 9</value>
   </data>
   <data name="laNoLogin.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -373,7 +373,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 8</value>
+    <value>80, 9</value>
   </data>
   <data name="label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -731,13 +731,13 @@
 </value>
   </data>
   <data name="btnEXClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>820, 10</value>
+    <value>821, 8</value>
   </data>
   <data name="btnEXClose.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 2, 4, 2</value>
   </data>
   <data name="btnEXClose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 17</value>
+    <value>28, 18</value>
   </data>
   <data name="btnEXClose.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1106,7 +1106,7 @@
     <value>120, 120</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>861, 409</value>
+    <value>861, 491</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>宋体, 9pt</value>

@@ -501,6 +501,7 @@
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.RtbTxt);
             this.Controls.Add(this.gpbTaskList);
