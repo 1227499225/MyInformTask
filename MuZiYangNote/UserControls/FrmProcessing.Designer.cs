@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProcessing));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbMessage = new System.Windows.Forms.Label();
             this.panImage = new System.Windows.Forms.Panel();
@@ -42,11 +43,12 @@
             this.tableLayoutPanel1.Controls.Add(this.panImage, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(582, 318);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(776, 398);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // lbMessage
@@ -54,10 +56,11 @@
             this.lbMessage.BackColor = System.Drawing.Color.Transparent;
             this.lbMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbMessage.Font = new System.Drawing.Font("微软雅黑", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lbMessage.Location = new System.Drawing.Point(3, 0);
+            this.lbMessage.Location = new System.Drawing.Point(4, 0);
+            this.lbMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMessage.Name = "lbMessage";
-            this.lbMessage.Padding = new System.Windows.Forms.Padding(0, 0, 0, 30);
-            this.lbMessage.Size = new System.Drawing.Size(576, 159);
+            this.lbMessage.Padding = new System.Windows.Forms.Padding(0, 0, 0, 38);
+            this.lbMessage.Size = new System.Drawing.Size(768, 199);
             this.lbMessage.TabIndex = 1;
             this.lbMessage.Text = "lbMessage\r\nadsfadsf";
             this.lbMessage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -65,20 +68,23 @@
             // panImage
             // 
             this.panImage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panImage.Location = new System.Drawing.Point(3, 162);
+            this.panImage.Location = new System.Drawing.Point(4, 203);
+            this.panImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panImage.Name = "panImage";
-            this.panImage.Size = new System.Drawing.Size(576, 153);
+            this.panImage.Size = new System.Drawing.Size(768, 191);
             this.panImage.TabIndex = 2;
             // 
             // FrmProcessing
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(582, 318);
+            this.ClientSize = new System.Drawing.Size(776, 398);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FrmProcessing";
             this.Opacity = 0.85D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

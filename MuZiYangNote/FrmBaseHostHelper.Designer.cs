@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBaseHostHelper));
             this.panel1 = new System.Windows.Forms.Panel();
             this.LaBaseTitle = new System.Windows.Forms.Label();
             this.btnEXMin = new MuZiYangNote.UserControls.ButtonEX();
@@ -144,6 +145,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(907, 497);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmBaseHostHelper";
             this.Text = "FrmBaseHostHelper";
             this.Load += new System.EventHandler(this.FrmBaseHostHelper_Load);

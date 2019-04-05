@@ -124,6 +124,8 @@ namespace MuZiYangNote
 
             //创建backgroundWorkerLoadingIsOpenNote
              CreatWorker();
+
+            new ShowLog(RtbTxt, MessageLevel.LogCustom, "便签管理器已启动！", (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
         }
 
         // 界面上放置大量的控件（尤其是自定义控件）会导致在窗体加载时，速度变得缓慢；当切换页面时，也会时常产生闪烁的问题，非常影响用户体验
@@ -171,7 +173,11 @@ namespace MuZiYangNote
 
             //查询 需要被打开的单子
             DataTable dt = SqliteDBHelper.Query_dt((SpecialHelper.SqlHelper.TaskSqlDic("V02003")).Fill(Program.ProgramUserId,"1"),this.LocationDataBaseName);
+            e.Result = dt.Rows.Count;
+            if (dt.DtisNull())
+                return;
             AddTaskModule(dt);
+            
         }
         //改变进度条的值
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -181,7 +187,12 @@ namespace MuZiYangNote
         //线程执行完成
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            new ShowLog(RtbTxt, MessageLevel.LogNormal, "默认打开项已加载完毕！");
+            int _C=0;
+            int.TryParse(e.Result.ToString(), out _C);
+            if (_C == 0)
+                new ShowLog(RtbTxt, MessageLevel.LogCustom, "暂无默认打开项，请参考帮助文档进行配置！",(new ShowLog.customColor() { IsEnable=true,_c=Color.Gray}));
+            else
+                new ShowLog(RtbTxt, MessageLevel.LogNormal, "默认打开项已加载完毕！");
         }
         //取消线程
         private void cancelWorker()
@@ -472,7 +483,7 @@ namespace MuZiYangNote
             else
             {
                 //防止遮挡任务栏
-                this.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+                //this.MaximumSize = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
                 this.WindowState = FormWindowState.Maximized;
                 //最大化图标切换
                 this.btnEXMax.ImageDefault = global::MuZiYangNote.Properties.Resources.MaxNormal;
@@ -830,6 +841,8 @@ namespace MuZiYangNote
                 this.MinNormalSwitch();
                 Program._LANGUAGETYPE = LanguageEnum.LanguageCN;
                 ManageLanguage.Instance.SetLanguage(Program._LANGUAGETYPE);//语种设置
+                string Description = SpecialHelper.EnumHelper.GetEnumDescription<LanguageEnum>(LanguageEnum.LanguageCN);//获取描述
+                new ShowLog(RtbTxt, MessageLevel.LogCustom, "当前语种切换为：{0}".Fill(Description), (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
             }
         }
 
@@ -840,6 +853,8 @@ namespace MuZiYangNote
                 this.MinNormalSwitch();
                 Program._LANGUAGETYPE = LanguageEnum.LanguageEN;//语种配置切换
                 ManageLanguage.Instance.SetLanguage(Program._LANGUAGETYPE);//语种切换
+                string Description = SpecialHelper.EnumHelper.GetEnumDescription<LanguageEnum>(LanguageEnum.LanguageEN);//获取描述
+                new ShowLog(RtbTxt, MessageLevel.LogCustom, "当前语种切换为：{0}".Fill(Description), (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
             }
         }
 
@@ -1083,14 +1098,14 @@ namespace MuZiYangNote
                         MemoryCacheHelper.GetUserFullName(_vv[1]);//存入缓存
                         Program.ProgramUserId = _vv[1];
                         //ClientUserModel u= MemoryCacheHelper.GetInfo<ClientUserModel>(Program.ProgramUserId);
-                        new ShowLog(RtbTxt, MessageLevel.LogMessage, _vv[0] + " 登陆成功！");
+                        new ShowLog(RtbTxt, MessageLevel.LogCustom,  "{0} 登陆成功！".Fill(_vv[0]), (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
 
                         StartWorker();
                     }
                 }
                 else if (log.Erlv == MessageLevel.LogError)
                 {
-                    new ShowLog(RtbTxt, log.Erlv, "登录失败！报错信息：" + log.Erorr.Message);
+                    new ShowLog(RtbTxt, log.Erlv, "登录失败！报错信息：{0}" .Fill(log.Erorr.Message));
                 }
                 else if (log.Erlv == MessageLevel.LogMessage)
                 {

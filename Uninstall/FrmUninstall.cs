@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -47,13 +48,16 @@ namespace Uninstall
                     if (i is DirectoryInfo)            //判断是否文件夹
                     {
                         DirectoryInfo subdir = new DirectoryInfo(i.FullName);
-                        subdir.Delete(true);          //删除子目录和文件
+                        if (!i.Name.Equals("FileSave"))
+                            subdir.Delete(true);          //删除子目录和文件
                     }
                     else
                     {
-                        if (i.Name != "Uninstall.exe")
+                        //不删除卸载程序及本地数据库
+                        if (i.Name != "Uninstall.exe"&&!i.Name.Equals("SmallSheep.DB"))
                             //如果 使用了 streamreader 在删除前 必须先关闭流 ，否则无法删除 sr.close();
-                            File.Delete(i.FullName);      //删除指定文件
+                            //File.Delete(i.FullName);           //删除指定文件
+                            FileSystem.Kill(i.FullName);
                     }
                 }
             }

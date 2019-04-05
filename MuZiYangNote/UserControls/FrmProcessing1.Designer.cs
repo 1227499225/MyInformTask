@@ -22,7 +22,7 @@ namespace MuZiYangNote.UserControls {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class FrmProcessing {
+    partial class FrmProcessing {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -76,16 +76,6 @@ namespace MuZiYangNote.UserControls {
         public static System.Drawing.Bitmap loading2 {
             get {
                 object obj = ResourceManager.GetObject("loading2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
-        public static System.Drawing.Bitmap loading3 {
-            get {
-                object obj = ResourceManager.GetObject("loading3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

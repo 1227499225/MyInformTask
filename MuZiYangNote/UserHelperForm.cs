@@ -186,6 +186,11 @@ namespace MuZiYangNote
 
         private void kEditor1_KeyDown(object sender, KeyEventArgs e)
         {
+     
+        }
+
+        private void tabPage2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
             if ((int)e.Modifiers == ((int)Keys.Control) && e.KeyCode == Keys.S)
             {
                 OnSaveButtonClicked();

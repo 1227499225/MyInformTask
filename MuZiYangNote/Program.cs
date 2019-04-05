@@ -68,9 +68,9 @@ namespace MuZiYangNote
         public static void ExceedATrialPeriod() {
             //试用期小于当前日期
             if (DateTime.Compare(Period, DateTime.Now) <= 0) {
-                MessageBoxEX.Show("已超过使用期限！");
+                MessageBoxEX.Show("已超过使用期限！暂不卸载程序！");
                 string path = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-                Process.Start(path + "Uninstall.exe");
+                //Process.Start(path + "Uninstall.exe");
                 Application.Exit();
             }
 

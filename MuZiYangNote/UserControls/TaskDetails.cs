@@ -255,6 +255,16 @@ namespace MuZiYangNote.UserControls
                 this.timer1.Stop();
             }
         }
+
+
+        public static async Task<string> DownLoadAsync(string content, PlainNoteModel p)
+        {
+            return await Task.Run(() =>
+            {
+
+                return "Jesse";
+            });
+        }
     }
 
 }

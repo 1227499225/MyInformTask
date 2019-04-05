@@ -216,7 +216,6 @@
             this.kEditor1.Name = "kEditor1";
             this.kEditor1.Size = new System.Drawing.Size(875, 340);
             this.kEditor1.TabIndex = 0;
-            this.kEditor1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.kEditor1_KeyDown);
             // 
             // UserHelperForm
             // 
