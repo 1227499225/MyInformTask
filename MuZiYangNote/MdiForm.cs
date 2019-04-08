@@ -81,8 +81,8 @@ namespace MuZiYangNote
         {
             Mdiform_ControlLocation(Types._a);
             //双缓冲
-            //fyp01.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance| System.Reflection.BindingFlags.NonPublic).SetValue(fyp01, true, null);
-            
+            fyp01.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(fyp01, true, null);
+
             object[] obj01 = SpecialHelper.CreateTableSql<Model.ClientUserModel>(new Model.ClientUserModel(),out _dbl);
             PubConstant pc = new PubConstant(obj01[0].ToString());
             if (!System.IO.File.Exists(pc.SQLiteDBpath.Replace("Data Source=", "")))
@@ -112,6 +112,11 @@ namespace MuZiYangNote
             obj01 = SpecialHelper.CreateTableSql<Model.InstTaskEncryptionModel>(new Model.InstTaskEncryptionModel(), out _dbl);
             SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
 
+            //创建本地多语言记录
+            obj01 = SpecialHelper.CreateTableSql<Model.BaseLanguageModel>(new BaseLanguageModel(),out _dbl);
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+
+
             MyConfig mc = new MyConfig();
             AppSettingsSection ap = (mc.ReadConfig()) as AppSettingsSection;
 
@@ -126,18 +131,26 @@ namespace MuZiYangNote
              CreatWorker();
 
             new ShowLog(RtbTxt, MessageLevel.LogCustom, "便签管理器已启动！", (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
+
         }
 
+        #region
         // 界面上放置大量的控件（尤其是自定义控件）会导致在窗体加载时，速度变得缓慢；当切换页面时，也会时常产生闪烁的问题，非常影响用户体验
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;
-                return cp;
-            }
-        }
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+
+        //        CreateParams cp = base.CreateParams;
+
+        //        cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED  
+        //        return cp;
+
+        //    }
+        //}//防止闪烁
+        #endregion
+        #region
+        #endregion
 
         #region 多线程处理
         #region BackgroundWorker的应用
@@ -699,7 +712,19 @@ namespace MuZiYangNote
                             _fvc.Show();
                             _fvc.Activate();
                             break;
+                        case "":
+                            //Update Task&nbsp;This IsOpen Equals 1 End 
+                            break;
                         default:break;
+                    }
+                    if (ty.Str.ToLower().Contains("update"))
+                        {
+                        if (ty.Str.ToLower().Contains("update task")) {
+                            if (ty.Str.Contains("isopen equals"))
+                            {
+
+                            }
+                        }
                     }
                 }
             }
@@ -1067,8 +1092,45 @@ namespace MuZiYangNote
         private void laNoLogin_Click(object sender, EventArgs e)
         {
             LogModel log = new LogModel();
+            IsShowControl(panel1, "label", "laUserName");
             ChangeLoginSet(true,ref log);
+
         }
+
+        //父级控件，需要变更控件类型名例：Label、Button，需要剔除的变更控件Name
+        private void IsShowControl(Control Parents,string StrChildControlTypeName,string StruckDownContorlName=null) {
+            foreach (Control item in Parents.Controls)
+            {
+                //检查是否存在需要变更Visible的控件
+                if (item.GetType().Name.ToLower().Equals(StrChildControlTypeName.ToLower()))
+                {
+                    if (StruckDownContorlName != null)
+                    {
+                        if (StruckDownContorlName.Contains(","))//多个剔除控件判断
+                        {
+                            var _v = StruckDownContorlName.Split(',').Contains<string>(item.Name);
+                            if (!_v)
+                                item.Visible = (item.Visible ? false : true);
+                        }
+                        else
+                        {//单个剔除控件
+                            if (!item.Name.ToLower().Equals(StruckDownContorlName.ToLower()))
+                                item.Visible = (item.Visible ? false : true);
+                        }
+                    }
+                    else
+                    {
+                        item.Visible = (item.Visible ? false : true);
+                    }
+                }
+                //当前控件存在子控件
+                if (item.Controls.Count > 0)
+                {
+                    IsShowControl(item, StrChildControlTypeName);
+                }
+            }
+        }
+
         //登陆
         public void ChangeLoginSet(bool _v,ref LogModel log) {
             if (_v)
@@ -1084,6 +1146,7 @@ namespace MuZiYangNote
             }
             else {
                 fyp01.Visible = true;
+                IsShowControl(panel1, "label","laUserName");
                 //关闭背景遮罩层
                 _ml.HideOpaqueLayer(_lf);
                 if (log.Erlv == MessageLevel.LogNormal)

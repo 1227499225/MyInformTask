@@ -179,6 +179,7 @@
             // MdiTitle
             // 
             resources.ApplyResources(this.MdiTitle, "MdiTitle");
+            this.MdiTitle.BackColor = System.Drawing.Color.Transparent;
             this.MdiTitle.Name = "MdiTitle";
             // 
             // btnEXMin
