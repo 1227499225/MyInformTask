@@ -35,15 +35,15 @@
             this.btnEXClose = new MuZiYangNote.UserControls.ButtonEX();
             this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.kEditor1 = new KSharpEditor.KEditor();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.tabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -59,6 +59,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(891, 45);
             this.panel1.TabIndex = 4;
+            this.panel1.DoubleClick += new System.EventHandler(this.panel1_DoubleClick);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             // 
@@ -159,8 +160,8 @@
             // 
             // tabControl
             // 
-            this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(0, 0);
             this.tabControl.Margin = new System.Windows.Forms.Padding(4);
@@ -168,6 +169,29 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(891, 377);
             this.tabControl.TabIndex = 0;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.kEditor1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage2.Size = new System.Drawing.Size(883, 348);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "文本编辑器";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // kEditor1
+            // 
+            this.kEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.kEditor1.Html = "\n        <br>";
+            this.kEditor1.KEditorEventListener = null;
+            this.kEditor1.Location = new System.Drawing.Point(4, 4);
+            this.kEditor1.Margin = new System.Windows.Forms.Padding(4);
+            this.kEditor1.Name = "kEditor1";
+            this.kEditor1.Size = new System.Drawing.Size(875, 340);
+            this.kEditor1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -194,29 +218,6 @@
             this.webBrowser1.Url = new System.Uri("C:\\Users\\wb-xyang2\\Desktop\\MyInformTask\\MuZiYangNote\\Files\\SystemFile\\SystemPages" +
         "\\FmUserHelper.html", System.UriKind.Absolute);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.kEditor1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(883, 348);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "其他";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // kEditor1
-            // 
-            this.kEditor1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.kEditor1.Html = "<p>&nbsp;</p>";
-            this.kEditor1.KEditorEventListener = null;
-            this.kEditor1.Location = new System.Drawing.Point(4, 4);
-            this.kEditor1.Margin = new System.Windows.Forms.Padding(4);
-            this.kEditor1.Name = "kEditor1";
-            this.kEditor1.Size = new System.Drawing.Size(875, 340);
-            this.kEditor1.TabIndex = 0;
-            // 
             // UserHelperForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -233,8 +234,8 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.tabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

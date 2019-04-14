@@ -24,7 +24,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -62,6 +62,13 @@
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>%24this.Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -315,7 +322,6 @@
     <EmbeddedResource Include="WorkForm.resx">
       <DependentUpon>WorkForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Files\SystemFile\System\default.ini" />
     <None Include="MuZiYangNote_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -370,11 +376,9 @@
     <None Include="Resources\yidong.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="%24this.Icon.ico" />
     <Content Include="Files\SystemFile\SystemPages\FmUserHelper.html" />
     <Content Include="Files\SystemFile\SystemPages\人妖时间.html" />
-    <Content Include="Files\SystemFile\System\Geckofx-Core.dll" />
-    <Content Include="Files\SystemFile\System\Geckofx-Winforms.dll" />
-    <Content Include="Files\SystemFile\System\SQK_Ui.dll" />
     <None Include="Resources\setting.png" />
     <None Include="Resources\setting1.jpg" />
     <None Include="Resources\setting.jpg" />
@@ -389,6 +393,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\EmailTemplate\" />
+    <Folder Include="Files\SystemFile\System\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

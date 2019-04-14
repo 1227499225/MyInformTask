@@ -17,5 +17,11 @@ namespace KSharpEditor
         void OnEditorLoadComplete();
 
         void OnEditorErrorOccured(Exception ex);
+
+        void OnOpenBrowserUrlClicked();
+
+        void OnRefreshBrowserUrlClicked();
+
+        void OnOpenFileNameClicked();
     }
 }

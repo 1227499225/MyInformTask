@@ -1,5 +1,6 @@
 ﻿//using EmailTask;
 using EmailTask;
+using Microsoft.Win32;
 using Model;
 using Newtonsoft.Json;
 using System;
@@ -9,6 +10,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Resources;
@@ -410,7 +413,7 @@ namespace PublicHelper
         }
         #endregion
 
-        #region 邮件
+        #region 邮件辅助类
         /// <summary>
         /// 邮件相关
         /// </summary>
@@ -523,104 +526,7 @@ namespace PublicHelper
 
         }
 
-    #region 缓存辅助类
-    public static class MemoryCacheHelper {
-        //https://www.cnblogs.com/wuhuacong/p/3526335.html
-        private static readonly Object _locker=new object();
-        private static T GetCacheItem<T>(String key, Func<T> cachePopulate, TimeSpan? slidingExpiration = null, DateTime? absoluteExpiration = null)
-        {
-            if (String.IsNullOrWhiteSpace(key)) throw new ArgumentException("Invalid cache key");
-            if (cachePopulate == null) throw new ArgumentNullException("cachePopulate");
-            if (slidingExpiration == null && absoluteExpiration == null) throw new ArgumentException("Either a sliding expiration or absolute must be provided");
 
-            if (MemoryCache.Default[key] == null)
-            {
-                lock (_locker)
-                {
-                    if (MemoryCache.Default[key] == null)
-                    {
-                        var item = new CacheItem(key, cachePopulate());
-                        var policy = CreatePolicy(slidingExpiration, absoluteExpiration);
-
-                        MemoryCache.Default.Add(item, policy);
-                    }
-                }
-            }
-
-            return (T)MemoryCache.Default[key];
-        }
-
-        /*
-        * ============================================================
-        * 函数名：GetInfo
-        * 作者：木子杨
-        * 版本：1.0
-        * 日期： 2019-03-06
-        * 描述： 读取字符串
-        * ============================================================
-        */
-        public static string GetInfo(string Key) {
-            return (MemoryCache.Default[Key]).ToString();
-        }
-
-        /*
-        * ============================================================
-        * 函数名：GetInfo
-        * 作者：木子杨
-        * 版本：1.0
-        * 日期： 2019-03-06
-        * 描述： 读取json字符串缓存
-        * ============================================================
-        */
-        public static T GetInfo<T>(string Key) {
-          return JsonAndMode.Json2Class<T>((MemoryCache.Default[Key]).ToString());
-        }
-        private static CacheItemPolicy CreatePolicy(TimeSpan? slidingExpiration, DateTime? absoluteExpiration)
-        {
-            var policy = new CacheItemPolicy();
-
-            if (absoluteExpiration.HasValue)
-            {
-                policy.AbsoluteExpiration = absoluteExpiration.Value;
-            }
-            else if (slidingExpiration.HasValue)
-            {
-                policy.SlidingExpiration = slidingExpiration.Value;
-            }
-
-            policy.Priority = CacheItemPriority.Default;
-
-            return policy;
-        }
-
-        /*
-        * ============================================================
-        * 函数名：GetUserFullName
-        * 作者：木子杨
-        * 版本：1.0
-        * 日期： 2019-03-06
-        * 描述： 根据用户的ID，获取用户的信息，并放到缓存里面
-        * ============================================================
-        */
-        public static string GetUserFullName(string userId)
-        {
-
-            Type type = typeof(ClientUserModel);
-            PropertyInfo[] propertyArray = type.GetProperties();
-            propertyArray = SpecialHelper.GetPropertyArray(propertyArray);
-
-            object[] attributes = typeof(ClientUserModel).GetCustomAttributes(typeof(Model._MoAttribute), true);
-            string StrTableName = (attributes[0] as Model._MoAttribute).TableName,
-                    DataSoureName = (attributes[0] as Model._MoAttribute).DataSoureName;
-
-            string key = "Security_UserFullName";
-            string UserInfo = MemoryCacheHelper.GetCacheItem<string>(key,
-                delegate () { return JsonAndMode.Class2Json<ClientUserModel>(DataTableToModelHelper.GetItem<ClientUserModel>((SqliteDBHelper.Query_dt((SpecialHelper.SqlHelper.TaskSqlDic("V01001")).Fill(userId), DataSoureName)).Rows[0])); },
-                new TimeSpan(0, 60, 0));//30分钟过期
-            return UserInfo;
-        }
-    }
-    #endregion
 
     #region DataTable转换为Model实体
     public static class DataTableToModelHelper {
@@ -695,6 +601,605 @@ namespace PublicHelper
         public static string Class2Json<T>(T test)
         {
             return JsonConvert.SerializeObject(test);
+        }
+    }
+    #endregion
+    #region 缓存辅助类 01
+    public static class MemoryCacheHelper
+    {
+        //https://www.cnblogs.com/wuhuacong/p/3526335.html
+        private static readonly Object _locker = new object();
+        private static T GetCacheItem<T>(String key, Func<T> cachePopulate, TimeSpan? slidingExpiration = null, DateTime? absoluteExpiration = null)
+        {
+            if (String.IsNullOrWhiteSpace(key)) throw new ArgumentException("Invalid cache key");
+            if (cachePopulate == null) throw new ArgumentNullException("cachePopulate");
+            if (slidingExpiration == null && absoluteExpiration == null) throw new ArgumentException("Either a sliding expiration or absolute must be provided");
+
+            if (MemoryCache.Default[key] == null)
+            {
+                lock (_locker)
+                {
+                    if (MemoryCache.Default[key] == null)
+                    {
+                        var item = new CacheItem(key, cachePopulate());
+                        var policy = CreatePolicy(slidingExpiration, absoluteExpiration);
+
+                        MemoryCache.Default.Add(item, policy);
+                    }
+                }
+            }
+
+            return (T)MemoryCache.Default[key];
+        }
+
+        /*
+        * ============================================================
+        * 函数名：GetInfo
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期： 2019-03-06
+        * 描述： 读取字符串
+        * ============================================================
+        */
+        public static string GetInfo(string Key)
+        {
+            return (MemoryCache.Default[Key]).ToString();
+        }
+
+        /*
+        * ============================================================
+        * 函数名：GetInfo
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期： 2019-03-06
+        * 描述： 读取json字符串缓存
+        * ============================================================
+        */
+        public static T GetInfo<T>(string Key = null)
+        {
+            Key = (string.IsNullOrEmpty(Key) ? "Security_UserFullName" : Key);
+            var _v = MemoryCache.Default[Key];
+            if (_v != null)
+                return JsonAndMode.Json2Class<T>((_v).ToString());
+            else
+                return default(T);
+        }
+
+        private static CacheItemPolicy CreatePolicy(TimeSpan? slidingExpiration, DateTime? absoluteExpiration)
+        {
+            var policy = new CacheItemPolicy();
+
+            if (absoluteExpiration.HasValue)
+            {
+                policy.AbsoluteExpiration = absoluteExpiration.Value;
+            }
+            else if (slidingExpiration.HasValue)
+            {
+                policy.SlidingExpiration = slidingExpiration.Value;
+            }
+
+            policy.Priority = CacheItemPriority.Default;
+
+            return policy;
+        }
+
+        //public static string GetValues(string Key) {
+        //    return MemoryCache.Default[Key] as string;
+        //}
+        /*
+        * ============================================================
+        * 函数名：GetUserFullName
+        * 作者：木子杨
+        * 版本：1.0
+        * 日期： 2019-03-06
+        * 描述： 根据用户的ID，获取用户的信息，并放到缓存里面
+        * ============================================================
+        */
+        public static string GetUserFullName(string Key, TimeSpan _e = new TimeSpan(), string Value = null, bool IsUserInfo = false)
+        {
+            Key = (IsUserInfo ? "Security_UserFullName" : Key);
+            if (_e == new TimeSpan())
+                _e = new TimeSpan(0, 60, 0);//1小时过期
+            if (IsUserInfo)
+            {
+                Type type = typeof(ClientUserModel);
+                PropertyInfo[] propertyArray = type.GetProperties();
+                propertyArray = SpecialHelper.GetPropertyArray(propertyArray);
+
+                object[] attributes = typeof(ClientUserModel).GetCustomAttributes(typeof(Model._MoAttribute), true);
+                string StrTableName = (attributes[0] as Model._MoAttribute).TableName,
+                        DataSoureName = (attributes[0] as Model._MoAttribute).DataSoureName;
+                Value = JsonAndMode.Class2Json<ClientUserModel>(
+                    DataTableToModelHelper.GetItem<ClientUserModel>(
+                        (
+                           SqliteDBHelper.Query_dt
+                           (
+                                (
+                                SpecialHelper.SqlHelper.TaskSqlDic("V01001")
+                                ).Fill(Value)
+                                , DataSoureName
+                            )
+                        ).Rows[0])
+                    );
+            }
+            string Info = MemoryCacheHelper.GetCacheItem<string>(Key,
+                delegate ()
+                {
+                    return Value;
+                }
+                , _e
+
+                );
+            return Info;
+        }
+    }
+    #endregion
+
+    #region 缓存辅助类 02
+    /// <summary>
+    /// 缓存对象数据结构 Cactus.Common https://www.cnblogs.com/RainbowInTheSky/p/5557936.html
+    /// </summary>
+    [Serializable()]
+    public class CacheData
+    {
+        public object Value { get; set; }
+        public DateTime CreateTime { get; set; }
+        public DateTimeOffset AbsoluteExpiration { get; set; }
+        public DateTime FailureTime
+        {
+            get
+            {
+                if (AbsoluteExpiration == System.Runtime.Caching.ObjectCache.InfiniteAbsoluteExpiration)
+                {
+                    return AbsoluteExpiration.DateTime;
+                }
+                else { return CreateTime.AddTicks(AbsoluteExpiration.Ticks); }
+            }
+        }
+        public CacheItemPriority Priority { get; set; }
+    }
+
+    /// <summary>
+    /// 缓存处理类(MemoryCache)
+    /// </summary>
+    public class CacheHelper
+    {
+        //在应用程序的同级目录(主要防止外部访问)
+        public static string filePath = System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory + System.Configuration.ConfigurationManager.ConnectionStrings["filecache"].ConnectionString);
+        //文件扩展名
+        public static string fileExt = ".cache";
+
+        /// <summary>
+        /// 获取数据缓存
+        /// </summary>
+        /// <param name="cacheKey">键</param>
+        public static object GetCache(string cacheKey)
+        {
+            //System.Web.Caching.Cache objCache = HttpRuntime.Cache;
+            //return objCache[cacheKey];
+            long i = System.Runtime.Caching.MemoryCache.Default.GetCount();
+            CacheItem objCache = System.Runtime.Caching.MemoryCache.Default.GetCacheItem(cacheKey);
+            if (objCache == null)
+            {
+                string _filepath = filePath + cacheKey + fileExt;
+                if (System.IO.File.Exists(_filepath))
+                {
+                    System.IO.FileStream _file = System.IO.File.OpenRead(_filepath);
+                    if (_file.CanRead)
+                    {
+                        // 读取文件的 byte[] 
+                        byte[] bytes = new byte[_file.Length];
+                        _file.Read(bytes, 0, bytes.Length);
+                        _file.Close();
+                        // 把 byte[] 转换成 Stream 
+                        System.IO.Stream stream = new System.IO.MemoryStream(bytes);
+
+                        System.Diagnostics.Debug.WriteLine("缓存反序列化获取数据：" + cacheKey);
+                        object obj = CacheHelper.BinaryDeSerialize(stream);
+                        CacheData _data = (CacheData)obj;
+                        if (_data != null)
+                        {
+                            //判断是否过期
+                            if (_data.FailureTime >= DateTime.Now)
+                            {
+                                //将数据添加到内存
+                                CacheHelper.SetCacheToMemory(cacheKey, _data);
+                                return _data.Value;
+                            }
+                            else
+                            {
+                                System.Diagnostics.Debug.WriteLine("数据过期：" + cacheKey);
+                                System.IO.File.Delete(_filepath);
+                                //数据过期
+                                return null;
+                            }
+                        }
+                        else { return null; }
+                    }
+                    else { return null; }
+                }
+                else { return null; }
+            }
+            else
+            {
+                CacheData _data = (CacheData)objCache.Value;
+                return _data.Value;
+            }
+        }
+        /// <summary>
+        /// 内存缓存数
+        /// </summary>
+        /// <returns></returns>
+        public static object GetCacheCount()
+        {
+            return System.Runtime.Caching.MemoryCache.Default.GetCount();
+        }
+        /// <summary>
+        /// 文件缓存数
+        /// </summary>
+        /// <returns></returns>
+        public static object GetFileCacheCount()
+        {
+            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(filePath);
+            return di.GetFiles().Length;
+        }
+
+        /// <summary>
+        /// 设置数据缓存
+        /// </summary>
+        public static bool SetCache(string cacheKey, object objObject, CacheItemPolicy policy)
+        {
+            //System.Web.Caching.Cache objCache = HttpRuntime.Cache;            
+            //objCache.Insert(cacheKey, objObject);
+            string _filepath = filePath + cacheKey + fileExt;
+            if (System.IO.Directory.Exists(filePath) == false)
+            {
+                System.IO.Directory.CreateDirectory(filePath);
+            }
+            //设置缓存数据的相关参数
+            CacheData data = new CacheData() { Value = objObject, CreateTime = DateTime.Now, AbsoluteExpiration = policy.AbsoluteExpiration, Priority = policy.Priority };
+            CacheItem objCache = new CacheItem(cacheKey, data);
+            System.IO.FileStream stream = null;
+            if (System.IO.File.Exists(_filepath) == false)
+            {
+                stream = new System.IO.FileStream(_filepath, System.IO.FileMode.CreateNew, System.IO.FileAccess.Write, System.IO.FileShare.Write);
+            }
+            else
+            {
+                stream = new System.IO.FileStream(_filepath, System.IO.FileMode.Create, System.IO.FileAccess.Write, System.IO.FileShare.Write);
+            }
+            System.Diagnostics.Debug.WriteLine("缓存序列化设置数据：" + cacheKey);
+            CacheHelper.BinarySerialize(stream, data);
+            return System.Runtime.Caching.MemoryCache.Default.Add(objCache, policy);
+        }
+        public static bool SetCacheToMemory(string cacheKey, CacheData data)
+        {
+            CacheItemPolicy policy = new CacheItemPolicy();
+            CacheItem objCache = new CacheItem(cacheKey, data);
+            policy.AbsoluteExpiration = data.AbsoluteExpiration;
+            policy.Priority = CacheItemPriority.NotRemovable;
+            return System.Runtime.Caching.MemoryCache.Default.Add(objCache, policy);
+        }
+
+        public static bool SetCache(string cacheKey, object objObject, DateTimeOffset AbsoluteExpiration)
+        {
+            //System.Web.Caching.Cache objCache = HttpRuntime.Cache;            
+            //objCache.Insert(cacheKey, objObject);
+            CacheItemPolicy _priority = new CacheItemPolicy();
+            _priority.Priority = CacheItemPriority.NotRemovable;
+            _priority.AbsoluteExpiration = AbsoluteExpiration;
+            return SetCache(cacheKey, objObject, _priority);
+        }
+
+        public static bool SetCache(string cacheKey, object objObject, CacheItemPriority priority)
+        {
+            //System.Web.Caching.Cache objCache = HttpRuntime.Cache;            
+            //objCache.Insert(cacheKey, objObject);
+            CacheItemPolicy _priority = new CacheItemPolicy();
+            _priority.Priority = priority;
+            _priority.AbsoluteExpiration = System.Runtime.Caching.ObjectCache.InfiniteAbsoluteExpiration;
+            return SetCache(cacheKey, objObject, _priority);
+        }
+        /// <summary>
+        /// 设置数据缓存
+        /// </summary>
+        public static bool SetCache(string cacheKey, object objObject)
+        {
+            //System.Web.Caching.Cache objCache = HttpRuntime.Cache;
+            //objCache.Insert(cacheKey, objObject, null, DateTime.MaxValue, timeout, System.Web.Caching.CacheItemPriority.NotRemovable, null);
+            return CacheHelper.SetCache(cacheKey, objObject, System.Runtime.Caching.CacheItemPriority.NotRemovable);
+        }
+
+        /// <summary>
+        /// 移除指定数据缓存
+        /// </summary>
+        public static void RemoveCache(string cacheKey)
+        {
+            //System.Web.Caching.Cache cache = HttpRuntime.Cache;
+            //cache.Remove(cacheKey);
+            System.Runtime.Caching.MemoryCache.Default.Remove(cacheKey);
+            string _filepath = filePath + cacheKey + fileExt;
+            System.IO.File.Delete(_filepath);
+        }
+
+        /// <summary>
+        /// 移除全部缓存
+        /// </summary>
+        public static void RemoveAllCache()
+        {
+            //System.Web.Caching.Cache cache = HttpRuntime.Cache;
+            //IDictionaryEnumerator cacheEnum = cache.GetEnumerator();
+            //while (cacheEnum.MoveNext())
+            //{
+            //    cache.Remove(cacheEnum.Key.ToString());
+            //}
+            MemoryCache _cache = System.Runtime.Caching.MemoryCache.Default;
+            foreach (var _c in _cache.GetValues(null))
+            {
+                _cache.Remove(_c.Key);
+            }
+            System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(filePath);
+            di.Delete(true);
+        }
+        /// <summary>
+        /// 清除指定缓存
+        /// </summary>
+        /// <param name="type">1:内存 2:文件</param>
+        public static void RemoveAllCache(int type)
+        {
+            if (type == 1)
+            {
+                MemoryCache _cache = System.Runtime.Caching.MemoryCache.Default;
+                foreach (var _c in _cache.GetValues(null))
+                {
+                    _cache.Remove(_c.Key);
+                }
+            }
+            else if (type == 2)
+            {
+                System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(filePath);
+                di.Delete(true);
+            }
+        }
+
+        #region 流序列化
+        public static void BinarySerialize(System.IO.Stream stream, object obj)
+        {
+            try
+            {
+                stream.Seek(0, System.IO.SeekOrigin.Begin);
+                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                formatter.Serialize(stream, obj);
+            }
+            catch (Exception e)
+            {
+                //IOHelper.WriteDebug(e);
+            }
+            finally
+            {
+                //stream.Close();
+                stream.Dispose();
+            }
+        }
+
+        public static object BinaryDeSerialize(System.IO.Stream stream)
+        {
+            object obj = null;
+            stream.Seek(0, System.IO.SeekOrigin.Begin);
+            try
+            {
+                System.Runtime.Serialization.Formatters.Binary.BinaryFormatter formatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                obj = formatter.Deserialize(stream);
+            }
+            catch (Exception e)
+            {
+                //IOHelper.WriteDebug(e);
+            }
+            finally
+            {
+                //stream.Close();
+                stream.Dispose();
+            }
+            return obj;
+        }
+        #endregion
+    }
+    #endregion
+
+    #region
+    public class BrowserHelper {
+        /// <summary>
+        /// 调用系统浏览器打开网页
+        /// http://m.jb51.net/article/44622.htm
+        /// http://www.2cto.com/kf/201412/365633.html
+        /// </summary>
+        /// <param name="url">打开网页的链接</param>
+        public static void OpenBrowserUrl(string url)
+        {
+            try
+            {
+                // 64位注册表路径
+                var openKey = @"SOFTWARE\Wow6432Node\Google\Chrome";
+                if (IntPtr.Size == 4)
+                {
+                    // 32位注册表路径
+                    openKey = @"SOFTWARE\Google\Chrome";
+                }
+                RegistryKey appPath = Registry.LocalMachine.OpenSubKey(openKey);
+                // 谷歌浏览器就用谷歌打开，没找到就用系统默认的浏览器
+                // 谷歌卸载了，注册表还没有清空，程序会返回一个"系统找不到指定的文件。"的bug
+                if (appPath != null)
+                {
+                    var result = Process.Start("chrome.exe", url);
+                    if (result == null)
+                    {
+                        OpenIe(url);
+                    }
+                }
+                else
+                {
+                    var result = Process.Start("chrome.exe", url);
+                    if (result == null)
+                    {
+                        OpenDefaultBrowserUrl(url);
+                    }
+                }
+            }
+            catch
+            {
+                // 出错调用用户默认设置的浏览器，还不行就调用IE
+                OpenDefaultBrowserUrl(url);
+            }
+        }
+
+        /// <summary>
+        /// 用IE打开浏览器
+        /// </summary>
+        /// <param name="url"></param>
+        public static void OpenIe(string url)
+        {
+            try
+            {
+                Process.Start("iexplore.exe", url);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                // IE浏览器路径安装：C:\Program Files\Internet Explorer
+                // at System.Diagnostics.process.StartWithshellExecuteEx(ProcessStartInfo startInfo)注意这个错误
+                try
+                {
+                    if (File.Exists(@"C:\Program Files\Internet Explorer\iexplore.exe"))
+                    {
+                        ProcessStartInfo processStartInfo = new ProcessStartInfo
+                        {
+                            FileName = @"C:\Program Files\Internet Explorer\iexplore.exe",
+                            Arguments = url,
+                            UseShellExecute = false,
+                            CreateNoWindow = true
+                        };
+                        Process.Start(processStartInfo);
+                    }
+                    else
+                    {
+                        if (File.Exists(@"C:\Program Files (x86)\Internet Explorer\iexplore.exe"))
+                        {
+                            ProcessStartInfo processStartInfo = new ProcessStartInfo
+                            {
+                                FileName = @"C:\Program Files (x86)\Internet Explorer\iexplore.exe",
+                                Arguments = url,
+                                UseShellExecute = false,
+                                CreateNoWindow = true
+                            };
+                            Process.Start(processStartInfo);
+                        }
+                        else
+                        {
+                            if (MessageBox.Show(@"系统未安装IE浏览器，是否下载安装？", null, MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                // 打开下载链接，从微软官网下载
+                                OpenDefaultBrowserUrl("http://windows.microsoft.com/zh-cn/internet-explorer/download-ie");
+                            }
+                        }
+                    }
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 打开系统默认浏览器（用户自己设置了默认浏览器）
+        /// </summary>
+        /// <param name="url"></param>
+        public static void OpenDefaultBrowserUrl(string url)
+        {
+            try
+            {
+                // 方法1
+                //从注册表中读取默认浏览器可执行文件路径
+                RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"http\shell\open\command\");
+                if (key != null)
+                {
+                    string s = key.GetValue("").ToString();
+                    //s就是你的默认浏览器，不过后面带了参数，把它截去，不过需要注意的是：不同的浏览器后面的参数不一样！
+                    //"D:\Program Files (x86)\Google\Chrome\Application\chrome.exe" -- "%1"
+                    var lastIndex = s.IndexOf(".exe", StringComparison.Ordinal);
+                    if (lastIndex == -1)
+                    {
+                        lastIndex = s.IndexOf(".EXE", StringComparison.Ordinal);
+                    }
+                    var path = s.Substring(1, lastIndex + 3);
+                    var result = Process.Start(path, url);
+                    if (result == null)
+                    {
+                        // 方法2
+                        // 调用系统默认的浏览器 
+                        var result1 = Process.Start("explorer.exe", url);
+                        if (result1 == null)
+                        {
+                            // 方法3
+                            Process.Start(url);
+                        }
+                    }
+                }
+                else
+                {
+                    // 方法2
+                    // 调用系统默认的浏览器 
+                    var result1 = Process.Start("explorer.exe", url);
+                    if (result1 == null)
+                    {
+                        // 方法3
+                        Process.Start(url);
+                    }
+                }
+            }
+            catch
+            {
+                OpenIe(url);
+            }
+        }
+
+        /// <summary>
+        /// 火狐浏览器打开网页
+        /// </summary>
+        /// <param name="url"></param>
+        public static void OpenFireFox(string url)
+        {
+            try
+            {
+                // 64位注册表路径
+                var openKey = @"SOFTWARE\Wow6432Node\Mozilla\Mozilla Firefox";
+                if (IntPtr.Size == 4)
+                {
+                    // 32位注册表路径
+                    openKey = @"SOFTWARE\Mozilla\Mozilla Firefox";
+                }
+                RegistryKey appPath = Registry.LocalMachine.OpenSubKey(openKey);
+                if (appPath != null)
+                {
+                    var result = Process.Start("firefox.exe", url);
+                    if (result == null)
+                    {
+                        OpenIe(url);
+                    }
+                }
+                else
+                {
+                    var result = Process.Start("firefox.exe", url);
+                    if (result == null)
+                    {
+                        OpenDefaultBrowserUrl(url);
+                    }
+                }
+            }
+            catch
+            {
+                OpenDefaultBrowserUrl(url);
+            }
         }
     }
     #endregion

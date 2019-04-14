@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PublicHelper;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace KSharpEditor
 {
+    //ComVisible 设置对外的可访问性，在html中可使用 js 访问成员方法
     [ComVisible(true)]//https://gitee.com/yahch/kwig
     public class KEditor : System.Windows.Forms.UserControl
     {
@@ -95,12 +97,14 @@ namespace KSharpEditor
         {
             try
             {
-                Stream sm = Assembly.GetExecutingAssembly().GetManifestResourceStream("KSharpEditor.Resources.editor.html");
-                byte[] bs = new byte[sm.Length];
-                sm.Read(bs, 0, (int)sm.Length);
-                sm.Close();
-                UTF8Encoding con = new UTF8Encoding();
-                string str = con.GetString(bs);
+                //Stream sm = Assembly.GetExecutingAssembly().GetManifestResourceStream("KSharpEditor.Resources.editor.html");
+                //byte[] bs = new byte[sm.Length];
+                //sm.Read(bs, 0, (int)sm.Length);
+                //sm.Close();
+                //UTF8Encoding con = new UTF8Encoding();
+                //string str = con.GetString(bs);
+
+                string str = KSharpEditor.Properties.Resources.editor01;
                 kBrowserEditor.DocumentText = str;
             }
             catch (Exception ex)
@@ -181,6 +185,19 @@ namespace KSharpEditor
             {
                 OnError(ex);
             }
+        }
+
+        public void OnOpenBrowserUrlClicked() {
+            if (KEditorEventListener != null) KEditorEventListener.OnOpenBrowserUrlClicked();
+        }
+
+        public void OnRefreshBrowserUrlClicked()
+        {
+            if (KEditorEventListener != null) KEditorEventListener.OnRefreshBrowserUrlClicked();
+        }
+        public void OnOpenFileNameClicked()
+        {
+            if (KEditorEventListener != null) KEditorEventListener.OnOpenFileNameClicked();
         }
     }
 }

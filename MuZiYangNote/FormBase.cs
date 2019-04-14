@@ -110,7 +110,7 @@ namespace MuZiYangNote
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //new ShowLog((list.ToArray().Select(p => p.Equals((new MdiForm()))) as MdiForm).Controls.Find("RtbTxt", true)[0] as RichTextBox, MessageLevel.LogError, ex.Message);
             }

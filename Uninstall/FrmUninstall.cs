@@ -61,7 +61,7 @@ namespace Uninstall
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

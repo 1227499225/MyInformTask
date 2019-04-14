@@ -27,8 +27,14 @@ namespace MuZiYangNote
             btnEXMin.Enabled = isOpenEnabled;
             //panelHead.Enabled = isOpenEnabled;
 
-            txtUserAccount.Text = "superadmin";
-            txtUserPwd.Text = "123456";
+            //txtUserAccount.Text = "superadmin";
+            //txtUserPwd.Text = "123456";
+
+            ClientUserModel u = MemoryCacheHelper.GetInfo<ClientUserModel>();
+            if (u != null) {
+                txtUserAccount.Text = u.ClientUserName;
+                txtUserPwd.Text = u.ClientUserPwd;
+            }
         }
 
 
@@ -85,7 +91,8 @@ namespace MuZiYangNote
         /// <param name="e"></param>
         private void panelHead_MouseDown(object sender, MouseEventArgs e)
         {
-            mPoint = new Point(e.X, e.Y);
+            if (isOpenEnabled)
+                mPoint = new Point(e.X, e.Y);
         }
 
         /// <summary>
@@ -97,7 +104,8 @@ namespace MuZiYangNote
         {
             if (e.Button == MouseButtons.Left)
             {
-                this.Location = new Point(this.Location.X + e.X - mPoint.X, this.Location.Y + e.Y - mPoint.Y);
+                if (isOpenEnabled)
+                    this.Location = new Point(this.Location.X + e.X - mPoint.X, this.Location.Y + e.Y - mPoint.Y);
             }
         }
         //最小化按钮事件

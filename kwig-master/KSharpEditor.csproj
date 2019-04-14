@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KSharpEditor</RootNamespace>
-    <AssemblyName>kse</AssemblyName>
+    <AssemblyName>KSharpEditor</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -51,14 +51,22 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="KEditor.resx">
       <DependentUpon>KEditor.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\editor.html" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="SHDocVw">
@@ -70,6 +78,79 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PublicHelper\PublicHelper.csproj">
+      <Project>{0E7C6DC8-A25F-4127-887A-89E007392997}</Project>
+      <Name>PublicHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="Resources\editor.html" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\bootstrap.css" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\bootstrap.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\FontAwesome.css" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-ar-AR.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-bg-BG.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-ca-ES.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-cs-CZ.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-da-DK.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-de-DE.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-el-GR.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-es-ES.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-es-EU.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-fa-IR.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-fi-FI.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-fr-FR.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-gl-ES.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-he-IL.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-hr-HR.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-hu-HU.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-id-ID.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-it-IT.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-ja-JP.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-ko-KR.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-lt-LT.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-lt-LV.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-mn-MN.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-nb-NO.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-nl-NL.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-pl-PL.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-pt-BR.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-pt-PT.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-ro-RO.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-ru-RU.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-sk-SK.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-sl-SI.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-sr-RS.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-sv-SE.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-ta-IN.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-th-TH.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-tr-TR.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-uk-UA.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-uz-UZ.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-vi-VN.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-zh-CN.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\lang\summernote-zh-TW.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\plugin\databasic\summernote-ext-databasic.css" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\plugin\databasic\summernote-ext-databasic.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\plugin\hello\summernote-ext-hello.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\plugin\specialchars\summernote-ext-specialchars.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\summernote-bs4.css" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\summernote-bs4.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\summernote-bs4.min.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\summernote-lite.css" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\summernote-lite.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\summernote-lite.min.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\summernote.css" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\summernote.js" />
+    <Content Include="Resources\summernote-0.8.11-dist\dist\summernote.min.js" />
+    <None Include="Resources\editor01.html" />
+    <None Include="Resources\summernote-0.8.11-dist\dist\font\summernote.eot" />
+    <None Include="Resources\summernote-0.8.11-dist\dist\font\summernote.ttf" />
+    <None Include="Resources\summernote-0.8.11-dist\dist\font\summernote.woff" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

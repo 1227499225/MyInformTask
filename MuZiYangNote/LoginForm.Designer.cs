@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            MuZiYangNote.UserControls.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle9 = new MuZiYangNote.UserControls.TTextBoxBorderRenderStyle();
-            MuZiYangNote.UserControls.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle10 = new MuZiYangNote.UserControls.TTextBoxBorderRenderStyle();
+            MuZiYangNote.UserControls.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle1 = new MuZiYangNote.UserControls.TTextBoxBorderRenderStyle();
+            MuZiYangNote.UserControls.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle2 = new MuZiYangNote.UserControls.TTextBoxBorderRenderStyle();
+            MuZiYangNote.UserControls.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle3 = new MuZiYangNote.UserControls.TTextBoxBorderRenderStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.laForgetThePassword = new System.Windows.Forms.Label();
             this.chbAutoLogon = new System.Windows.Forms.CheckBox();
@@ -38,6 +40,7 @@
             this.panelHead = new System.Windows.Forms.Panel();
             this.btnEXMin = new MuZiYangNote.UserControls.ButtonEX();
             this.btnEXClose = new MuZiYangNote.UserControls.ButtonEX();
+            this.textBoxExS1 = new MuZiYangNote.UserControls.TextBoxExS();
             this.txtUserPwd = new MuZiYangNote.UserControls.TextBoxExS();
             this.txtUserAccount = new MuZiYangNote.UserControls.TextBoxExS();
             this.butLogin = new MuZiYangNote.UserControls.ButtonEX();
@@ -50,6 +53,7 @@
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.textBoxExS1);
             this.panel1.Controls.Add(this.txtUserPwd);
             this.panel1.Controls.Add(this.txtUserAccount);
             this.panel1.Controls.Add(this.butLogin);
@@ -68,7 +72,7 @@
             this.laForgetThePassword.AutoSize = true;
             this.laForgetThePassword.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.laForgetThePassword.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.laForgetThePassword.Location = new System.Drawing.Point(471, 175);
+            this.laForgetThePassword.Location = new System.Drawing.Point(471, 147);
             this.laForgetThePassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.laForgetThePassword.Name = "laForgetThePassword";
             this.laForgetThePassword.Size = new System.Drawing.Size(67, 15);
@@ -80,7 +84,7 @@
             // chbAutoLogon
             // 
             this.chbAutoLogon.AutoSize = true;
-            this.chbAutoLogon.Location = new System.Drawing.Point(228, 174);
+            this.chbAutoLogon.Location = new System.Drawing.Point(228, 146);
             this.chbAutoLogon.Margin = new System.Windows.Forms.Padding(4);
             this.chbAutoLogon.Name = "chbAutoLogon";
             this.chbAutoLogon.Size = new System.Drawing.Size(89, 19);
@@ -91,7 +95,7 @@
             // chbRememberThePassword
             // 
             this.chbRememberThePassword.AutoSize = true;
-            this.chbRememberThePassword.Location = new System.Drawing.Point(348, 174);
+            this.chbRememberThePassword.Location = new System.Drawing.Point(348, 146);
             this.chbRememberThePassword.Margin = new System.Windows.Forms.Padding(4);
             this.chbRememberThePassword.Name = "chbRememberThePassword";
             this.chbRememberThePassword.Size = new System.Drawing.Size(89, 19);
@@ -102,7 +106,7 @@
             // picbUserImg
             // 
             this.picbUserImg.Image = global::MuZiYangNote.Properties.Resources.main_7;
-            this.picbUserImg.Location = new System.Drawing.Point(37, 78);
+            this.picbUserImg.Location = new System.Drawing.Point(37, 50);
             this.picbUserImg.Margin = new System.Windows.Forms.Padding(4);
             this.picbUserImg.Name = "picbUserImg";
             this.picbUserImg.Size = new System.Drawing.Size(160, 138);
@@ -174,16 +178,35 @@
             this.btnEXClose.TextEX = "";
             this.btnEXClose.ButtonClick += new System.EventHandler(this.btnEXClose_Click);
             // 
+            // textBoxExS1
+            // 
+            this.textBoxExS1.AllowReturn = false;
+            tTextBoxBorderRenderStyle1.LineColor = System.Drawing.Color.LightGray;
+            tTextBoxBorderRenderStyle1.LineWidth = 1F;
+            this.textBoxExS1.BorderRenderStyle = tTextBoxBorderRenderStyle1;
+            this.textBoxExS1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxExS1.HideCaretP = true;
+            this.textBoxExS1.Location = new System.Drawing.Point(395, 232);
+            this.textBoxExS1.Multiline = true;
+            this.textBoxExS1.Name = "textBoxExS1";
+            this.textBoxExS1.Size = new System.Drawing.Size(194, 25);
+            this.textBoxExS1.TabIndex = 11;
+            this.textBoxExS1.TextMargin = new System.Windows.Forms.Padding(1);
+            this.textBoxExS1.WaterMarkFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxExS1.WaterMarkText = "缓存数--非开发人员勿填!";
+            this.textBoxExS1.WaterMarkTextColor = System.Drawing.Color.Silver;
+            this.textBoxExS1.WordWrap = false;
+            // 
             // txtUserPwd
             // 
             this.txtUserPwd.AllowReturn = false;
-            tTextBoxBorderRenderStyle9.ActiveLineColor = System.Drawing.Color.LightSlateGray;
-            tTextBoxBorderRenderStyle9.LineColor = System.Drawing.Color.DimGray;
-            tTextBoxBorderRenderStyle9.LineWidth = 1F;
-            this.txtUserPwd.BorderRenderStyle = tTextBoxBorderRenderStyle9;
+            tTextBoxBorderRenderStyle2.ActiveLineColor = System.Drawing.Color.LightSlateGray;
+            tTextBoxBorderRenderStyle2.LineColor = System.Drawing.Color.DimGray;
+            tTextBoxBorderRenderStyle2.LineWidth = 1F;
+            this.txtUserPwd.BorderRenderStyle = tTextBoxBorderRenderStyle2;
             this.txtUserPwd.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUserPwd.HideCaretP = false;
-            this.txtUserPwd.Location = new System.Drawing.Point(228, 127);
+            this.txtUserPwd.Location = new System.Drawing.Point(228, 99);
             this.txtUserPwd.Multiline = true;
             this.txtUserPwd.Name = "txtUserPwd";
             this.txtUserPwd.PasswordChar = '*';
@@ -198,13 +221,13 @@
             // txtUserAccount
             // 
             this.txtUserAccount.AllowReturn = false;
-            tTextBoxBorderRenderStyle10.ActiveLineColor = System.Drawing.Color.LightSlateGray;
-            tTextBoxBorderRenderStyle10.LineColor = System.Drawing.Color.DimGray;
-            tTextBoxBorderRenderStyle10.LineWidth = 1F;
-            this.txtUserAccount.BorderRenderStyle = tTextBoxBorderRenderStyle10;
+            tTextBoxBorderRenderStyle3.ActiveLineColor = System.Drawing.Color.LightSlateGray;
+            tTextBoxBorderRenderStyle3.LineColor = System.Drawing.Color.DimGray;
+            tTextBoxBorderRenderStyle3.LineWidth = 1F;
+            this.txtUserAccount.BorderRenderStyle = tTextBoxBorderRenderStyle3;
             this.txtUserAccount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUserAccount.HideCaretP = false;
-            this.txtUserAccount.Location = new System.Drawing.Point(228, 78);
+            this.txtUserAccount.Location = new System.Drawing.Point(228, 50);
             this.txtUserAccount.Multiline = true;
             this.txtUserAccount.Name = "txtUserAccount";
             this.txtUserAccount.Size = new System.Drawing.Size(313, 30);
@@ -229,7 +252,7 @@
             this.butLogin.ImageMove = null;
             this.butLogin.LabelEXImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.butLogin.LabelEXTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.butLogin.Location = new System.Drawing.Point(228, 201);
+            this.butLogin.Location = new System.Drawing.Point(228, 173);
             this.butLogin.Margin = new System.Windows.Forms.Padding(5);
             this.butLogin.Name = "butLogin";
             this.butLogin.Size = new System.Drawing.Size(313, 29);
@@ -246,6 +269,7 @@
             this.Controls.Add(this.panelHead);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "LoginForm";
@@ -272,5 +296,6 @@
         private UserControls.ButtonEX butLogin;
         private UserControls.TextBoxExS txtUserAccount;
         private UserControls.TextBoxExS txtUserPwd;
+        private UserControls.TextBoxExS textBoxExS1;
     }
 }

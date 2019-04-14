@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{E853DCE6-485E-47A3-B7FA-5EBC6D223C19}"
 EndProject
@@ -14,10 +14,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSharpEditor", "kwig-master\KSharpEditor.csproj", "{3C07F543-3D96-4AC2-97B4-FF399FE558EC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uninstall", "Uninstall\Uninstall.csproj", "{B3C8F32A-BC7F-4087-B233-5131208002DD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test001", "Test001\Test001.csproj", "{13E4BA83-271E-4E87-A6B1-1AA736BDE65C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{5605F46C-4B33-414F-8FFC-FE08C3856A44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,22 +71,6 @@ Global
 		{B3C8F32A-BC7F-4087-B233-5131208002DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B3C8F32A-BC7F-4087-B233-5131208002DD}.Release|x86.ActiveCfg = Release|Any CPU
 		{B3C8F32A-BC7F-4087-B233-5131208002DD}.Release|x86.Build.0 = Release|Any CPU
-		{13E4BA83-271E-4E87-A6B1-1AA736BDE65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13E4BA83-271E-4E87-A6B1-1AA736BDE65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13E4BA83-271E-4E87-A6B1-1AA736BDE65C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{13E4BA83-271E-4E87-A6B1-1AA736BDE65C}.Debug|x86.Build.0 = Debug|Any CPU
-		{13E4BA83-271E-4E87-A6B1-1AA736BDE65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13E4BA83-271E-4E87-A6B1-1AA736BDE65C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13E4BA83-271E-4E87-A6B1-1AA736BDE65C}.Release|x86.ActiveCfg = Release|Any CPU
-		{13E4BA83-271E-4E87-A6B1-1AA736BDE65C}.Release|x86.Build.0 = Release|Any CPU
-		{5605F46C-4B33-414F-8FFC-FE08C3856A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5605F46C-4B33-414F-8FFC-FE08C3856A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5605F46C-4B33-414F-8FFC-FE08C3856A44}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5605F46C-4B33-414F-8FFC-FE08C3856A44}.Debug|x86.Build.0 = Debug|Any CPU
-		{5605F46C-4B33-414F-8FFC-FE08C3856A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5605F46C-4B33-414F-8FFC-FE08C3856A44}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5605F46C-4B33-414F-8FFC-FE08C3856A44}.Release|x86.ActiveCfg = Release|Any CPU
-		{5605F46C-4B33-414F-8FFC-FE08C3856A44}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

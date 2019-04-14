@@ -83,43 +83,6 @@ namespace MuZiYangNote
             //双缓冲
             fyp01.GetType().GetProperty("DoubleBuffered", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic).SetValue(fyp01, true, null);
 
-            object[] obj01 = SpecialHelper.CreateTableSql<Model.ClientUserModel>(new Model.ClientUserModel(),out _dbl);
-            PubConstant pc = new PubConstant(obj01[0].ToString());
-            if (!System.IO.File.Exists(pc.SQLiteDBpath.Replace("Data Source=", "")))
-            {
-                SqliteDBHelper.DeleteDB(pc.SQLiteDBpath);
-                SqliteDBHelper.CreateDB(pc.SQLiteDBpath);
-            }
-            else
-            {
-                //UserControl
-            }
-            //创建本地用户表
-            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
-            //创建本地普通便签表
-            obj01 = SpecialHelper.CreateTableSql<Model.PlainNoteModel>(new Model.PlainNoteModel(), out _dbl);
-                SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
-
-            //创建本地编号记录表
-            obj01 = SpecialHelper.CreateTableSql<Model.InstSerialModel>(new Model.InstSerialModel(), out _dbl);
-                SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
-
-            //创建本地任务记录表
-            obj01 = SpecialHelper.CreateTableSql<Model.InstTaskModel>(new Model.InstTaskModel(), out _dbl);
-                SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
-
-            //创建本地任务记录表
-            obj01 = SpecialHelper.CreateTableSql<Model.InstTaskEncryptionModel>(new Model.InstTaskEncryptionModel(), out _dbl);
-            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
-
-            //创建本地多语言记录
-            obj01 = SpecialHelper.CreateTableSql<Model.BaseLanguageModel>(new BaseLanguageModel(),out _dbl);
-            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
-
-
-            MyConfig mc = new MyConfig();
-            AppSettingsSection ap = (mc.ReadConfig()) as AppSettingsSection;
-
             //窗体自身支持接受拖拽来的控件
             //this.AllowDrop = true;
             //this.fyp01.AllowDrop = true;//拖进拖出相关
@@ -130,8 +93,7 @@ namespace MuZiYangNote
             //创建backgroundWorkerLoadingIsOpenNote
              CreatWorker();
 
-            new ShowLog(RtbTxt, MessageLevel.LogCustom, "便签管理器已启动！", (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
-
+            new ShowLog(RtbTxt, MessageLevel.LogCustom, @"便签管理器已启动！", (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
         }
 
         #region
@@ -168,6 +130,7 @@ namespace MuZiYangNote
         //启动BackgroundWorker
         public void StartWorker()
         {
+            new ShowLog(RtbTxt, MessageLevel.LogAppend, "开始检查程序文件及默认配置完整性："); 
             backgroundWorkerLoadingIsOpenNote.RunWorkerAsync();
         }
         private void worker_DoWork(object sender, DoWorkEventArgs e)
@@ -183,19 +146,61 @@ namespace MuZiYangNote
             //    e.Cancel = true;  //此处设置Cancel=true后，就可以在RunWorkerCompleted中判断e.Cancelled是否为true
             //    break;
             //}
+            #region 本地数据库文件是否完整
+            object[] obj01 = SpecialHelper.CreateTableSql<Model.ClientUserModel>(new Model.ClientUserModel(), out _dbl);
+            PubConstant pc = new PubConstant(obj01[0].ToString());
+            if (!System.IO.File.Exists(pc.SQLiteDBpath.Replace("Data Source=", "")))
+            {
+                SqliteDBHelper.DeleteDB(pc.SQLiteDBpath);
+                SqliteDBHelper.CreateDB(pc.SQLiteDBpath);
+            }
+            else
+            {
+                //UserControl
+            }
+            tempWorker.ReportProgress(0,"本地数据文件完整。");
+            //创建本地用户表
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+            //创建本地普通便签表
+            obj01 = SpecialHelper.CreateTableSql<Model.PlainNoteModel>(new Model.PlainNoteModel(), out _dbl);
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+            tempWorker.ReportProgress(2, "本地用户文件完整。");
+            //创建本地编号记录表
+            obj01 = SpecialHelper.CreateTableSql<Model.InstSerialModel>(new Model.InstSerialModel(), out _dbl);
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+            tempWorker.ReportProgress(3, "本地用户编号记录文件完整。");
+            //创建本地任务记录表
+            obj01 = SpecialHelper.CreateTableSql<Model.InstTaskModel>(new Model.InstTaskModel(), out _dbl);
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+            tempWorker.ReportProgress(4, "本地用户任务记录文件完整。");
+            //创建本地任务记录表
+            obj01 = SpecialHelper.CreateTableSql<Model.InstTaskEncryptionModel>(new Model.InstTaskEncryptionModel(), out _dbl);
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+            tempWorker.ReportProgress(5, "本地用户任务加密记录文件完整。");
+            //创建本地多语言记录
+            obj01 = SpecialHelper.CreateTableSql<Model.BaseLanguageModel>(new BaseLanguageModel(), out _dbl);
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+            tempWorker.ReportProgress(5, "本地用户多语言文件完整。");
+            #endregion
 
+            MyConfig mc = new MyConfig();
+            AppSettingsSection ap = (mc.ReadConfig()) as AppSettingsSection;
+
+            tempWorker.ReportProgress(6, "开始查询是否存在常开项：");
             //查询 需要被打开的单子
             DataTable dt = SqliteDBHelper.Query_dt((SpecialHelper.SqlHelper.TaskSqlDic("V02003")).Fill(Program.ProgramUserId,"1"),this.LocationDataBaseName);
             e.Result = dt.Rows.Count;
+            tempWorker.ReportProgress(7, "当前用户常开项便签数量为："+ e.Result);
             if (dt.DtisNull())
                 return;
+            tempWorker.ReportProgress(8, "开始读取展示常开项：");
             AddTaskModule(dt);
             
         }
         //改变进度条的值
         private void worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-
+            new ShowLog(RtbTxt, MessageLevel.LogAppend, e.UserState.ToString());
         }        
         //线程执行完成
         private void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -205,7 +210,7 @@ namespace MuZiYangNote
             if (_C == 0)
                 new ShowLog(RtbTxt, MessageLevel.LogCustom, "暂无默认打开项，请参考帮助文档进行配置！",(new ShowLog.customColor() { IsEnable=true,_c=Color.Gray}));
             else
-                new ShowLog(RtbTxt, MessageLevel.LogNormal, "默认打开项已加载完毕！");
+                new ShowLog(RtbTxt, MessageLevel.LogAppend, "已加载完毕！");
         }
         //取消线程
         private void cancelWorker()
@@ -782,6 +787,7 @@ namespace MuZiYangNote
             if (_fuh == null || _fuh.IsDisposed)
             {
                 _fuh =  new UserHelperForm(this);
+                _fuh.DataChange += new UserHelperForm.DataChangeHandler((new MdiForm()).DataChanged);
                 _fuh.Show();//未打开，直接打开。
                 string _WIDOWSHOW02 = MultiLanguageSetting.SundryLanguage("WidowShow02", "08");
                 new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW02.Fill(_fuh.Text, MultiLanguageSetting.SundryLanguage("Open", "08")));
@@ -1158,9 +1164,10 @@ namespace MuZiYangNote
                         laUserName.Text = _vv[0];
                         laUserName.ForeColor = Color.Red;
                         laUserName.Visible = true;
-                        MemoryCacheHelper.GetUserFullName(_vv[1]);//存入缓存
+                        MemoryCacheHelper.GetUserFullName(null, new TimeSpan(), (_vv[1]), true);//(_vv[1]);//存入缓存
                         Program.ProgramUserId = _vv[1];
-                        //ClientUserModel u= MemoryCacheHelper.GetInfo<ClientUserModel>(Program.ProgramUserId);
+                        ClientUserModel u = MemoryCacheHelper.GetInfo<ClientUserModel>();//(Program.ProgramUserId);//读取用户本地缓存
+                        
                         new ShowLog(RtbTxt, MessageLevel.LogCustom,  "{0} 登陆成功！".Fill(_vv[0]), (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
 
                         StartWorker();

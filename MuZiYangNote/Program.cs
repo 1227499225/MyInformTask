@@ -16,7 +16,7 @@ namespace MuZiYangNote
         /// <summary>
         /// 超级管理员代码
         /// </summary>
-        public static string SuperAdminCode;
+        //public static string SuperAdminCode;
         /// <summary>
         /// 默认语言
         /// </summary>

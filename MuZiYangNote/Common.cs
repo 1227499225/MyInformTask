@@ -102,7 +102,7 @@ namespace MuZiYangNote
                     this.m_OpaqueLayer.Visible = true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 HideOpaqueLayer(ChildControl);
                 MessageBoxEX._Show("登录界面开启失败！");
@@ -124,7 +124,7 @@ namespace MuZiYangNote
                     this.m_OpaqueLayer.Controls.Remove(ChildControl);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //MessageBox.Show(ex.Message);
             }
