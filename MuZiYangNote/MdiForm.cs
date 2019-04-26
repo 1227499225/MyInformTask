@@ -784,21 +784,21 @@ namespace MuZiYangNote
 
         private UserHelperForm _fuh;
         private void F1Open() {
-            if (_fuh == null || _fuh.IsDisposed)
-            {
+            //if (_fuh == null || _fuh.IsDisposed)
+            //{
                 _fuh =  new UserHelperForm(this);
                 _fuh.DataChange += new UserHelperForm.DataChangeHandler((new MdiForm()).DataChanged);
                 _fuh.Show();//未打开，直接打开。
                 string _WIDOWSHOW02 = MultiLanguageSetting.SundryLanguage("WidowShow02", "08");
                 new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW02.Fill(_fuh.Text, MultiLanguageSetting.SundryLanguage("Open", "08")));
                 _fuh.Activate();//已打开，获得焦点，置顶。
-            }
-            else
-            {
-                string _WIDOWSHOW01 = MultiLanguageSetting.SundryLanguage("WidowShow01", "08");
-                new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW01.Fill(_fuh.Text));
-                _fuh.Activate();//已打开，获得焦点，置顶。
-            }
+            //}
+            //else
+            //{
+            //    string _WIDOWSHOW01 = MultiLanguageSetting.SundryLanguage("WidowShow01", "08");
+            //    new ShowLog(RtbTxt, MessageLevel.LogMessage, _WIDOWSHOW01.Fill(_fuh.Text));
+            //    _fuh.Activate();//已打开，获得焦点，置顶。
+            //}
 
             //判断窗体是否已打开
             //    Form _f = Lc.Find(p => p.Name == _fuh.Name);

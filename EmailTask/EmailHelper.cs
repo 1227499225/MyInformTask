@@ -39,13 +39,12 @@ namespace EmailTask
         /// <param name="em"></param>
         public EmailHelper(EmailSendInfo em)
         {
-            //if (em.SetConfig.DenyBuiltInSetConfig)
-            {
+            if (!em.SetConfig.DenyBuiltInSetConfig)
+            {//不使用默认或自定义项
                 if (em.IsLoadConfigs)
-                {
+                {//使用配置文件
                     if (ap.Settings.Count == 0)
                     {
-
                         NameValueCollection ap = System.Configuration.ConfigurationManager.AppSettings;
                         sc = new SetConfig()
                         {
@@ -70,9 +69,10 @@ namespace EmailTask
                     }
                 }
             }
-            //else {
-            //    sc = em.SetConfig;
-            //}
+            else
+            {
+                sc = em.SetConfig;
+            }
             SendEmail(em);
         }
         private void SendEmail(EmailSendInfo em)
@@ -183,13 +183,16 @@ namespace EmailTask
         public List<SendUserInfo> ToUserInfo { get; set; } = new List<SendUserInfo>();
         public List<SendUserInfo> CcUserInfo { get; set; } = new List<SendUserInfo>();
         public List<SendUserInfo> BccUserInfo { get; set; } = new List<SendUserInfo>();
+        /// <summary>
+        /// 是否加载配置文件中配置信息
+        /// </summary>
         public bool IsLoadConfigs { get; set; } = false;
         public MailPriority MailPriority { get; set; } = MailPriority.Normal;
         public string Subject { get; set; }
         public string BodyText { get; set; }
         public List<FileInfo> FileInfo { get; set; } = new List<FileInfo>();
 
-        //public SetConfig SetConfig { get; set; } =new SetConfig();
+        public SetConfig SetConfig { get; set; } = new SetConfig();
     }
     public class FileInfo {
         public string FileName { get; set; } = string.Empty;
