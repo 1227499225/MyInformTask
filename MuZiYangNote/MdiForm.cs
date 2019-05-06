@@ -111,6 +111,7 @@ namespace MuZiYangNote
         //    }
         //}//防止闪烁
         #endregion
+       
         #region
         #endregion
 
@@ -181,6 +182,11 @@ namespace MuZiYangNote
             obj01 = SpecialHelper.CreateTableSql<Model.BaseLanguageModel>(new BaseLanguageModel(), out _dbl);
             SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
             tempWorker.ReportProgress(5, "本地用户多语言文件完整。");
+            //表关系
+            obj01 = SpecialHelper.CreateTableSql<Model.BaseTabelRelationshipModel>(new BaseTabelRelationshipModel(), out _dbl);
+            SqliteDBHelper.CreateTable(obj01[2].ToString(), obj01[0].ToString(), obj01[1].ToString());
+
+         
             #endregion
 
             MyConfig mc = new MyConfig();
@@ -551,8 +557,8 @@ namespace MuZiYangNote
                 btnEXMin.Size = new Size(btnEXClose.Parent.Height, btnEXClose.Parent.Height);
                 #endregion
 
-                btnShowType.Location = new Point(btnShowType.Parent.Width-10- btnShowType.Width, btnShowType.Parent.Height / 2 - btnShowType.Height / 2);
-                btnAddTask.Location = new Point(btnShowType.Location.X - 10 - btnAddTask.Width, btnAddTask.Parent.Height / 2 - btnAddTask.Height / 2);
+                btnShowType.Location = new Point(btnShowType.Parent.Width-10- btnShowType.Width, btnShowType.Parent.Height / 2 - (btnShowType.Height-6) / 2);
+                btnAddTask.Location = new Point(btnShowType.Location.X - 10 - btnAddTask.Width, btnAddTask.Parent.Height / 2 - (btnAddTask.Height-6) / 2);
             }
         }
 
@@ -982,8 +988,12 @@ namespace MuZiYangNote
                             NoteContent = dr["NoteContent"].ToString(),
                             TaskId = dr["TaskId"].ToString(),
                             SnNumber = dr["SnNumber"].ToString(),
-                            IsOpen=Convert.ToInt32(dr["IsOpen"].ToString()),
+                            IsOpen = Convert.ToInt32(dr["IsOpen"].ToString()),
                         };
+                        #region 测试邮件
+                        //LogModel lo = new LogModel();
+                        //SpecialHelper._EmailHelper.SendEmail<Model.PlainNoteModel>(_PlainNoteM, ref lo, EnumBase.EmailTemplateEn.PaEmailTemplate, "测试");
+                        #endregion
                         _PlainNotes.Add(_PlainNoteM);
                     }
                     //任务便签
@@ -991,6 +1001,10 @@ namespace MuZiYangNote
                     {
 
                     }
+                }
+                else {
+                    new ShowLog(RtbTxt, MessageLevel.LogCustom, "便签<{0}>已打开！".Fill(_f.Topic), (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
+
                 }
 
             }
@@ -1206,6 +1220,36 @@ namespace MuZiYangNote
             }
                 
         }
+
+        private void 颜色ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDia = new ColorDialog();
+
+            if (colorDia.ShowDialog() == DialogResult.OK)
+            {
+                //获取所选择的颜色
+                Color colorChoosed = colorDia.Color;
+                //改变panel的背景色
+                //flowLayoutPanel1.BackColor = colorChoosed;
+                //Font _ft=new Font()
+            }
+        }
+
+        //退出登陆
+        private void TsmlLoggedOut_Click(object sender, EventArgs e)
+        {
+            if ((Program.ProgramUserId).StrIsNull())
+            {
+                new ShowLog(RtbTxt, MessageLevel.LogNormal, "{0}".Fill(laUserName.Text));
+                return;
+            }
+            Program.ProgramUserId = null;
+            new ShowLog(RtbTxt, MessageLevel.LogNormal, "{0}，已退出登陆！".Fill(laUserName.Text));
+            laNoLogin.Visible = true;
+            laUserName.Visible = false;
+            laUserName.Text = "暂未登录，请先登录！";
+            laUserName.ForeColor = Color.Gray;
+        }
         #endregion
 
         //在winform中查找控件
@@ -1241,18 +1285,6 @@ namespace MuZiYangNote
             }
         }
 
-        private void 颜色ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorDia = new ColorDialog();
 
-            if (colorDia.ShowDialog() == DialogResult.OK)
-            {
-                //获取所选择的颜色
-                Color colorChoosed = colorDia.Color;
-                //改变panel的背景色
-                //flowLayoutPanel1.BackColor = colorChoosed;
-                //Font _ft=new Font()
-            }
-        }
     }
 }

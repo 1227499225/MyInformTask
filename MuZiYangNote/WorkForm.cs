@@ -19,6 +19,8 @@ namespace MuZiYangNote
         }
         private void WorkForm_Load(object sender, EventArgs e)
         {
+
+            //panel2.Controls.Add(new UserControls.TaskDetails());
         }
 
         private void btnEXClose_Click(object sender, EventArgs e)

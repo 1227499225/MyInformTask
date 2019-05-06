@@ -81,7 +81,7 @@ namespace PublicHelper
         /// <typeparam name="T">实体类</typeparam>
         /// <param name="m"></param>
         /// <returns></returns>
-        public static object[] CreateTableSql<T>(T m,out DateBaseLocation _dbl)
+        public static object[] CreateTableSql<T>(T m, out DateBaseLocation _dbl)
         {
             Type type = typeof(T);
             PropertyInfo[] propertyArray = type.GetProperties();
@@ -149,17 +149,19 @@ namespace PublicHelper
             string[] strSqlValues = propertyArray.Select(P => $"@{P.Name}").ToArray();
             string strSqlValue = string.Join(",", strSqlValues);
             string szSQL = "INSERT INTO {0} ({1}) VALUES (@strSqlValue)".Fill(StrTableName, strSqlName);
-            string SqlVal = "'"+string.Join("','", propertyArray.Select(P => $"{P.GetValue(m, null)}").ToArray())+"'";
+            string SqlVal = "'" + string.Join("','", propertyArray.Select(P => $"{P.GetValue(m, null)}").ToArray()) + "'";
             SqlParameter[] para = propertyArray.Select(p => new SqlParameter($"@{p.Name}", p.GetValue(m, null))).ToArray();
             return new object[] { szSQL, SqlVal, strSqlValue, para, DataSoureName };
         }
+
         /// <summary>
         /// 创建修改语句
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="m"></param>
         /// <returns></returns>
-        public static object[] CreateUpdateSql<T>(T m) {
+        public static object[] CreateUpdateSql<T>(T m)
+        {
             Type type = typeof(T);
             PropertyInfo[] propertyArray = type.GetProperties();
             propertyArray = GetPropertyArray(propertyArray);
@@ -181,19 +183,20 @@ namespace PublicHelper
                     }
                 }
                 else
-                 WhereStr = " Id='" + prop.GetValue(m) + "'";
+                    WhereStr = " Id='" + prop.GetValue(m) + "'";
             }
             string szSQL = "UPDATE  {0} SET {1} WHERE {2}".Fill(StrTableName, UpValueStr, WhereStr);
 
             return new object[] { szSQL, DataSoureName };
         }
+
         /// <summary>
         /// 判断字段值是否已存在于数据库
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="m"></param>
         /// <param name="log"></param>
-        public static void IsFileValObjExist<T>(T m, ref LogModel log,string ResFieldVal=null)
+        public static void IsFileValObjExist<T>(T m, ref LogModel log, string ResFieldVal = null)
         {
             try
             {
@@ -216,8 +219,8 @@ namespace PublicHelper
                     }
                 }
                 string szSQL = "SELECT 1 FROM {0} WHERE  IsDelete='0' {1}".Fill(SearchTableName, strWhere);
-                if(!ResFieldVal.StrIsNull())
-                    szSQL = "SELECT "+ ResFieldVal + " FROM {0} WHERE  IsDelete='0' {1}".Fill(SearchTableName, strWhere);
+                if (!ResFieldVal.StrIsNull())
+                    szSQL = "SELECT " + ResFieldVal + " FROM {0} WHERE  IsDelete='0' {1}".Fill(SearchTableName, strWhere);
                 DataTable dt = SqliteDBHelper.Query_dt(szSQL, DataSoureName);
                 if (!dt.DtisNull())
                 {
@@ -230,14 +233,15 @@ namespace PublicHelper
                             string[] _v = ResFieldVal.Split(',');
                             foreach (string item in _v)
                             {
-                                log.szStr+=","+ dt.Rows[0]["" + item + ""].ToString();
+                                log.szStr += "," + dt.Rows[0]["" + item + ""].ToString();
                             }
                             if ((log.szStr).StartsWith(","))
                             {
-                                log.szStr = (log.szStr).Substring(1,(log.szStr).Length-1);
+                                log.szStr = (log.szStr).Substring(1, (log.szStr).Length - 1);
                             }
                         }
-                        else {
+                        else
+                        {
                             log.szStr = dt.Rows[0]["" + ResFieldVal + ""].ToString();
                         }
                     }
@@ -337,7 +341,9 @@ namespace PublicHelper
                 DescriptionAttribute descriptionAttribute = (DescriptionAttribute)objs[0];
                 return descriptionAttribute.Description;
             }
+
         }
+
 
         //ArrayList去重   
         public static ArrayList GetSingle(ArrayList list)
@@ -369,7 +375,7 @@ namespace PublicHelper
             * 描述：//相关SQ
             * ============================================================
             */
-            public static  Dictionary<string, string> TaskSqlDics = new Dictionary<string, string>() {
+            public static Dictionary<string, string> TaskSqlDics = new Dictionary<string, string>() {
                     //ClientUserInfo
                     {"V01001","SELECT * FROM ClientUserInfo WHERE Id='{0}'" },
                     {"V01002","" },
@@ -407,7 +413,8 @@ namespace PublicHelper
             * 描述：相关SQL
             * ============================================================
             */
-            public static string TaskSqlDic(string SqlCode) {
+            public static string TaskSqlDic(string SqlCode)
+            {
                 return TaskSqlDics[SqlCode];
             }
         }
@@ -436,7 +443,119 @@ namespace PublicHelper
                     if (EmailTemplate.Contains(_Name))
                         EmailTemplate = Regex.Replace(EmailTemplate, @"\" + _Name + "", prop.GetValue(m).ToString());
                 }
+            }
 
+            /// <summary>
+            /// 根据业务表名查询并返回模板（不支持页面Table）
+            /// </summary>
+            /// <param name="MainBusinessName"></param>
+            /// <param name="EmailTemplate"></param>
+            public static string EmailTemplate<T>(T m,  string EmailTemplate)
+            {
+                string StrTableName, DataSoureName, TaskId="";
+                Type type = typeof(T);
+                PropertyInfo[] propertyArray = type.GetProperties();
+                object[] attributes = typeof(T).GetCustomAttributes(typeof(Model._MoAttribute), true);
+                StrTableName = (attributes[0] as Model._MoAttribute).TableName;
+                DataSoureName = (attributes[0] as Model._MoAttribute).DataSoureName;
+                foreach (PropertyInfo prop in propertyArray)
+                {
+                    if(prop.Name.Equals("TaskId"))
+                        TaskId=prop.GetValue(m).ToString();
+                }
+                //只支持两级查询
+                string szSQL0 = @"SELECT LangName FROM BaseTabelRelationship WHERE  ParentId IN(
+                       SELECT Id FROM BaseTabelRelationship WHERE LangName = '{0}'
+                       )";
+                string szSQL1 = "SELECT * FROM {0} WHERE TaskId='"+ TaskId + "'",
+                       szSQL2 = szSQL1;
+                DataSet ds = new DataSet();
+                DataTable _dt1 = SqliteDBHelper.Query_dt(szSQL0.Fill(StrTableName), DataSoureName);
+                DataTable _dt2 = new DataTable();
+                _dt2= SqliteDBHelper.Query_dt(szSQL2.Fill(StrTableName), DataSoureName);
+                _dt2.TableName = StrTableName;
+                ds.Tables.Add(_dt2);
+                szSQL2 = szSQL1;
+                if (!_dt1.DtisNull())
+                {
+                    foreach (DataRow dr in _dt1.Rows)
+                    {
+                        _dt2 = new DataTable();
+                        szSQL2 = szSQL1.Fill(dr.Field<string>("LangName").ToString());
+                        _dt2 = SqliteDBHelper.Query_dt(szSQL2, DataSoureName);
+                        ds.Tables.Add(_dt2);
+                        ds.Tables[_dt2.TableName].TableName = dr.Field<string>("LangName").ToString();
+                        szSQL2 = szSQL1;
+                    }
+                }
+                string rex = null;
+                ArrayList _ary = new ArrayList();
+                //内容循环匹配
+                if (EmailTemplate.ToUpper().Contains("<TABLE"))
+                {
+                    rex = "(?<=(ForData=\"))[.\\s\\S]*?(?=(\"))";
+                    Regex regex01 = new Regex(rex, RegexOptions.IgnoreCase);
+                    MatchCollection matches01 = regex01.Matches(EmailTemplate);
+                    if (matches01.Count > 0)
+                    {
+                        bool ForData = Convert.ToBoolean(matches01[0].Value);
+                        if (ForData)//存在明细填充
+                        {
+                            rex= "(?<=(<tr))[.\\s\\S]*?(?=(tr>))";
+                             regex01 = new Regex(rex, RegexOptions.IgnoreCase);
+                             matches01 = regex01.Matches(EmailTemplate);
+                            if (matches01.Count > 0)
+                            {
+                                rex = "(?<=(>))[.\\s\\S]*?(?=(</td>))";
+                                regex01 = new Regex(rex, RegexOptions.IgnoreCase);
+                                matches01 = regex01.Matches(matches01[0].Value);
+                                foreach (Match match in matches01)
+                                {
+                                    _ary.Add(match.Value);
+                                }
+                            }
+
+                        }
+                    }
+                }
+                //
+                #region 方式二
+                 rex = "(?<=(<%))[.\\s\\S]*?(?=(%>))";
+                 _ary = new ArrayList();
+                RegexOptions options = RegexOptions.IgnoreCase;//不区分大小写
+                Regex regex = new Regex(rex, options);
+                MatchCollection matches = regex.Matches(EmailTemplate);
+                foreach (Match match in matches)
+                {
+                    _ary.Add(match.Value);
+                }
+                #endregion
+                if (ds.Tables.Count == 0)
+                    return EmailTemplate;
+                if (_ary.Count == 0)
+                    return EmailTemplate;
+                string TableName, ColumnName;
+                string[]    ColumnValue;
+                string[] strA;
+                DataTable _dt3 = new DataTable();
+                foreach (string st in _ary)
+                {
+                    if (st.Contains("."))
+                    {
+                       strA = st.Split('.');
+                        if (strA.Count() ==2) {
+                            TableName = strA[0];
+                            ColumnName = strA[1];
+                            _dt3= ds.Tables[TableName];
+                            if (!_dt3.DtisNull()) {
+                                ColumnValue = SpecialHelper.GetTableFieldVal(ref _dt3, ColumnName);
+                                if (ColumnValue.Count() > 0)
+                                    EmailTemplate = Regex.Replace(EmailTemplate, @"<%{0}%>".Fill(st), ColumnValue[0], RegexOptions.IgnoreCase);
+                            }
+                        }
+                    }
+                }
+                return EmailTemplate;
             }
         }
 
@@ -454,14 +573,14 @@ namespace PublicHelper
             /// <param name="log">执行日志</param>
             /// <param name="En">模板名称(无后缀)</param>
             /// <param name="Subject">邮件主题</param>
-            public static void SendEmail<T>(T m, string Sn, ref LogModel log, EnumBase.EmailTemplateEn En, string Subject)
+            public static void SendEmail<T>(T m,ref LogModel log, EnumBase.EmailTemplateEn En, string Subject)
             {
                 try
                 {
                     //string szSQL = SqlHelper.TicketSqlDic[1];
                     DataTable dt = null; //DBHelper.RunDataTableSQL(string.Format(szSQL, Sn));
 
-                    string userEmail = string.Empty, userName = string.Empty;
+                    string userEmail = "18771564243@qq.com", userName = "草鸡管理员";//string.Empty;
                     if (!dt.DtisNull())
                     {
                         userEmail = dt.Rows[0]["EmailAddress"].ToString();
@@ -480,21 +599,21 @@ namespace PublicHelper
 
 
                     bool isOpenExternalAccount = true; //(System.Configuration.ConfigurationManager.AppSettings["isOpenExternalAccount"] == "false" ? false : true);
-
-                    string BodyTextConext = null;//LogToTXT.FileRead(EnumHelper.GetEnumDescription<EnumBase.PaymentScheduleNode>(En));
+                    //string str = System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase
+                    string BodyTextConext = FileHelper.FileRead(EnumHelper.GetEnumDescription<EnumBase.EmailTemplateEn>(En));//LogToTXT.FileRead(EnumHelper.GetEnumDescription<EnumBase.PaymentScheduleNode>(En));
                     BodyTextConext = BodyTextConext.Replace("<%userName%>", userName);
                     switch ((int)En)
                     {
                         case 1://付款
-                               //TicketInfoModel tic = m as TicketInfoModel;
-                               //EmailTemplateHelper.EmailTemplate<TicketInfoModel>(tic, ref BodyTextConext);
+                               PlainNoteModel tic = m as PlainNoteModel;
+                            BodyTextConext= EmailTemplateHelper.EmailTemplate<PlainNoteModel>(tic,  BodyTextConext);
                             break;
                         case 2://验收
                                //CheckAndAcceptModel CheckAndAccept = m as CheckAndAcceptModel;
                                //EmailTemplateHelper.EmailTemplate<CheckAndAcceptModel>(CheckAndAccept, ref BodyTextConext);
                             break;
                     }
-
+                    SetConfig sc = new SetConfig() { DenyBuiltInSetConfig = false };
                     //EmailTemplateHelper.EmailTemplate<LogModel>(log, ref BodyTextConext);
                     EmailSendInfo em = new EmailSendInfo()
                     {
@@ -507,6 +626,7 @@ namespace PublicHelper
                     EmailHelper eh = new EmailHelper(em);
                     if (!eh.Res)
                     {
+                        log.Erlv = MessageLevel.LogError;
                         log.szStr += "/n/r 邮件错误：" + eh.Msg;
                     }
                     else
@@ -524,12 +644,13 @@ namespace PublicHelper
         #endregion
 
 
-        }
+    }
 
 
 
     #region DataTable转换为Model实体
-    public static class DataTableToModelHelper {
+    public static class DataTableToModelHelper
+    {
         public static List<T> GetModelFromDB<T>(DataTable dt)
         {
             List<T> data = new List<T>();
@@ -580,13 +701,14 @@ namespace PublicHelper
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-             }
+            }
         }
     }
     #endregion
 
     #region Json与Model实体互转
-    public static class JsonAndMode {
+    public static class JsonAndMode
+    {
         /// <summary>
         /// json类和实体类之间相互转换
         /// </summary>
@@ -604,6 +726,7 @@ namespace PublicHelper
         }
     }
     #endregion
+
     #region 缓存辅助类 01
     public static class MemoryCacheHelper
     {
@@ -1007,7 +1130,8 @@ namespace PublicHelper
     #endregion
 
     #region
-    public class BrowserHelper {
+    public class BrowserHelper
+    {
         /// <summary>
         /// 调用系统浏览器打开网页
         /// http://m.jb51.net/article/44622.htm

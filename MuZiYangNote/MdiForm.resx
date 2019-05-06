@@ -138,7 +138,7 @@
     <value>4, 2, 4, 2</value>
   </data>
   <data name="btnAddTask.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 27</value>
+    <value>80, 30</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnAddTask.TabIndex" type="System.Int32, mscorlib">
@@ -163,7 +163,7 @@
     <value>1</value>
   </data>
   <data name="RtbTxt.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 344</value>
+    <value>4, 344</value>
   </data>
   <data name="RtbTxt.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 2, 4, 2</value>
@@ -172,7 +172,7 @@
     <value>Vertical</value>
   </data>
   <data name="RtbTxt.Size" type="System.Drawing.Size, System.Drawing">
-    <value>858, 146</value>
+    <value>853, 146</value>
   </data>
   <data name="RtbTxt.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -208,7 +208,7 @@
     <value>4, 2, 4, 2</value>
   </data>
   <data name="btnShowType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>104, 27</value>
+    <value>104, 30</value>
   </data>
   <data name="btnShowType.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -227,24 +227,6 @@
   </data>
   <data name="&gt;&gt;btnShowType.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="fyp01.AutoScroll" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="fyp01.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="fyp01.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 20</value>
-  </data>
-  <data name="fyp01.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 2, 4, 2</value>
-  </data>
-  <data name="fyp01.Size" type="System.Drawing.Size, System.Drawing">
-    <value>853, 236</value>
-  </data>
-  <data name="fyp01.TabIndex" type="System.Int32, mscorlib">
-    <value>99999</value>
   </data>
   <data name="&gt;&gt;fyp01.Name" xml:space="preserve">
     <value>fyp01</value>
@@ -287,6 +269,159 @@
   </data>
   <data name="&gt;&gt;gpbTaskList.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="fyp01.AutoScroll" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="fyp01.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="fyp01.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 20</value>
+  </data>
+  <data name="fyp01.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 2, 4, 2</value>
+  </data>
+  <data name="fyp01.Size" type="System.Drawing.Size, System.Drawing">
+    <value>853, 236</value>
+  </data>
+  <data name="fyp01.TabIndex" type="System.Int32, mscorlib">
+    <value>99999</value>
+  </data>
+  <data name="&gt;&gt;fyp01.Name" xml:space="preserve">
+    <value>fyp01</value>
+  </data>
+  <data name="&gt;&gt;fyp01.Type" xml:space="preserve">
+    <value>System.Windows.Forms.FlowLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;fyp01.Parent" xml:space="preserve">
+    <value>gpbTaskList</value>
+  </data>
+  <data name="&gt;&gt;fyp01.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;laUserName.Name" xml:space="preserve">
+    <value>laUserName</value>
+  </data>
+  <data name="&gt;&gt;laUserName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;laUserName.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;laUserName.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;laNoLogin.Name" xml:space="preserve">
+    <value>laNoLogin</value>
+  </data>
+  <data name="&gt;&gt;laNoLogin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;laNoLogin.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;laNoLogin.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Name" xml:space="preserve">
+    <value>pictureBox1</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;MdiTitle.Name" xml:space="preserve">
+    <value>MdiTitle</value>
+  </data>
+  <data name="&gt;&gt;MdiTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MdiTitle.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;MdiTitle.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;btnEXMin.Name" xml:space="preserve">
+    <value>btnEXMin</value>
+  </data>
+  <data name="&gt;&gt;btnEXMin.Type" xml:space="preserve">
+    <value>MuZiYangNote.UserControls.ButtonEX, MuZiYangNote, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnEXMin.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnEXMin.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;btnEXMax.Name" xml:space="preserve">
+    <value>btnEXMax</value>
+  </data>
+  <data name="&gt;&gt;btnEXMax.Type" xml:space="preserve">
+    <value>MuZiYangNote.UserControls.ButtonEX, MuZiYangNote, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnEXMax.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnEXMax.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;btnEXClose.Name" xml:space="preserve">
+    <value>btnEXClose</value>
+  </data>
+  <data name="&gt;&gt;btnEXClose.Type" xml:space="preserve">
+    <value>MuZiYangNote.UserControls.ButtonEX, MuZiYangNote, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnEXClose.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnEXClose.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="panel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft YaHei UI, 9pt</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 2, 4, 2</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>861, 40</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="laUserName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -754,38 +889,104 @@
   <data name="&gt;&gt;btnEXClose.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="panel1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft YaHei UI, 9pt</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="panel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 2, 4, 2</value>
-  </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>861, 40</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <metadata name="MStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>118, 17</value>
   </metadata>
   <data name="MStrip.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>None</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 24</value>
+  </data>
+  <data name="toolStripMenuItem1.Text" xml:space="preserve">
+    <value>语言(L)</value>
+  </data>
+  <data name="F1Help.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 24</value>
+  </data>
+  <data name="F1Help.Text" xml:space="preserve">
+    <value>日常操作</value>
+  </data>
+  <data name="个人中心ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 24</value>
+  </data>
+  <data name="个人中心ToolStripMenuItem.Text" xml:space="preserve">
+    <value>个人中心</value>
+  </data>
+  <data name="我的好友ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 24</value>
+  </data>
+  <data name="我的好友ToolStripMenuItem.Text" xml:space="preserve">
+    <value>我的好友</value>
+  </data>
+  <data name="toolStripMenuItem4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAALYSURBVHhe7dJNbhNBEAXgHIUjcKRcJFyABSxgHZBY
+        c7UcIaSiamSast3t2JkZ+/ukJ/ETjyfv1R0AAAAAAAAAAAAAAAAAAAAAAAAAAMCyvv76/TGSf+WW5PhP
+        GUdwS3bGf844glsRQ+fgbXxHcCti4By6H7/FEVyrGDYHrobfjSO4NjFoDlsNXsURXIsYMgethj4UR7B1
+        9w+fPz58+3HK+K+Jz8Yz8nFsSQz3khjw+dP3n+XAhxKfic/mMxzBlsRgOVwbceoIdsZvcQRbEUPlYP2I
+        Q0dQjN/iCNYuBsqhqgFfc+gIDozf4gjWKobJgarh/kl1BAPjtziCtYlBcphqsDK7RzAxfosjWIsYIgep
+        hjqYGP6E8VscwdJigByiGmgkj5nq/0biCJYSxecA1TAjecxHxbMcwZZE4Vl8NchI/o7fxL91PzMTR/Be
+        ougsvBpiJP+N38T/dT87E0dwaVFwFl0NMJIv+ai94me6z8zEEVxKFJsFV8WP5D4fdVT8bPfZmTiCc4tC
+        s9iq8JEMj9/EZ7pnzMQRnEsUmYVWRY9kevwmPts9ayaO4K2iwCyyKngkJ4/fxDO6Z87EEZwqissCq2JH
+        8ubxm3hW9+yZOIJZUVgWVxU6krON38Qzu++YiSMYFUVlYVWRIzn7+E08u/uumTiCY6KgLKoqcCQXG7+J
+        7+i+cyaOYJ8oJguqihvJxcdv4ru6756JI+hFIVlMVdhI3m38Jr6ze4eZOIImishCqqJG8u7jN/Hd3bvM
+        xBGELKIqaCSLjd/EO3TvNJOnfMzteinh1AIXH7+Jd+nebTSr+R0WFUV0xRzL6oqLd+re8ViMvysK6Qra
+        l9UWF+/Wveu+GL8SxXRF9Vl9cfGO3Tv3Mf4hUVBX2OaKi3ft3n1zv8OioqitF3cNv8OidgrcbHHX8Dss
+        6qW4D/nHzbqG3wEAAAAAAAAAAAAAAAAAAAAAAAAAAACAi7i7+wPbaQ1I27798QAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 24</value>
+  </data>
+  <data name="字体设置ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 26</value>
+  </data>
+  <data name="字体设置ToolStripMenuItem.Text" xml:space="preserve">
+    <value>字体设置</value>
+  </data>
+  <data name="TsmlLoggedOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 26</value>
+  </data>
+  <data name="TsmlLoggedOut.Text" xml:space="preserve">
+    <value>退出登陆</value>
+  </data>
+  <data name="toolStripMenuItem5.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Transparent</value>
+  </data>
+  <data name="toolStripMenuItem5.ShowShortcutKeys" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 24</value>
+  </data>
+  <data name="MStrip.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 4</value>
+  </data>
+  <data name="MStrip.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>8, 2, 0, 2</value>
+  </data>
+  <data name="MStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>501, 28</value>
+  </data>
+  <data name="MStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="MStrip.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;MStrip.Name" xml:space="preserve">
+    <value>MStrip</value>
+  </data>
+  <data name="&gt;&gt;MStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MStrip.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;MStrip.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="toolStripMenuItem3.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 26</value>
@@ -799,23 +1000,17 @@
   <data name="ToolStripMenuItem.Text" xml:space="preserve">
     <value>英文</value>
   </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 24</value>
+  <data name="TsmNoteHistory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>204, 26</value>
   </data>
-  <data name="toolStripMenuItem1.Text" xml:space="preserve">
-    <value>语言(L)</value>
+  <data name="TsmNoteHistory.Text" xml:space="preserve">
+    <value>历史便签</value>
   </data>
   <data name="窗体内部展示ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 26</value>
   </data>
   <data name="窗体内部展示ToolStripMenuItem.Text" xml:space="preserve">
     <value>窗体内部展示</value>
-  </data>
-  <data name="TsmNoteHistory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 26</value>
-  </data>
-  <data name="TsmNoteHistory.Text" xml:space="preserve">
-    <value>历史便签</value>
   </data>
   <data name="TsmDailyOperationHistory.Size" type="System.Drawing.Size, System.Drawing">
     <value>204, 26</value>
@@ -829,11 +1024,11 @@
   <data name="TsmF1Help.Text" xml:space="preserve">
     <value>F1帮助</value>
   </data>
-  <data name="F1Help.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 24</value>
+  <data name="个人资料ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 26</value>
   </data>
-  <data name="F1Help.Text" xml:space="preserve">
-    <value>日常操作</value>
+  <data name="个人资料ToolStripMenuItem.Text" xml:space="preserve">
+    <value>个人资料</value>
   </data>
   <data name="昵称修改ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 26</value>
@@ -859,11 +1054,11 @@
   <data name="个人简介ToolStripMenuItem.Text" xml:space="preserve">
     <value>个人简介</value>
   </data>
-  <data name="个人资料ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 26</value>
   </data>
-  <data name="个人资料ToolStripMenuItem.Text" xml:space="preserve">
-    <value>个人资料</value>
+  <data name="toolStripMenuItem2.Text" xml:space="preserve">
+    <value>安全中心</value>
   </data>
   <data name="修改密码ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 26</value>
@@ -871,11 +1066,11 @@
   <data name="修改密码ToolStripMenuItem.Text" xml:space="preserve">
     <value>修改密码</value>
   </data>
-  <data name="toolStripMenuItem2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="登录地址ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 26</value>
   </data>
-  <data name="toolStripMenuItem2.Text" xml:space="preserve">
-    <value>安全中心</value>
+  <data name="登录地址ToolStripMenuItem.Text" xml:space="preserve">
+    <value>登录地址</value>
   </data>
   <data name="查看登录IPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>157, 26</value>
@@ -889,29 +1084,17 @@
   <data name="禁止IP登录ToolStripMenuItem.Text" xml:space="preserve">
     <value>禁止IP登录</value>
   </data>
-  <data name="登录地址ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 26</value>
-  </data>
-  <data name="登录地址ToolStripMenuItem.Text" xml:space="preserve">
-    <value>登录地址</value>
-  </data>
-  <data name="登录邮件提醒ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 26</value>
-  </data>
-  <data name="登录邮件提醒ToolStripMenuItem.Text" xml:space="preserve">
-    <value>登录时邮件提醒</value>
-  </data>
   <data name="账户设置toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 26</value>
   </data>
   <data name="账户设置toolStripMenuItem4.Text" xml:space="preserve">
     <value>账户设置</value>
   </data>
-  <data name="个人中心ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 24</value>
+  <data name="登录邮件提醒ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 26</value>
   </data>
-  <data name="个人中心ToolStripMenuItem.Text" xml:space="preserve">
-    <value>个人中心</value>
+  <data name="登录邮件提醒ToolStripMenuItem.Text" xml:space="preserve">
+    <value>登录时邮件提醒</value>
   </data>
   <data name="添加好友ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>144, 26</value>
@@ -921,12 +1104,6 @@
   </data>
   <data name="添加好友ToolStripMenuItem.ToolTipText" xml:space="preserve">
     <value>推送、共享编辑、邮件发送</value>
-  </data>
-  <data name="我的好友ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 24</value>
-  </data>
-  <data name="我的好友ToolStripMenuItem.Text" xml:space="preserve">
-    <value>我的好友</value>
   </data>
   <data name="其他ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 26</value>
@@ -945,27 +1122,6 @@
   </data>
   <data name="其他03ToolStripMenuItem.Text" xml:space="preserve">
     <value>其他03</value>
-  </data>
-  <data name="toolStripMenuItem4.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAYAAADDPmHLAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAALYSURBVHhe7dJNbhNBEAXgHIUjcKRcJFyABSxgHZBY
-        c7UcIaSiamSast3t2JkZ+/ukJ/ETjyfv1R0AAAAAAAAAAAAAAAAAAAAAAAAAAMCyvv76/TGSf+WW5PhP
-        GUdwS3bGf844glsRQ+fgbXxHcCti4By6H7/FEVyrGDYHrobfjSO4NjFoDlsNXsURXIsYMgethj4UR7B1
-        9w+fPz58+3HK+K+Jz8Yz8nFsSQz3khjw+dP3n+XAhxKfic/mMxzBlsRgOVwbceoIdsZvcQRbEUPlYP2I
-        Q0dQjN/iCNYuBsqhqgFfc+gIDozf4gjWKobJgarh/kl1BAPjtziCtYlBcphqsDK7RzAxfosjWIsYIgep
-        hjqYGP6E8VscwdJigByiGmgkj5nq/0biCJYSxecA1TAjecxHxbMcwZZE4Vl8NchI/o7fxL91PzMTR/Be
-        ougsvBpiJP+N38T/dT87E0dwaVFwFl0NMJIv+ai94me6z8zEEVxKFJsFV8WP5D4fdVT8bPfZmTiCc4tC
-        s9iq8JEMj9/EZ7pnzMQRnEsUmYVWRY9kevwmPts9ayaO4K2iwCyyKngkJ4/fxDO6Z87EEZwqissCq2JH
-        8ubxm3hW9+yZOIJZUVgWVxU6krON38Qzu++YiSMYFUVlYVWRIzn7+E08u/uumTiCY6KgLKoqcCQXG7+J
-        7+i+cyaOYJ8oJguqihvJxcdv4ru6756JI+hFIVlMVdhI3m38Jr6ze4eZOIImishCqqJG8u7jN/Hd3bvM
-        xBGELKIqaCSLjd/EO3TvNJOnfMzteinh1AIXH7+Jd+nebTSr+R0WFUV0xRzL6oqLd+re8ViMvysK6Qra
-        l9UWF+/Wveu+GL8SxXRF9Vl9cfGO3Tv3Mf4hUVBX2OaKi3ft3n1zv8OioqitF3cNv8OidgrcbHHX8Dss
-        6qW4D/nHzbqG3wEAAAAAAAAAAAAAAAAAAAAAAAAAAACAi7i7+wPbaQ1I27798QAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 24</value>
   </data>
   <data name="toolStripComboBox1.Items" xml:space="preserve">
     <value>宋体</value>
@@ -1026,48 +1182,6 @@
   </data>
   <data name="颜色ToolStripMenuItem.Text" xml:space="preserve">
     <value>颜色</value>
-  </data>
-  <data name="字体设置ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 26</value>
-  </data>
-  <data name="字体设置ToolStripMenuItem.Text" xml:space="preserve">
-    <value>字体设置</value>
-  </data>
-  <data name="toolStripMenuItem5.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Transparent</value>
-  </data>
-  <data name="toolStripMenuItem5.ShowShortcutKeys" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>32, 24</value>
-  </data>
-  <data name="MStrip.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 4</value>
-  </data>
-  <data name="MStrip.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>8, 2, 0, 2</value>
-  </data>
-  <data name="MStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 28</value>
-  </data>
-  <data name="MStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="MStrip.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;MStrip.Name" xml:space="preserve">
-    <value>MStrip</value>
-  </data>
-  <data name="&gt;&gt;MStrip.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;MStrip.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;MStrip.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>209, 17</value>
@@ -1501,6 +1615,12 @@
   </data>
   <data name="&gt;&gt;colorDialog1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TsmlLoggedOut.Name" xml:space="preserve">
+    <value>TsmlLoggedOut</value>
+  </data>
+  <data name="&gt;&gt;TsmlLoggedOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MdiForm</value>

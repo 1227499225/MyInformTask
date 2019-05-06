@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Model</RootNamespace>
     <AssemblyName>Model</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -46,6 +46,7 @@
     <Compile Include="BaseModel.cs" />
     <Compile Include="BaseProgramInfoModel.cs" />
     <Compile Include="BaseTableColumnViewModel.cs" />
+    <Compile Include="BaseTabelRelationshipModel.cs" />
     <Compile Include="ClientUserModel.cs" />
     <Compile Include="EventNoteModel.cs" />
     <Compile Include="InstSerialModel.cs" />

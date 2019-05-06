@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,10 +7,22 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 
+using Newtonsoft.Json.Serialization;
+
+
 namespace PublicHelper
 {
     public class JsonHelper
     {
+        public static string GetJson(object obj)
+        {
+            var serializerSettings = new JsonSerializerSettings
+            {
+                // 设置为驼峰命名
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+            return JsonConvert.SerializeObject(obj, Formatting.None, serializerSettings);
+        }
         /// <summary>
         /// 把对象序列化 JSON 字符串 
         /// </summary>

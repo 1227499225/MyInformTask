@@ -34,9 +34,17 @@ namespace PublicHelper
         public delegate void LogAppendDelegate( RichTextBox RtbTxt,Color color, string text);
         public void LogAppend( RichTextBox RtbTxt,Color color, string text)
         {
-            RtbTxt.AppendText("\n");
-            RtbTxt.SelectionColor = color;
-            RtbTxt.AppendText(text);
+            if (RtbTxt.InvokeRequired == false)
+            {
+                RtbTxt.AppendText("\n");
+                RtbTxt.SelectionColor = color;
+                RtbTxt.AppendText(text);
+            }
+            else
+            {
+                LogAppendDelegate la = new LogAppendDelegate(LogAppend);
+                RtbTxt.Invoke(la, RtbTxt, color, text);
+            }
         }
         public void LogError( RichTextBox RtbTxt,string text)
         {

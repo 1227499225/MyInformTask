@@ -34,5 +34,11 @@ namespace Model
         [Required(ErrorMessage = "{0}不能为空！")]
         [Filed(IsIncrement=true,JudgeDatabaseIsExist =true)]
         public string ClientUserPwd { get; set; }
+
+        [Range(1, 16)]
+        [Description("邮箱")]
+        [Required(ErrorMessage = "{0}不能为空！")]
+        [Filed(IsIncrement = true)]
+        public string Email { get; set; }
     }
 }

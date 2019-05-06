@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MuZiYangNote</RootNamespace>
     <AssemblyName>MuZiYangNote</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -254,6 +254,7 @@
     <EmbeddedResource Include="MultiLanguageConfig\LogsCnOrEn.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>LogsCnOrEn.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MultiLanguageConfig\MdiFormCnOrEn.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -377,6 +378,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="%24this.Icon.ico" />
+    <Content Include="Files\EmailTemplate\PaEmailTemplate.html" />
     <Content Include="Files\SystemFile\SystemPages\FmUserHelper.html" />
     <Content Include="Files\SystemFile\SystemPages\人妖时间.html" />
     <None Include="Resources\setting.png" />
@@ -392,7 +394,6 @@
     <None Include="Resources\main_7.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Files\EmailTemplate\" />
     <Folder Include="Files\SystemFile\System\" />
   </ItemGroup>
   <ItemGroup>

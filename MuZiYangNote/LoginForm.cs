@@ -27,8 +27,8 @@ namespace MuZiYangNote
             btnEXMin.Enabled = isOpenEnabled;
             //panelHead.Enabled = isOpenEnabled;
 
-            //txtUserAccount.Text = "superadmin";
-            //txtUserPwd.Text = "123456";
+            txtUserAccount.Text = "superadmin";
+            txtUserPwd.Text = "123456";
 
             ClientUserModel u = MemoryCacheHelper.GetInfo<ClientUserModel>();
             if (u != null) {
@@ -63,7 +63,7 @@ namespace MuZiYangNote
                 LogModel log = new LogModel()
                 {
                     Erlv = MessageLevel.LogMessage,
-                    szStr = "退出登陆！",
+                    szStr = "取消登陆！",
                 };
                 this._ParentForm.ChangeLoginSet(false,ref log);
             }

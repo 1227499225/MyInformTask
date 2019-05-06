@@ -92,7 +92,7 @@ namespace MuZiYangNote.UserControls
         //右键操作关闭显示
         private void ToolStripMenuItemClose_Click(object sender, EventArgs e)
         {
-            string _v = MultiLanguageSetting.SundryLanguage("DeleteModule", "09");//多语言
+            string _v = MultiLanguageSetting.SundryLanguage("ClosingModule", "09");//多语言
             OnDataChange(new BaseEv.DataChangeEventArgs(_v.Fill(this.ID, this.title), MessageLevel.LogWarning));
             this.Dispose();
         }

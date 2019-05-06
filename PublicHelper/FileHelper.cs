@@ -92,7 +92,7 @@ namespace PublicHelper
             string Conext = string.Empty;
             if (string.IsNullOrEmpty(FilePath))
             {
-                FilePath = AppDomain.CurrentDomain.BaseDirectory + "Template\\EmailTemplate\\" + FileName + "";
+                FilePath = AppDomain.CurrentDomain.BaseDirectory + "..\\..\\Files\\EmailTemplate\\" + FileName + "";
             }
             try
             {

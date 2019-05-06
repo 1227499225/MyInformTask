@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        td {
+            width:200px;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <span>待处理：采购单-<%PlainNote.SnNumber%>,E-Supply已开票成功！请您在BPM中发起对付款单！</span>
+    
+        <table border="1" cellspacing="0">
+            <tr>
+                <td>PA单号</td>
+                <td>PO单号</td>
+                <td>日期</td>
+                <td>付款金额</td>
+                <td>发票金额</td>
+                <td>发票内容</td>
+                <td>发票凭证号</td>
+                <td>发票号</td>
+            </tr>
+            <tr ForData="true">
+                <td><%PlainNote.SnNumber%></td>
+                <td><%PNdet.StrTxt%></td>
+                <td><%PNdet.StrTxt%></td>
+                <td><%RevisedTotalExcludingTax%></td>
+                <td><%InvoiceAmt%></td>
+                <td><%TicketName%></td>
+                <td><%TicketNber%></td>
+                <td><%Invoice%></td>
+            </tr>
+        </table>
+  
+</body>
+</html>

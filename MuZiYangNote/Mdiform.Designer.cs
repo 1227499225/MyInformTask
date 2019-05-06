@@ -82,6 +82,7 @@
             this.颜色ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.TsmlLoggedOut = new System.Windows.Forms.ToolStripMenuItem();
             this.gpbTaskList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -434,7 +435,8 @@
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.字体设置ToolStripMenuItem});
+            this.字体设置ToolStripMenuItem,
+            this.TsmlLoggedOut});
             this.toolStripMenuItem5.Image = global::MuZiYangNote.Properties.Resources.setting1;
             resources.ApplyResources(this.toolStripMenuItem5, "toolStripMenuItem5");
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
@@ -497,6 +499,12 @@
             this.panel2.Controls.Add(this.btnShowType);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // TsmlLoggedOut
+            // 
+            this.TsmlLoggedOut.Name = "TsmlLoggedOut";
+            resources.ApplyResources(this.TsmlLoggedOut, "TsmlLoggedOut");
+            this.TsmlLoggedOut.Click += new System.EventHandler(this.TsmlLoggedOut_Click);
             // 
             // MdiForm
             // 
@@ -581,6 +589,7 @@
         private System.Windows.Forms.ToolStripMenuItem 颜色ToolStripMenuItem;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ToolStripMenuItem TsmlLoggedOut;
     }
 }
 

@@ -121,6 +121,10 @@
     <value>新增---------任务编码：{0}  任务标题{1}</value>
     <comment>09添加模块</comment>
   </data>
+  <data name="ClosingModuleCn" xml:space="preserve">
+    <value>关闭---------任务编码：{0}  任务标题{1}</value>
+    <comment>09关闭模块</comment>
+  </data>
   <data name="DeleteModuleCn" xml:space="preserve">
     <value>删除---------任务编码：{0}  任务标题{1}</value>
     <comment>09删除模块</comment>

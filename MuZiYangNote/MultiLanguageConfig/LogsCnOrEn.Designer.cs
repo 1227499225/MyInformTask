@@ -70,6 +70,15 @@ namespace MuZiYangNote.MultiLanguageConfig {
         }
         
         /// <summary>
+        ///   查找类似 关闭---------任务编码：{0}  任务标题{1} 的本地化字符串。
+        /// </summary>
+        internal static string ClosingModuleCn {
+            get {
+                return ResourceManager.GetString("ClosingModuleCn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 删除---------任务编码：{0}  任务标题{1} 的本地化字符串。
         /// </summary>
         internal static string DeleteModuleCn {

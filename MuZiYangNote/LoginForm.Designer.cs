@@ -33,6 +33,10 @@
             MuZiYangNote.UserControls.TTextBoxBorderRenderStyle tTextBoxBorderRenderStyle3 = new MuZiYangNote.UserControls.TTextBoxBorderRenderStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxExS1 = new MuZiYangNote.UserControls.TextBoxExS();
+            this.txtUserPwd = new MuZiYangNote.UserControls.TextBoxExS();
+            this.txtUserAccount = new MuZiYangNote.UserControls.TextBoxExS();
+            this.butLogin = new MuZiYangNote.UserControls.ButtonEX();
             this.laForgetThePassword = new System.Windows.Forms.Label();
             this.chbAutoLogon = new System.Windows.Forms.CheckBox();
             this.chbRememberThePassword = new System.Windows.Forms.CheckBox();
@@ -40,10 +44,6 @@
             this.panelHead = new System.Windows.Forms.Panel();
             this.btnEXMin = new MuZiYangNote.UserControls.ButtonEX();
             this.btnEXClose = new MuZiYangNote.UserControls.ButtonEX();
-            this.textBoxExS1 = new MuZiYangNote.UserControls.TextBoxExS();
-            this.txtUserPwd = new MuZiYangNote.UserControls.TextBoxExS();
-            this.txtUserAccount = new MuZiYangNote.UserControls.TextBoxExS();
-            this.butLogin = new MuZiYangNote.UserControls.ButtonEX();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picbUserImg)).BeginInit();
             this.panelHead.SuspendLayout();
@@ -65,7 +65,90 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(592, 260);
-            this.panel1.TabIndex = 2;
+            this.panel1.TabIndex = 7;
+            // 
+            // textBoxExS1
+            // 
+            this.textBoxExS1.AllowReturn = false;
+            tTextBoxBorderRenderStyle1.LineColor = System.Drawing.Color.LightGray;
+            tTextBoxBorderRenderStyle1.LineWidth = 1F;
+            this.textBoxExS1.BorderRenderStyle = tTextBoxBorderRenderStyle1;
+            this.textBoxExS1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxExS1.HideCaretP = true;
+            this.textBoxExS1.Location = new System.Drawing.Point(395, 232);
+            this.textBoxExS1.Multiline = true;
+            this.textBoxExS1.Name = "textBoxExS1";
+            this.textBoxExS1.Size = new System.Drawing.Size(194, 25);
+            this.textBoxExS1.TabIndex = 11;
+            this.textBoxExS1.TextMargin = new System.Windows.Forms.Padding(1);
+            this.textBoxExS1.WaterMarkFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.textBoxExS1.WaterMarkText = "缓存数，非开发人员勿填!";
+            this.textBoxExS1.WaterMarkTextColor = System.Drawing.Color.Silver;
+            this.textBoxExS1.WordWrap = false;
+            // 
+            // txtUserPwd
+            // 
+            this.txtUserPwd.AllowReturn = false;
+            tTextBoxBorderRenderStyle2.ActiveLineColor = System.Drawing.Color.LightSlateGray;
+            tTextBoxBorderRenderStyle2.LineColor = System.Drawing.Color.DimGray;
+            tTextBoxBorderRenderStyle2.LineWidth = 1F;
+            this.txtUserPwd.BorderRenderStyle = tTextBoxBorderRenderStyle2;
+            this.txtUserPwd.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUserPwd.HideCaretP = false;
+            this.txtUserPwd.Location = new System.Drawing.Point(228, 99);
+            this.txtUserPwd.Multiline = true;
+            this.txtUserPwd.Name = "txtUserPwd";
+            this.txtUserPwd.PasswordChar = '*';
+            this.txtUserPwd.Size = new System.Drawing.Size(313, 30);
+            this.txtUserPwd.TabIndex = 2;
+            this.txtUserPwd.TextMargin = new System.Windows.Forms.Padding(1);
+            this.txtUserPwd.WaterMarkFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtUserPwd.WaterMarkText = "请输入密码";
+            this.txtUserPwd.WaterMarkTextColor = System.Drawing.Color.Gray;
+            this.txtUserPwd.WordWrap = false;
+            // 
+            // txtUserAccount
+            // 
+            this.txtUserAccount.AllowReturn = false;
+            tTextBoxBorderRenderStyle3.ActiveLineColor = System.Drawing.Color.LightSlateGray;
+            tTextBoxBorderRenderStyle3.LineColor = System.Drawing.Color.DimGray;
+            tTextBoxBorderRenderStyle3.LineWidth = 1F;
+            this.txtUserAccount.BorderRenderStyle = tTextBoxBorderRenderStyle3;
+            this.txtUserAccount.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUserAccount.HideCaretP = false;
+            this.txtUserAccount.Location = new System.Drawing.Point(228, 50);
+            this.txtUserAccount.Multiline = true;
+            this.txtUserAccount.Name = "txtUserAccount";
+            this.txtUserAccount.Size = new System.Drawing.Size(313, 30);
+            this.txtUserAccount.TabIndex = 1;
+            this.txtUserAccount.TextMargin = new System.Windows.Forms.Padding(1);
+            this.txtUserAccount.WaterMarkFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtUserAccount.WaterMarkText = "账户\\手机号";
+            this.txtUserAccount.WaterMarkTextColor = System.Drawing.Color.Gray;
+            this.txtUserAccount.WordWrap = false;
+            // 
+            // butLogin
+            // 
+            this.butLogin.BackColor = System.Drawing.Color.Silver;
+            this.butLogin.BackColorEnter = System.Drawing.Color.DarkGray;
+            this.butLogin.BackColorEX = System.Drawing.Color.Silver;
+            this.butLogin.BackColorLeave = System.Drawing.Color.Silver;
+            this.butLogin.BackColorMove = System.Drawing.Color.Silver;
+            this.butLogin.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Max;
+            this.butLogin.FontM = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.butLogin.ImageDefault = null;
+            this.butLogin.ImageLeave = null;
+            this.butLogin.ImageMove = null;
+            this.butLogin.LabelEXImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.butLogin.LabelEXTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.butLogin.Location = new System.Drawing.Point(228, 173);
+            this.butLogin.Margin = new System.Windows.Forms.Padding(5);
+            this.butLogin.Name = "butLogin";
+            this.butLogin.Size = new System.Drawing.Size(313, 29);
+            this.butLogin.TabIndex = 6;
+            this.butLogin.TextColor = System.Drawing.Color.Black;
+            this.butLogin.TextEX = "登  录";
+            this.butLogin.ButtonClick += new System.EventHandler(this.butLogin_ButtonClick);
             // 
             // laForgetThePassword
             // 
@@ -124,7 +207,7 @@
             this.panelHead.Margin = new System.Windows.Forms.Padding(4);
             this.panelHead.Name = "panelHead";
             this.panelHead.Size = new System.Drawing.Size(595, 42);
-            this.panelHead.TabIndex = 4;
+            this.panelHead.TabIndex = 8;
             this.panelHead.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelHead_MouseDown);
             this.panelHead.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelHead_MouseMove);
             // 
@@ -148,7 +231,7 @@
             this.btnEXMin.Margin = new System.Windows.Forms.Padding(5);
             this.btnEXMin.Name = "btnEXMin";
             this.btnEXMin.Size = new System.Drawing.Size(27, 22);
-            this.btnEXMin.TabIndex = 3;
+            this.btnEXMin.TabIndex = 9;
             this.btnEXMin.TextColor = System.Drawing.Color.Black;
             this.btnEXMin.TextEX = "";
             this.btnEXMin.ButtonClick += new System.EventHandler(this.btnEXMin_ButtonClick);
@@ -173,93 +256,10 @@
             this.btnEXClose.Margin = new System.Windows.Forms.Padding(5);
             this.btnEXClose.Name = "btnEXClose";
             this.btnEXClose.Size = new System.Drawing.Size(27, 22);
-            this.btnEXClose.TabIndex = 3;
+            this.btnEXClose.TabIndex = 10;
             this.btnEXClose.TextColor = System.Drawing.Color.Black;
             this.btnEXClose.TextEX = "";
             this.btnEXClose.ButtonClick += new System.EventHandler(this.btnEXClose_Click);
-            // 
-            // textBoxExS1
-            // 
-            this.textBoxExS1.AllowReturn = false;
-            tTextBoxBorderRenderStyle1.LineColor = System.Drawing.Color.LightGray;
-            tTextBoxBorderRenderStyle1.LineWidth = 1F;
-            this.textBoxExS1.BorderRenderStyle = tTextBoxBorderRenderStyle1;
-            this.textBoxExS1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxExS1.HideCaretP = true;
-            this.textBoxExS1.Location = new System.Drawing.Point(395, 232);
-            this.textBoxExS1.Multiline = true;
-            this.textBoxExS1.Name = "textBoxExS1";
-            this.textBoxExS1.Size = new System.Drawing.Size(194, 25);
-            this.textBoxExS1.TabIndex = 11;
-            this.textBoxExS1.TextMargin = new System.Windows.Forms.Padding(1);
-            this.textBoxExS1.WaterMarkFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.textBoxExS1.WaterMarkText = "缓存数--非开发人员勿填!";
-            this.textBoxExS1.WaterMarkTextColor = System.Drawing.Color.Silver;
-            this.textBoxExS1.WordWrap = false;
-            // 
-            // txtUserPwd
-            // 
-            this.txtUserPwd.AllowReturn = false;
-            tTextBoxBorderRenderStyle2.ActiveLineColor = System.Drawing.Color.LightSlateGray;
-            tTextBoxBorderRenderStyle2.LineColor = System.Drawing.Color.DimGray;
-            tTextBoxBorderRenderStyle2.LineWidth = 1F;
-            this.txtUserPwd.BorderRenderStyle = tTextBoxBorderRenderStyle2;
-            this.txtUserPwd.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUserPwd.HideCaretP = false;
-            this.txtUserPwd.Location = new System.Drawing.Point(228, 99);
-            this.txtUserPwd.Multiline = true;
-            this.txtUserPwd.Name = "txtUserPwd";
-            this.txtUserPwd.PasswordChar = '*';
-            this.txtUserPwd.Size = new System.Drawing.Size(313, 30);
-            this.txtUserPwd.TabIndex = 10;
-            this.txtUserPwd.TextMargin = new System.Windows.Forms.Padding(1);
-            this.txtUserPwd.WaterMarkFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtUserPwd.WaterMarkText = "请输入密码";
-            this.txtUserPwd.WaterMarkTextColor = System.Drawing.Color.Gray;
-            this.txtUserPwd.WordWrap = false;
-            // 
-            // txtUserAccount
-            // 
-            this.txtUserAccount.AllowReturn = false;
-            tTextBoxBorderRenderStyle3.ActiveLineColor = System.Drawing.Color.LightSlateGray;
-            tTextBoxBorderRenderStyle3.LineColor = System.Drawing.Color.DimGray;
-            tTextBoxBorderRenderStyle3.LineWidth = 1F;
-            this.txtUserAccount.BorderRenderStyle = tTextBoxBorderRenderStyle3;
-            this.txtUserAccount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtUserAccount.HideCaretP = false;
-            this.txtUserAccount.Location = new System.Drawing.Point(228, 50);
-            this.txtUserAccount.Multiline = true;
-            this.txtUserAccount.Name = "txtUserAccount";
-            this.txtUserAccount.Size = new System.Drawing.Size(313, 30);
-            this.txtUserAccount.TabIndex = 10;
-            this.txtUserAccount.TextMargin = new System.Windows.Forms.Padding(1);
-            this.txtUserAccount.WaterMarkFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtUserAccount.WaterMarkText = "账户\\手机号";
-            this.txtUserAccount.WaterMarkTextColor = System.Drawing.Color.Gray;
-            this.txtUserAccount.WordWrap = false;
-            // 
-            // butLogin
-            // 
-            this.butLogin.BackColor = System.Drawing.Color.Silver;
-            this.butLogin.BackColorEnter = System.Drawing.Color.DarkGray;
-            this.butLogin.BackColorEX = System.Drawing.Color.Silver;
-            this.butLogin.BackColorLeave = System.Drawing.Color.Silver;
-            this.butLogin.BackColorMove = System.Drawing.Color.Silver;
-            this.butLogin.ButtonTypes = MuZiYangNote.UserControls.ButtonEX.ButtonType.Max;
-            this.butLogin.FontM = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.butLogin.ImageDefault = null;
-            this.butLogin.ImageLeave = null;
-            this.butLogin.ImageMove = null;
-            this.butLogin.LabelEXImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.butLogin.LabelEXTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.butLogin.Location = new System.Drawing.Point(228, 173);
-            this.butLogin.Margin = new System.Windows.Forms.Padding(5);
-            this.butLogin.Name = "butLogin";
-            this.butLogin.Size = new System.Drawing.Size(313, 29);
-            this.butLogin.TabIndex = 9;
-            this.butLogin.TextColor = System.Drawing.Color.Black;
-            this.butLogin.TextEX = "登  录";
-            this.butLogin.ButtonClick += new System.EventHandler(this.butLogin_ButtonClick);
             // 
             // LoginForm
             // 

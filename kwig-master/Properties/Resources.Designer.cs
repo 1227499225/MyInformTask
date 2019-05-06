@@ -97,9 +97,13 @@ namespace KSharpEditor.Properties {
         ///    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot; /&gt;
         ///    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, user-scalable=no&quot; /&gt;
         ///    &lt;title&gt;&lt;/title&gt;
-        ///    &lt;!-- include jquery --&gt;
-        ///    &lt;script&gt;
-        ///        !function (a, b) { &quot;object&quot; == typeof module &amp;&amp; &quot;object&quot; == typeof module.exports ? module.exports = a.document ? b(a, !0) : function (a) { if (!a.document) throw new Error(&quot;jQuery requires a window with a document&quot;); retur [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///        /*!
+        ///        * Bootstrap v3.3.5 (http://getbootstrap.com)
+        ///        * Copyright 2011-2015 Twitter, Inc.
+        ///        * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+        ///        */
+        ///        /*! normalize.css v3.0.3 |  [字符串的其余部分被截断]&quot;; 的本地化字符串。
         /// </summary>
         public static string editor01 {
             get {

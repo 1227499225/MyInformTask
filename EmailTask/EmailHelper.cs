@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using System.ServiceModel.Web;
 using System.ComponentModel;
 using System.Collections.Specialized;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace EmailTask
 {
@@ -152,7 +154,7 @@ namespace EmailTask
             {
                 string LogStr = "--------------------------------------------" + DateTime.Now.ToString() + "----------------------------------------------"
                                 + "\r\n" + ex.Message + "\r\n"
-                                + JsonHelper.GetJson<EmailSendInfo>(em) + "\r\n";
+                                + JsonHelper.GetJsons(em) + "\r\n";
                 LogCs.LogWrite(LogStr);
                 Msg = LogStr;
             }
@@ -171,13 +173,14 @@ namespace EmailTask
         public string EmailAddress { get; set; } = "1247765299@qq.com";
         public string EmailName { get; set; } = "木子杨-测试";
         public string AccountNumber { get; set; } = "1247765299@qq.com";
-        public string EmailPwd { get; set; } = "mwwxucqfhcsfiebg";
+        public string EmailPwd { get; set; } = "mavnvmwcfwsrijcb";
         public int Port { get; set; } = 0;
         public string Host { get; set; } = "smtp.qq.com";
     }
     /// <summary>
     /// 收件人信息
     /// </summary>
+    [Serializable]
     public class EmailSendInfo
     {
         public List<SendUserInfo> ToUserInfo { get; set; } = new List<SendUserInfo>();
@@ -249,7 +252,7 @@ namespace EmailTask
             {
                 try
                 {
-                    string path = AppDomain.CurrentDomain.BaseDirectory + "/log/" + "Email-log-" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
+                    string path = AppDomain.CurrentDomain.BaseDirectory + "\\log\\" + "Email-log-" + DateTime.Now.ToString("yyyyMMdd") + ".txt";
                     //判断文件是否存在，没有则创建。
                     if (!System.IO.File.Exists(path))
                     {
@@ -278,7 +281,7 @@ namespace EmailTask
                         //System.IO.File.Delete(path);
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
 
                 }
@@ -286,13 +289,22 @@ namespace EmailTask
         }
     public class JsonHelper
         {
-            /// <summary>
-            /// 把对象序列化 JSON 字符串 
-            /// </summary>
-            /// <typeparam name="T">对象类型</typeparam>
-            /// <param name="obj">对象实体</param>
-            /// <returns>JSON字符串</returns>
-            public static string GetJson<T>(T obj)
+        public static string GetJsons(object obj)
+        {
+            var serializerSettings = new JsonSerializerSettings
+            {
+                // 设置为驼峰命名
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+            return JsonConvert.SerializeObject(obj, Formatting.None, serializerSettings);
+        }
+        /// <summary>
+        /// 把对象序列化 JSON 字符串 
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="obj">对象实体</param>
+        /// <returns>JSON字符串</returns>
+        public static string GetJson<T>(T obj)
             {
                 //记住 添加引用 System.ServiceModel.Web 
                 /**
