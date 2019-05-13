@@ -66,6 +66,8 @@ namespace MuZiYangNote
         /// <param name="dt"></param>
         private delegate void DisplayDelegate(DataTable dt);
 
+        internal ProcedureArgs pda = new ProcedureArgs();
+
         #endregion
 
         /*
@@ -956,7 +958,7 @@ namespace MuZiYangNote
                     TD.Name = dr["SnNumber"].ToString();
                     TD.ID = dr["Id"].ToString();
                     TD.Title = dr["Topic"].ToString();
-                    TextBox tb = (TextBox)this.findControl(TD, "txtNoteContent");
+                    RichTextBox tb = (RichTextBox)this.findControl(TD, "RichTbNoteContent");
                     tb.Text = dr["NoteContent"].ToString();
                     TD.DataChange += new TaskDetails.DataChangeHandler((new MdiForm()).DataChanged);
                     TD._ParentForm = this;
@@ -974,6 +976,7 @@ namespace MuZiYangNote
                         DisplayDelegate disp = new DisplayDelegate(AddTaskModule);
                         //使用控件flowLayoutPanel1的Invoke方法执行Display代理(其类型是DisplayDelegate)
                         this.fyp01.Invoke(disp, dt);
+                        break;
                     }
 
                     //普通便签
@@ -1004,7 +1007,6 @@ namespace MuZiYangNote
                 }
                 else {
                     new ShowLog(RtbTxt, MessageLevel.LogCustom, "便签<{0}>已打开！".Fill(_f.Topic), (new ShowLog.customColor() { IsEnable = true, _c = Color.Gray }));
-
                 }
 
             }
@@ -1053,8 +1055,8 @@ namespace MuZiYangNote
                             TD.Title = item.Topic;
                             TD.DataChange += new BaseUserControl.DataChangeHandler((new MdiForm()).DataChanged);
                             if (string.IsNullOrEmpty(item.NoteContent))
-                                if (_td.Controls.Find("txtNoteContent", true).Count() > 0)
-                                    item.NoteContent = _td.Controls.Find("txtNoteContent", true)[0].Text;
+                                if (_td.Controls.Find("RichTbNoteContent", true).Count() > 0)
+                                    item.NoteContent = _td.Controls.Find("RichTbNoteContent", true)[0].Text;
                             TD.TxtNoteContetnStr = item.NoteContent;
                             this.fyp01.Controls.Remove(_td);
                             this.fyp01.Controls.Add(TD);
@@ -1081,8 +1083,8 @@ namespace MuZiYangNote
                             TD.Title = item.Topic;
                             TD.DataChange += new BaseUserControl.DataChangeHandler((new MdiForm()).DataChanged);
                             if (string.IsNullOrEmpty(item.NoteContent))
-                                if (_td.Controls.Find("txtNoteContent", true).Count() > 0)
-                                    item.NoteContent = _td.Controls.Find("txtNoteContent", true)[0].Text;
+                                if (_td.Controls.Find("RichTbNoteContent", true).Count() > 0)
+                                    item.NoteContent = _td.Controls.Find("RichTbNoteContent", true)[0].Text;
                             TD.NoteContent = item.NoteContent;
                             this.fyp01.Controls.Remove(_td);
                             this.fyp01.Controls.Add(TD);
@@ -1285,6 +1287,37 @@ namespace MuZiYangNote
             }
         }
 
-
+        //减小
+        private void toolStripTextBox1_Click(object sender, EventArgs e)
+        {
+            if (this.pda.Starts == null && this.pda.Parame1 == null)
+                return;
+            if ((bool)this.pda.Starts)
+            {
+                Control[] _c = this.fyp01.Controls.Find((string)this.pda.Parame1, true);
+                if (_c.Count() > 0)
+                {
+                    _c[0].Width = _c[0].Width / 2;
+                    new ShowLog(RtbTxt, MessageLevel.LogNormal, "{0}，宽度/2！".Fill((string)this.pda.Parame2));
+                    //_c[0].Height = _c[0].Height / 2;
+                }
+            }
+        }
+        //增大
+        private void toolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            if (this.pda.Starts == null && this.pda.Parame1 == null)
+                return;
+            if ((bool)this.pda.Starts)
+            {
+                Control[] _c = this.fyp01.Controls.Find((string)this.pda.Parame1, true);
+                if (_c.Count() > 0)
+                {
+                    _c[0].Width = _c[0].Width *2;
+                    //_c[0].Height = _c[0].Height * 2;
+                    new ShowLog(RtbTxt, MessageLevel.LogNormal, "{0}，宽度*2！".Fill((string)this.pda.Parame2));
+                }
+            }
+        }
     }
 }

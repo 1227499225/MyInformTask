@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandClass.cs" />
     <Compile Include="FrmBaseHostHelper.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +173,7 @@
     <Compile Include="UserControls\MaskLayer.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UserControls\ProcedureArgs.cs" />
     <Compile Include="UserControls\TextBoxEX.cs">
       <SubType>Component</SubType>
     </Compile>

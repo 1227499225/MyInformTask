@@ -80,9 +80,11 @@
             this.toolStripComboBox3 = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripComboBox4 = new System.Windows.Forms.ToolStripComboBox();
             this.颜色ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TsmlLoggedOut = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.TsmlLoggedOut = new System.Windows.Forms.ToolStripMenuItem();
             this.gpbTaskList.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -254,7 +256,9 @@
             this.个人中心ToolStripMenuItem,
             this.我的好友ToolStripMenuItem,
             this.toolStripMenuItem4,
-            this.toolStripMenuItem5});
+            this.toolStripMenuItem5,
+            this.toolStripTextBox1,
+            this.toolStripMenuItem6});
             this.MStrip.Name = "MStrip";
             // 
             // toolStripMenuItem1
@@ -492,6 +496,26 @@
             resources.ApplyResources(this.颜色ToolStripMenuItem, "颜色ToolStripMenuItem");
             this.颜色ToolStripMenuItem.Click += new System.EventHandler(this.颜色ToolStripMenuItem_Click);
             // 
+            // TsmlLoggedOut
+            // 
+            this.TsmlLoggedOut.Name = "TsmlLoggedOut";
+            resources.ApplyResources(this.TsmlLoggedOut, "TsmlLoggedOut");
+            this.TsmlLoggedOut.Click += new System.EventHandler(this.TsmlLoggedOut_Click);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Image = global::MuZiYangNote.Properties.Resources.arrow3;
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            resources.ApplyResources(this.toolStripTextBox1, "toolStripTextBox1");
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            // 
+            // toolStripMenuItem6
+            // 
+            this.toolStripMenuItem6.Image = global::MuZiYangNote.Properties.Resources.arrow4;
+            this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+            resources.ApplyResources(this.toolStripMenuItem6, "toolStripMenuItem6");
+            this.toolStripMenuItem6.Click += new System.EventHandler(this.toolStripMenuItem6_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.MStrip);
@@ -499,12 +523,6 @@
             this.panel2.Controls.Add(this.btnShowType);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
-            // 
-            // TsmlLoggedOut
-            // 
-            this.TsmlLoggedOut.Name = "TsmlLoggedOut";
-            resources.ApplyResources(this.TsmlLoggedOut, "TsmlLoggedOut");
-            this.TsmlLoggedOut.Click += new System.EventHandler(this.TsmlLoggedOut_Click);
             // 
             // MdiForm
             // 
@@ -590,6 +608,8 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.ToolStripMenuItem TsmlLoggedOut;
+        private System.Windows.Forms.ToolStripMenuItem toolStripTextBox1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
     }
 }
 

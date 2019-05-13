@@ -34,7 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose = new MuZiYangNote.UserControls.ButtonEX();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.txtNoteContent = new System.Windows.Forms.TextBox();
+            this.RichTbNoteContent = new System.Windows.Forms.RichTextBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
@@ -98,7 +98,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.txtNoteContent);
+            this.panel2.Controls.Add(this.RichTbNoteContent);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 32);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
@@ -106,18 +106,21 @@
             this.panel2.Size = new System.Drawing.Size(244, 222);
             this.panel2.TabIndex = 5;
             // 
-            // txtNoteContent
+            // RichTbNoteContent
             // 
-            this.txtNoteContent.BackColor = System.Drawing.Color.MintCream;
-            this.txtNoteContent.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtNoteContent.Location = new System.Drawing.Point(3, 8);
-            this.txtNoteContent.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNoteContent.Multiline = true;
-            this.txtNoteContent.Name = "txtNoteContent";
-            this.txtNoteContent.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtNoteContent.Size = new System.Drawing.Size(237, 210);
-            this.txtNoteContent.TabIndex = 0;
-            this.txtNoteContent.TextChanged += new System.EventHandler(this.txtNoteContent_TextChanged);
+            this.RichTbNoteContent.BackColor = System.Drawing.Color.MintCream;
+            this.RichTbNoteContent.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RichTbNoteContent.Location = new System.Drawing.Point(4, 7);
+            this.RichTbNoteContent.Name = "RichTbNoteContent";
+            this.RichTbNoteContent.Size = new System.Drawing.Size(235, 209);
+            this.RichTbNoteContent.TabIndex = 99;
+            this.RichTbNoteContent.TabStop = false;
+            this.RichTbNoteContent.Text = "";
+            this.RichTbNoteContent.Click += new System.EventHandler(this.RichTbNoteContent_Click);
+            this.RichTbNoteContent.TextChanged += new System.EventHandler(this.RichTbNoteContent_TextChanged);
+            this.RichTbNoteContent.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RichTbNoteContent_KeyDown);
+            this.RichTbNoteContent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RichTbNoteContent_MouseDown);
+            this.RichTbNoteContent.MouseUp += new System.Windows.Forms.MouseEventHandler(this.RichTbNoteContent_MouseUp);
             // 
             // timer1
             // 
@@ -136,7 +139,6 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -148,8 +150,8 @@
         private System.Windows.Forms.TextBox txtChangTitle;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.TextBox txtNoteContent;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.RichTextBox RichTbNoteContent;
     }
 }

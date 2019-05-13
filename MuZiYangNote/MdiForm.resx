@@ -940,18 +940,6 @@
   <data name="toolStripMenuItem4.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 24</value>
   </data>
-  <data name="字体设置ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 26</value>
-  </data>
-  <data name="字体设置ToolStripMenuItem.Text" xml:space="preserve">
-    <value>字体设置</value>
-  </data>
-  <data name="TsmlLoggedOut.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 26</value>
-  </data>
-  <data name="TsmlLoggedOut.Text" xml:space="preserve">
-    <value>退出登陆</value>
-  </data>
   <data name="toolStripMenuItem5.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Transparent</value>
   </data>
@@ -961,6 +949,18 @@
   <data name="toolStripMenuItem5.Size" type="System.Drawing.Size, System.Drawing">
     <value>32, 24</value>
   </data>
+  <data name="toolStripTextBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 24</value>
+  </data>
+  <data name="toolStripTextBox1.ToolTipText" xml:space="preserve">
+    <value>便签宽度/2</value>
+  </data>
+  <data name="toolStripMenuItem6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>32, 24</value>
+  </data>
+  <data name="toolStripMenuItem6.ToolTipText" xml:space="preserve">
+    <value>便签宽度*2</value>
+  </data>
   <data name="MStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 4</value>
   </data>
@@ -968,7 +968,7 @@
     <value>8, 2, 0, 2</value>
   </data>
   <data name="MStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>501, 28</value>
+    <value>565, 28</value>
   </data>
   <data name="MStrip.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -1123,6 +1123,12 @@
   <data name="其他03ToolStripMenuItem.Text" xml:space="preserve">
     <value>其他03</value>
   </data>
+  <data name="字体设置ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 26</value>
+  </data>
+  <data name="字体设置ToolStripMenuItem.Text" xml:space="preserve">
+    <value>字体设置</value>
+  </data>
   <data name="toolStripComboBox1.Items" xml:space="preserve">
     <value>宋体</value>
   </data>
@@ -1182,6 +1188,12 @@
   </data>
   <data name="颜色ToolStripMenuItem.Text" xml:space="preserve">
     <value>颜色</value>
+  </data>
+  <data name="TsmlLoggedOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 26</value>
+  </data>
+  <data name="TsmlLoggedOut.Text" xml:space="preserve">
+    <value>退出登陆</value>
   </data>
   <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>209, 17</value>
@@ -1610,17 +1622,29 @@
   <data name="&gt;&gt;颜色ToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;colorDialog1.Name" xml:space="preserve">
-    <value>colorDialog1</value>
-  </data>
-  <data name="&gt;&gt;colorDialog1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;TsmlLoggedOut.Name" xml:space="preserve">
     <value>TsmlLoggedOut</value>
   </data>
   <data name="&gt;&gt;TsmlLoggedOut.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripTextBox1.Name" xml:space="preserve">
+    <value>toolStripTextBox1</value>
+  </data>
+  <data name="&gt;&gt;toolStripTextBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem6.Name" xml:space="preserve">
+    <value>toolStripMenuItem6</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItem6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colorDialog1.Name" xml:space="preserve">
+    <value>colorDialog1</value>
+  </data>
+  <data name="&gt;&gt;colorDialog1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ColorDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>MdiForm</value>

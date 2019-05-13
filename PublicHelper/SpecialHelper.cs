@@ -392,7 +392,7 @@ namespace PublicHelper
                                 " },//查询所有
                     {"V02003",@"select pn.* from PlainNote pn 
                                 inner join insttask t on pn.TaskId=t.Id
-                                where t.CreatorId='{0}' and pn.IsOpen='{1}'" },//查询是否需要打开的单子
+                                where t.CreatorId='{0}' and pn.IsOpen='{1}'" },//查询是否需要打开的便签
                     {"V02004","" },
 
                     {"V03001","" },

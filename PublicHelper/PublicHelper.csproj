@@ -64,6 +64,7 @@
     <Compile Include="FileHelper.cs" />
     <Compile Include="InstHelper.cs" />
     <Compile Include="JsonHelper.cs" />
+    <Compile Include="ListTCustomHelper.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="MyConfig.cs" />
     <Compile Include="PubConstant.cs" />
